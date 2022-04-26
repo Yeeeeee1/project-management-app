@@ -1,5 +1,6 @@
 module.exports = {
   root: true,
+   "plugins": ["import", "html"],
   overrides: [
     {
       files: ["*.ts"],
@@ -8,7 +9,7 @@ module.exports = {
         tsconfigRootDir: __dirname,
         createDefaultProgram: true,
       },
-      extends: ["plugin:@angular-eslint/recommended", "airbnb-typescript/base"],
+      extends: ["plugin:@angular-eslint/recommended"],
       rules: {
         "import/prefer-default-export": "off",
         /**
