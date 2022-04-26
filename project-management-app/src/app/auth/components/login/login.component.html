@@ -1,8 +1,9 @@
 <form [formGroup]="login">
-  <mat-form-field *ngFor="let loginField of loginFields ">
+  <h3>Login</h3>
+  <mat-form-field *ngFor="let loginField of loginFields">
     <mat-label>{{loginField.id }}</mat-label>
-    <input matInput id="{{loginField.id}}" formControlName="{{loginField}}" autocomplete="off"
-      type="{{loginField.type}}">
+    <input matInput id="{{loginField.id}}" autocomplete="off" type="{{loginField.type}}"
+      formControlName="{{loginField.id}}">
     <mat-error>{{createErrorMessage(loginField)}}</mat-error>
   </mat-form-field>
   <div class="btn-wrap">
