@@ -12,7 +12,9 @@ import { regExValidator } from '../../util';
 })
 export class LoginComponent {
   @Input() formError: string = '';
+
   constructor(private router: Router, private fb: FormBuilder) {}
+
   public loginFields: ILoginForm[] = [
     {
       id: 'name',
@@ -34,10 +36,12 @@ export class LoginComponent {
       },
     },
   ];
+
   public login = this.fb.group({
     name: [null, [Validators.required, Validators.email]],
     password: [null, [Validators.required, regExValidator(PASSWORD_REG_EX)]],
   });
+
   createErrorMessage(loginField: ILoginForm): string | undefined {
     let message: string | undefined;
     switch (true) {

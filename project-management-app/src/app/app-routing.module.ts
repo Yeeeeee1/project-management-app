@@ -7,8 +7,7 @@ import { ROUTH_PATHS } from './shared/constants/constants';
 const routes: Routes = [
   {
     path: ROUTH_PATHS.AUTHORIZATION,
-    loadChildren: (): Promise<AuthModule> =>
-      import('./auth/auth.module').then((x) => x.AuthModule),
+    loadChildren: async (): Promise<AuthModule> => import('./auth/auth.module').then((x) => x.AuthModule),
   },
 
   { path: '**', component: PageErrorComponent },
