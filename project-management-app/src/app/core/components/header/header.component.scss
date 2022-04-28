@@ -1,0 +1,44 @@
+header {
+  background: #f0f0f0;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  height: 80px;
+}
+
+.navigation {
+  display: flex;
+
+  button {
+    display: block;
+    margin-right: 5px;
+  }
+}
+
+.logo-link {
+  display: block;
+  cursor: pointer;
+  margin-right: 20px;
+}
+
+.boards-icon {
+  font-size: 36px;
+}
+
+.boards-icon,
+.logout-icon {
+  color: #2f80ed;
+}
+
+.search-field {
+  width: 250px;
+  border: none;
+  height: 25px;
+  box-sizing: border-box;
+  padding: 5px;
+  margin-right: 30px;
+}
+
+.language-toggle {
+  vertical-align: middle;
+}

@@ -1,22 +1,26 @@
-<div>
-  <div class="logo"></div>
-  <button mat-raised-button color="primary">Boards</button>
-  <button mat-raised-button color="primary">Edit profile</button>
-  <button mat-raised-button color="primary">Create board</button>
-</div>
-<div>
-  <input
-    class="search-field"
-    matInput
-    placeholder="What do you want to find?"
-  />
-  <mat-slide-toggle>EN</mat-slide-toggle>
-  <button mat-icon-button>
-    <mat-icon aria-label="Logout" class="logout-icon"
-      >logout</mat-icon
-    >
-  </button>
-</div>
+<header>
+  <div class="navigation">
+    <a class="logo-link"><mat-icon class="boards-icon" aria-label="Boards">dashboard</mat-icon></a>
+    <button mat-stroked-button color="primary">Edit profile</button>
+    <button mat-stroked-button color="primary">Create board</button>
+  </div>
+  <div>
+    <input
+      class="search-field"
+      matInput
+      placeholder="Search..."
+    />
+    <span class="language-toggle">
+      <mat-slide-toggle>EN</mat-slide-toggle>
+    </span>
+
+    <button mat-icon-button>
+      <mat-icon aria-label="Logout" class="logout-icon">logout</mat-icon>
+    </button>
+  </div>
+</header>
+
+
 
 
 
