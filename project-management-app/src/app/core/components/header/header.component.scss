@@ -4,6 +4,13 @@ header {
   justify-content: space-around;
   align-items: center;
   height: 80px;
+  position: fixed;
+  width:100%;
+  transition: 0.8s;
+}
+
+header.sticky {
+  background: #d4d4d4;
 }
 
 .navigation {
