@@ -1,7 +1,7 @@
 <header [class.sticky]="isSticky">
   <div class="navigation">
     <a class="logo-link"><mat-icon class="boards-icon" aria-label="Boards">dashboard</mat-icon></a>
-    <button mat-stroked-button color="primary">Edit profile</button>
+    <button mat-stroked-button color="primary" (click)="openEditProfile()">Edit profile</button>
     <button mat-stroked-button color="primary">Create board</button>
   </div>
   <div>

@@ -1,0 +1,14 @@
+@use "../../../../assets/scss/variables";
+
+.edit-form {
+  @extend %form;
+}
+
+mat-form-field {
+  @extend %form-field;
+}
+
+.save-btn {
+  @extend %form-btn;
+  margin-top: 20px;
+}

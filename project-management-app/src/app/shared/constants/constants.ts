@@ -2,6 +2,7 @@ export const ROUTH_PATHS = {
   AUTHORIZATION: 'auth',
   LOGIN: 'login',
   REGISTRATION: 'registration',
+  EDIT_PROFILE: 'edit-profile',
 };
 export const TOKEN = 'token';
 export const PASSWORD_REG_EX =
