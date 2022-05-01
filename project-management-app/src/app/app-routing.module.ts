@@ -6,7 +6,6 @@ import { PageErrorComponent } from './core/pages/page-error/page-error.component
 import { ROUTH_PATHS } from './shared/constants/constants';
 
 const routes: Routes = [
-  { path: '', component: AppComponent },
   {
     path: ROUTH_PATHS.AUTHORIZATION,
     loadChildren: async (): Promise<AuthModule> =>
