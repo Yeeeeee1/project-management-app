@@ -10,6 +10,7 @@ import { ROUTH_PATHS } from 'src/app/shared/constants/constants';
 })
 export class HeaderComponent {
   public isSticky: boolean;
+  public isLogged: boolean = true;
 
   constructor(
     private router: Router,
