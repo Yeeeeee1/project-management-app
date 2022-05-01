@@ -1,0 +1,36 @@
+<header [class.sticky]="isSticky">
+  <div class="navigation">
+    <a class="logo-link"><mat-icon class="boards-icon" aria-label="Boards">dashboard</mat-icon></a>
+    <button *ngIf="isLogged" mat-stroked-button color="primary" (click)="openEditProfile()">Edit profile</button>
+    <button *ngIf="isLogged" mat-stroked-button color="primary">Create board</button>
+  </div>
+  <div>
+    <div *ngIf="isLogged">
+      <input
+        class="search-field"
+        matInput
+        placeholder="Search..."
+      />
+      <span class="language-toggle">
+        <mat-slide-toggle>EN</mat-slide-toggle>
+      </span>
+
+      <button mat-icon-button>
+        <mat-icon aria-label="Logout" class="logout-icon">logout</mat-icon>
+      </button>
+    </div>
+    <div *ngIf="!isLogged">
+      <button mat-stroked-button color="primary" class="login-btn">Log in</button>
+      <button mat-stroked-button color="primary">Sign up</button>
+    </div>
+  </div>
+</header>
+
+
+
+
+
+
+
+
+
