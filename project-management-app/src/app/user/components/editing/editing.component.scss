@@ -1,0 +1,19 @@
+@use "../../../../assets/scss/variables";
+
+.edit-form {
+  @extend %form;
+}
+
+mat-form-field {
+  @extend %form-field;
+}
+
+.save-btn, .delete-btn {
+  @extend %form-btn;
+  margin-top: 20px;
+}
+
+.delete-btn {
+  background-color: #cc0000;
+  margin-top: 10px;
+}

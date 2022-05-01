@@ -1,41 +1,41 @@
-import { Component, Input } from '@angular/core';
+import { Component } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
+import { regExValidator } from 'src/app/auth/util';
 import { PASSWORD_REG_EX } from 'src/app/shared/constants/constants';
-import { IRegForm } from '../../models/registration.model';
-import { confirmValidator, regExValidator } from '../../util';
+import { IEditForm } from '../../models/editing.model';
 
 @Component({
-  selector: 'app-registration',
-  templateUrl: './registration.component.html',
-  styleUrls: ['./registration.component.scss'],
+  selector: 'app-editing',
+  templateUrl: './editing.component.html',
+  styleUrls: ['./editing.component.scss']
 })
-export class RegistrationComponent {
-  @Input() formError: string = '';
+export class EditingComponent{
 
   constructor(private fb: FormBuilder) {}
 
-  public regFields: IRegForm[] = [
+  public formFields: IEditForm[] = [
     {
       id: 'name',
+      label: 'Name',
       formControlName: 'name',
       type: 'text',
       messageError: {
         minLength: 'The name is too short',
         maxLength: 'The name is too long',
-        required: 'Please enter a name',
       },
     },
     {
       id: 'email',
+      label: 'Email',
       formControlName: 'email',
       type: 'text',
       messageError: {
         email: 'Please enter a valid email: example@email.com',
-        required: 'Please enter a  email',
       },
     },
     {
       id: 'password',
+      label: 'Password',
       formControlName: 'password',
       type: 'password',
       messageError: {
@@ -46,6 +46,7 @@ export class RegistrationComponent {
     },
     {
       id: 'confirmPassword',
+      label: 'Confirm password',
       formControlName: 'confirmPassword',
       type: 'password',
       messageError: {
@@ -55,30 +56,27 @@ export class RegistrationComponent {
     },
   ];
 
-  public reg = this.fb.group({
-    name: [
-      null,
-      [Validators.required, Validators.minLength(3), Validators.maxLength(20)],
-    ],
-    email: [null, [Validators.required, Validators.email]],
-    password: [null, [Validators.required, regExValidator(PASSWORD_REG_EX)]],
-    confirmPassword: [null, [Validators.required, confirmValidator()]],
+  public editForm = this.fb.group({
+    name: [null,[Validators.minLength(3), Validators.maxLength(20)],],
+    email: [null, [Validators.email]],
+    password: [null, [regExValidator(PASSWORD_REG_EX)]],
+    //confirmPassword: [null, [confirmValidator()]],
   });
 
-  createErrorMessage(regField: IRegForm): string | undefined {
+  createErrorMessage(regField: IEditForm): string | undefined {
     let message: string | undefined;
     switch (true) {
-      case !!this.reg?.get(regField.id)?.errors?.['required']:
+      case !!this.editForm?.get(regField.id)?.errors?.['required']:
         message = regField.messageError.required;
         break;
-      case !!this.reg?.get(regField.id)?.errors?.['email']:
+      case !!this.editForm?.get(regField.id)?.errors?.['email']:
         message = regField.messageError.email;
         break;
 
-      case !!this.reg?.get(regField.id)?.errors?.['regEx']:
+      case !!this.editForm?.get(regField.id)?.errors?.['regEx']:
         message = regField.messageError.regEx;
         break;
-      case !!this.reg?.get(regField.id)?.errors?.['confirm']:
+      case !!this.editForm?.get(regField.id)?.errors?.['confirm']:
         message = regField.messageError.confirm;
 
         break;
@@ -87,4 +85,6 @@ export class RegistrationComponent {
     }
     return message;
   }
+
 }
+
