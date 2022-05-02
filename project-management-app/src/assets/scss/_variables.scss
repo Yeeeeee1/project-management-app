@@ -1,25 +1,163 @@
-$blue-color: #2f80ed;
-$grey-color: #f2f2f2;
-$red-color: #cc0000;
+$blue: #5030e5;
+$green: #68b266;
+$yellow: #ffa500;
+$orange: #d58d49;
+$violet: #800080;
+$red: #d8727d;
+$white: #ffffff;
+$black: #000000;
+$gray: #787486;
 
-%form {
+$opacity-orange: rgba(223, 168, 116, 0.2);
+$opacity-green: rgba(131, 194, 157, 0.2);
+$opacity-blue: rgba(118, 165, 234, 0.2);
+$opacity-yellow: rgba(252, 214, 74, 0.7);
+$opacity-red: rgba(216, 114, 125, 0.1);
+$opacity-gray: rgba(196, 196, 196, 0.3);
+$opacity-black: rgba(0, 0, 0, 0.5);
+
+$bg-gray: #f5f5f5;
+$component-border-gray: #dbdbdb;
+$light-violet: #e4ccfd;
+$light-green: #8bc48a;
+$light-red: #f595a0;
+$light-blue: #76a5ea;
+
+$dark-gray: #0d062d;
+
+$header-height: 85px;
+$headerStickyHeight: 80px;
+$big-border-radius: 16px;
+$small-border-radius: 4px;
+
+$fontSizeH1: 46px;
+$fontSizeH2: 20px;
+$fontSizeH3: 18px;
+$fontSizeH4: 18px;
+$fontSizeP: 12px;
+$fontFamily: "Inter", sans-serif;
+
+@mixin transition {
+  transition: all 0.2s ease-out;
+}
+
+@mixin shadow {
+  box-shadow: 0px 4px 4px 0 $black 25%;
+}
+
+@mixin blockCentred {
   display: flex;
+  justify-content: center;
+  align-items: center;
+  height: calc(100vh - #{$header-height});
+}
+
+@mixin form {
+  font-family: "Inter", sans-serif;
+  display: flex;
+  margin: 0 auto;
   flex-direction: column;
   width: 345px;
-  background-color: $grey-color;
+  background-color: $bg-gray;
   align-items: center;
-  padding: 45px;
+  padding: 20px;
+  border-radius: $big-border-radius;
+}
+@mixin fontP {
+  font-size: $fontSizeP;
+  font-family: $fontFamily;
+  color: $gray;
+}
+@mixin fontP {
+  font-size: $fontSizeP;
+  font-family: $fontFamily;
+  font-weight: 400;
+  color: $gray;
+}
+@mixin fontH4 {
+  font-size: $fontSizeH4;
+  font-family: $fontFamily;
+  font-weight: 500;
+  color: $gray;
+}
+@mixin fontH3 {
+  font-size: $fontSizeH3;
+  font-family: $fontFamily;
+  font-weight: 600;
+  color: $dark-gray;
+}
+@mixin fontH2 {
+  font-size: $fontSizeH2;
+  font-family: $fontFamily;
+  font-weight: 600;
+  color: $dark-gray;
 }
 
-%form-field {
-  width: 100%;
-  margin-bottom: 10px;
+@mixin fontH1 {
+  font-size: $fontSizeH1;
+  font-family: $fontFamily;
+  font-weight: 600;
+  color: $dark-gray;
 }
 
-%form-btn {
-  width: 100%;
-  background-color: $blue-color;
-  color: white;
-  border-radius: 5px 5px 5px 5px;
+@mixin input {
+  width: 420px;
+  height: 44px;
+  border-radius: $small-border-radius;
+}
+@mixin hover {
+  @include transition;
+}
+@mixin btnWithBorder {
+  width: 122px;
+  height: 40px;
+  border: 1px solid $gray;
+  background: $white;
+  border-radius: $small-border-radius;
+  margin: 4px;
+  @include fontH4;
+}
+@mixin btn {
+  width: 122px;
+  height: 40px;
+  border: none;
+  border-radius: $small-border-radius;
+  margin: 4px;
+  @include transition;
+  @include fontH4;
+}
+@mixin disabled {
+  color: $opacity-gray;
+}
+@mixin list {
+  background: $bg-gray;
+  padding: 20px;
+  width: 355px;
+  border-radius: $big-border-radius;
 }
 
+@mixin task {
+  background: $white;
+  padding: 20px;
+  width: 315px;
+  border-radius: $big-border-radius;
+}
+
+@mixin listScroll {
+  &::-webkit-scrollbar {
+    width: 4px;
+  }
+  &::-webkit-scrollbar-thumb {
+    background-color: $gray;
+    border-radius: 2px;
+  }
+}
+@mixin boardScroll {
+  &::-webkit-scrollbar {
+    width: 12px;
+  }
+  &::-webkit-scrollbar-thumb {
+    background-color: $gray;
+    border-radius: 6px;
+  }
+}

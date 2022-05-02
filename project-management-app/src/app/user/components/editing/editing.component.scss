@@ -1,19 +1,52 @@
-@use "../../../../assets/scss/variables";
+@import "./../../../../assets/scss/_variables.scss";
+form {
+  h3 {
+    @include fontH3;
+  }
+  @include form;
+  input {
+    @include input;
+    background: $white;
+  }
+  button {
+    @include btn;
 
-.edit-form {
-  @extend %form;
-}
+    &:hover {
+      @include hover;
+    }
+  }
+  .save-btn {
+    color: $white;
+    background: $light-blue;
 
-mat-form-field {
-  @extend %form-field;
-}
+    &:hover {
+      background: #587eb5;
+    }
+    &:disabled {
+      @include disabled;
+      color: $white;
+      background: $opacity-blue;
+      &:hover {
+        color: $white;
+        background: $opacity-blue;
+      }
+    }
+  }
+  .delete-btn {
+    color: $white;
+    background: $light-red;
 
-.save-btn, .delete-btn {
-  @extend %form-btn;
-  margin-top: 20px;
-}
-
-.delete-btn {
-  background-color: #cc0000;
-  margin-top: 10px;
+    &:hover {
+      background: $red;
+    }
+    &:disabled {
+      @include disabled;
+      color: $white;
+      background: $opacity-red;
+      &:hover {
+        color: $white;
+        background: $opacity-red;
+      }
+    }
+  }
 }
