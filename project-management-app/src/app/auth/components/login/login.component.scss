@@ -1,0 +1,41 @@
+@import "./../../../../assets/scss/_variables.scss";
+form {
+  h3 {
+    @include fontH3;
+  }
+  @include form;
+  input {
+    @include input;
+    background: $white;
+  }
+  button {
+    @include btn;
+
+    &:hover {
+      @include hover;
+    }
+  }
+  .enter-btn {
+    color: $white;
+    background: $light-blue;
+
+    &:hover {
+      background: #587eb5;
+    }
+  }
+  .registration-btn {
+    background: none;
+    &:hover {
+      color: $dark-gray;
+    }
+  }
+  button:disabled {
+    @include disabled;
+    color: $white;
+    background: $opacity-blue;
+    &:hover {
+      color: $white;
+      background: $opacity-blue;
+    }
+  }
+}

@@ -7,10 +7,9 @@ import { IEditForm } from '../../models/editing.model';
 @Component({
   selector: 'app-editing',
   templateUrl: './editing.component.html',
-  styleUrls: ['./editing.component.scss']
+  styleUrls: ['./editing.component.scss'],
 })
-export class EditingComponent{
-
+export class EditingComponent {
   constructor(private fb: FormBuilder) {}
 
   public formFields: IEditForm[] = [
@@ -57,10 +56,10 @@ export class EditingComponent{
   ];
 
   public editForm = this.fb.group({
-    name: [null,[Validators.minLength(3), Validators.maxLength(20)],],
+    name: [null, [Validators.minLength(3), Validators.maxLength(20)]],
     email: [null, [Validators.email]],
     password: [null, [regExValidator(PASSWORD_REG_EX)]],
-    //confirmPassword: [null, [confirmValidator()]],
+    // confirmPassword: [null, [confirmValidator()]],
   });
 
   createErrorMessage(regField: IEditForm): string | undefined {
@@ -85,6 +84,4 @@ export class EditingComponent{
     }
     return message;
   }
-
 }
-

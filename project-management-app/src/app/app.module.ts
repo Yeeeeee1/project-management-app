@@ -8,6 +8,7 @@ import { AuthModule } from './auth/auth.module';
 import { CoreModule } from './core/core.module';
 import { BoardsComponent } from './boards/pages/boards/boards.component';
 import { HttpClientModule } from '@angular/common/http';
+
 @NgModule({
   declarations: [AppComponent, BoardsComponent],
   imports: [
