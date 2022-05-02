@@ -1,19 +1,71 @@
-@use "../../../../assets/scss/variables";
+// @import "../../../../assets/scss/variables";
 
-.edit-form {
-  @extend %form;
-}
+// .edit-form {
+//   @include formLayout;
+// }
 
-mat-form-field {
-  @extend %form-field;
-}
+// mat-form-field {
+//   @extend %form-field;
+// }
 
-.save-btn, .delete-btn {
-  @extend %form-btn;
-  margin-top: 20px;
-}
+// .save-btn, .delete-btn {
+//   @extend %form-btn;
+//   margin-top: 20px;
+// }
 
-.delete-btn {
-  background-color: #cc0000;
-  margin-top: 10px;
+// .delete-btn {
+//   background-color: #cc0000;
+//   margin-top: 10px;
+// }
+@import "./../../../../assets/scss/_variables.scss";
+form {
+  h3 {
+    @include fontH3;
+  }
+  @include formLayout;
+  input {
+    @include inputLayout;
+    background: $white;
+  }
+  button {
+    @include btn;
+
+    &:hover {
+      @include hover;
+    }
+  }
+  .save-btn {
+    color: $white;
+    background: $light-blue;
+
+    &:hover {
+      background: #587eb5;
+    }
+    &:disabled {
+      @include disabled;
+      color: $white;
+      background: $opacity-blue;
+      &:hover {
+        color: $white;
+        background: $opacity-blue;
+      }
+    }
+  }
+  .delete-btn {
+    color: $white;
+    background: $light-red;
+
+    &:hover {
+      background: $red;
+    }
+    &:disabled {
+      @include disabled;
+      color: $white;
+      background: $opacity-red;
+      &:hover {
+        color: $white;
+        background: $opacity-red;
+      }
+    }
+  }
 }
