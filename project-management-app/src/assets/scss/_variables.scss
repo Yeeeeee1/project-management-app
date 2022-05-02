@@ -63,6 +63,18 @@ $fontFamily: "Inter", sans-serif;
   padding: 20px;
   border-radius: $big-border-radius;
 }
+
+@mixin link {
+  font-size: $fontSizeP;
+  font-family: $fontFamily;
+  color: $gray;
+  @include hover;
+
+  &:hover {
+    color: $dark-gray;
+  }
+}
+
 @mixin fontP {
   font-size: $fontSizeP;
   font-family: $fontFamily;
