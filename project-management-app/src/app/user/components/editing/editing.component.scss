@@ -1,30 +1,11 @@
-// @import "../../../../assets/scss/variables";
-
-// .edit-form {
-//   @include formLayout;
-// }
-
-// mat-form-field {
-//   @extend %form-field;
-// }
-
-// .save-btn, .delete-btn {
-//   @extend %form-btn;
-//   margin-top: 20px;
-// }
-
-// .delete-btn {
-//   background-color: #cc0000;
-//   margin-top: 10px;
-// }
 @import "./../../../../assets/scss/_variables.scss";
 form {
   h3 {
     @include fontH3;
   }
-  @include formLayout;
+  @include form;
   input {
-    @include inputLayout;
+    @include input;
     background: $white;
   }
   button {

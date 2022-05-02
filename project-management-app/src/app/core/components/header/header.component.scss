@@ -15,7 +15,7 @@ header {
 
 header.sticky {
   height: $headerStickyHeight;
-  @include transitionEase;
+  @include transition;
 }
 
 .navigation {
@@ -48,7 +48,7 @@ header.sticky {
 }
 
 .search-field {
-  @include inputLayout;
+  @include input;
   background: $bg-gray;
   padding-left: 20px;
   box-sizing: border-box;

@@ -37,7 +37,7 @@ $fontSizeH4: 18px;
 $fontSizeP: 12px;
 $fontFamily: "Inter", sans-serif;
 
-@mixin transitionEase {
+@mixin transition {
   transition: all 0.2s ease-out;
 }
 
@@ -52,7 +52,7 @@ $fontFamily: "Inter", sans-serif;
   height: calc(100vh - #{$header-height});
 }
 
-@mixin formLayout {
+@mixin form {
   font-family: "Inter", sans-serif;
   display: flex;
   margin: 0 auto;
@@ -100,13 +100,13 @@ $fontFamily: "Inter", sans-serif;
   color: $dark-gray;
 }
 
-@mixin inputLayout {
+@mixin input {
   width: 420px;
   height: 44px;
   border-radius: $small-border-radius;
 }
 @mixin hover {
-  @include transitionEase;
+  @include transition;
 }
 @mixin btnWithBorder {
   width: 122px;
@@ -123,7 +123,7 @@ $fontFamily: "Inter", sans-serif;
   border: none;
   border-radius: $small-border-radius;
   margin: 4px;
-  @include transitionEase;
+  @include transition;
   @include fontH4;
 }
 @mixin disabled {
@@ -151,10 +151,10 @@ $fontFamily: "Inter", sans-serif;
 @mixin listScroll {
   &::-webkit-scrollbar {
     width: 4px;
-    border-radius: 2px;
   }
   &::-webkit-scrollbar-thumb {
     background-color: $gray;
+    border-radius: 2px;
   }
 }
 @mixin boardScroll {
@@ -163,5 +163,6 @@ $fontFamily: "Inter", sans-serif;
   }
   &::-webkit-scrollbar-thumb {
     background-color: $gray;
+    border-radius: 6px;
   }
 }

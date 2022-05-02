@@ -3,9 +3,9 @@ form {
   h3 {
     @include fontH3;
   }
-  @include formLayout;
+  @include form;
   input {
-    @include inputLayout;
+    @include input;
     background: $white;
   }
   button {
