@@ -13,15 +13,22 @@ header {
   border-bottom: 1px solid $component-border-gray;
 }
 
-// header.sticky {
-//   background: #d4d4d4;
-// }
+header.sticky {
+  height: $headerStickyHeight;
+  @include transitionEase;
+}
 
 .navigation {
   display: flex;
 
   button {
+    background: none;
     @include btn;
+    width: auto;
+    &:hover {
+      @include hover;
+      color: $dark-gray;
+    }
   }
 }
 
