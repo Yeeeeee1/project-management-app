@@ -136,11 +136,6 @@ $fontFamily: "Inter", sans-serif;
   border-radius: $big-border-radius;
 }
 
-@mixin coloredSpan {
-  width: 100%;
-  height: 3px;
-}
-
 @mixin task {
   background: $white;
   padding: 20px;
