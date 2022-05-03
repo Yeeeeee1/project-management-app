@@ -45,7 +45,7 @@ export class RegistrationComponent {
       },
     },
     {
-      id: 'confirmPassword',
+      id: 'confirm Password',
       formControlName: 'confirmPassword',
       type: 'password',
       messageError: {
@@ -78,7 +78,7 @@ export class RegistrationComponent {
       case !!this.reg?.get(regField.id)?.errors?.['regEx']:
         message = regField.messageError.regEx;
         break;
-      case !!this.reg?.get(regField.id)?.errors?.['confirm']:
+      case !!this.reg?.get(regField.formControlName)?.errors?.['confirm']:
         message = regField.messageError.confirm;
 
         break;

@@ -1,16 +1,13 @@
-<form [formGroup]="editForm" class="edit-form" >
+<form [formGroup]="editForm" class="edit-form">
   <h2>User edit</h2>
   <mat-form-field *ngFor="let formField of formFields">
     <mat-label>{{ formField.label }}</mat-label>
-    <input
-      matInput
-      id="{{ formField.id }}"
-      autocomplete="off"
-      type="{{ formField.type }}"
-      formControlName="{{ formField.id }}"
-    />
+    <input matInput id="{{ formField.id }}" autocomplete="off" type="{{ formField.type }}"
+      formControlName="{{ formField.id }}" />
     <mat-error>{{ createErrorMessage(formField) }}</mat-error>
   </mat-form-field>
-  <button [disabled]="!editForm.valid" class="save-btn" mat-flat-button color="primary">save</button>
-  <button class="delete-btn" mat-flat-button>delete</button>
+  <div> <button [disabled]="!editForm.valid" class="save-btn" mat-flat-button color="primary">save</button>
+    <button class="delete-btn" mat-flat-button>delete</button>
+  </div>
+
 </form>
