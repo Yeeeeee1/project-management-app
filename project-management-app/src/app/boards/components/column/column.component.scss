@@ -1,0 +1,12 @@
+@import "./../../../../assets/scss/variables";
+
+:host {
+  display: block;
+  @include list;
+  margin-right: 20px;
+  flex-shrink: 0;
+}
+
+h2 {
+  @include fontH2;
+}

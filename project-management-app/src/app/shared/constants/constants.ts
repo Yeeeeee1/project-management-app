@@ -3,6 +3,7 @@ export const ROUTH_PATHS = {
   LOGIN: 'login',
   REGISTRATION: 'registration',
   EDIT_PROFILE: 'edit-profile',
+  BOARD: 'board',
 };
 export const TOKEN = 'token';
 export const PASSWORD_REG_EX = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*])(?=.{8,})/;
