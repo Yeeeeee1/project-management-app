@@ -5,8 +5,20 @@
   @include list;
   margin-right: 20px;
   flex-shrink: 0;
+  position: relative;
 }
 
 h2 {
   @include fontH2;
+}
+
+button {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+
+  :hover {
+    color: $red;
+    @include transition;
+  }
 }
