@@ -8,9 +8,13 @@ import { ColumnComponent } from './components/column/column.component';
 import { BoardComponent } from './pages/board/board.component';
 import { ModalComponent } from './components/modal/modal.component';
 import { MatDialogModule } from '@angular/material/dialog';
+import { ColumnCreationComponent } from './components/column-creation/column-creation.component';
+import { FormsModule } from '@angular/forms';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
 
 @NgModule({
-  declarations: [BoardComponent, ColumnComponent, ModalComponent],
+  declarations: [BoardComponent, ColumnComponent, ModalComponent, ColumnCreationComponent],
   imports: [
     CommonModule,
     RouterModule,
@@ -19,6 +23,9 @@ import { MatDialogModule } from '@angular/material/dialog';
     MatIconModule,
     MatIconModule,
     MatDialogModule,
+    FormsModule,
+    MatFormFieldModule,
+    MatInputModule,
   ],
   exports: [],
 })
