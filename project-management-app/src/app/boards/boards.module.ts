@@ -6,15 +6,19 @@ import { RouterModule } from '@angular/router';
 import { BoardsRoutingModule } from './boards-routing.module';
 import { ColumnComponent } from './components/column/column.component';
 import { BoardComponent } from './pages/board/board.component';
+import { ModalComponent } from './components/modal/modal.component';
+import { MatDialogModule } from '@angular/material/dialog';
 
 @NgModule({
-  declarations: [BoardComponent, ColumnComponent],
+  declarations: [BoardComponent, ColumnComponent, ModalComponent],
   imports: [
     CommonModule,
     RouterModule,
     BoardsRoutingModule,
     MatButtonModule,
     MatIconModule,
+    MatIconModule,
+    MatDialogModule,
   ],
   exports: [],
 })
