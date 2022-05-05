@@ -4,9 +4,6 @@
   <button>Create task</button>
 </div>
 <div class="columns-container">
-  <app-column></app-column>
-  <app-column></app-column>
-  <app-column></app-column>
-  <app-column></app-column>
-  <app-column></app-column>
+  <app-column *ngFor="let column of columns" [column]="column"></app-column>
 </div>
+

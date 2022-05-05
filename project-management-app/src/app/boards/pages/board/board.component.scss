@@ -26,10 +26,11 @@ button {
   }
 }
 
+.columns-container {
+  display: flex;
+}
+
 .columns-container div {
   @include list;
 }
 
-.columns-container {
-  display: flex;
-}

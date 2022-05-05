@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import {MatDialog} from '@angular/material/dialog';
+import { Column } from '../../models/column';
 import { ModalComponent } from '../modal/modal.component';
 
 @Component({
@@ -8,10 +9,11 @@ import { ModalComponent } from '../modal/modal.component';
   styleUrls: ['./column.component.scss']
 })
 export class ColumnComponent {
+  @Input() public column: Column;
 
   constructor(public dialog: MatDialog) {}
 
-  openDialog() {
+  openDeleteDialog() {
     const dialogRef = this.dialog.open(ModalComponent);
 
     dialogRef.afterClosed().subscribe(result => {
