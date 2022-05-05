@@ -1,6 +1,9 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import {MatDialog} from '@angular/material/dialog';
+import { Router } from '@angular/router';
+import { ROUTH_PATHS } from 'src/app/shared/constants/constants';
 import { Column } from '../../models/column';
+import { BoardsService } from '../../services/boards.service';
 import { ModalComponent } from '../modal/modal.component';
 
 @Component({
@@ -11,14 +14,21 @@ import { ModalComponent } from '../modal/modal.component';
 export class ColumnComponent {
   @Input() public column: Column;
 
-  constructor(public dialog: MatDialog) {}
+  constructor(public dialog: MatDialog, private boardsService: BoardsService, private router: Router) {}
 
   openDeleteDialog() {
     const dialogRef = this.dialog.open(ModalComponent);
 
     dialogRef.afterClosed().subscribe(result => {
-      // console.log(`Dialog result: ${result}`);
+      const successCallback = () => {
+        this.router.navigateByUrl('/.', {skipLocationChange: true}).then(() => {
+          this.router.navigate([ROUTH_PATHS.BOARD]);
+        });
+      };
+
+      if(result) {
+        this.boardsService.deleteColumn(this.column.id, successCallback);
+      }
     });
   }
-
 }

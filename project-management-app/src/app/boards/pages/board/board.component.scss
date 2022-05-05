@@ -28,9 +28,9 @@ button {
 
 .columns-container {
   display: flex;
+  overflow-x: scroll;
 }
 
-.columns-container div {
-  @include list;
+.columns-container::-webkit-scrollbar {
+  @include boardScroll;
 }
-

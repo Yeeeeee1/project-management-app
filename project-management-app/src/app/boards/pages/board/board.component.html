@@ -1,9 +1,9 @@
 <h1>Board title</h1>
 <div class="menu">
   <button (click)="openCreateColumnForm()">Create column</button>
-  <button>Create task</button>
+  <button *ngIf="columns && columns.length > 0">Create task</button>
 </div>
+
 <div class="columns-container">
   <app-column *ngFor="let column of columns" [column]="column"></app-column>
 </div>
-

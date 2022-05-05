@@ -12,12 +12,11 @@ import { sortByOrderNumber } from '../../util';
 export class BoardComponent implements OnInit {
   public name: string;
   public columns: Column[];
-  private boardId = 'eac0f3c3-8370-4657-b2f7-a34d65559303';
 
   constructor(public dialog: MatDialog, private boardsService: BoardsService) {}
 
   ngOnInit(): void {
-    this.boardsService.getColumns(this.boardId, this.setColumns);
+    this.boardsService.getColumns(this.setColumns);
   }
 
   openCreateColumnForm(): void {
