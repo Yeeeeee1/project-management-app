@@ -17,13 +17,19 @@ h1 {
 }
 
 button {
-  background: none;
   @include btnWithBorder;
+  color: $white;
+  background: $light-red;
+  border:none;
   width: 150px;
   &:hover {
     @include hover;
     color: $dark-gray;
   }
+}
+
+.back-btn {
+  background: $light-blue;
 }
 
 .columns-container {
