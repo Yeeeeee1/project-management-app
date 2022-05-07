@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
+import { Router } from '@angular/router';
+import { ROUTH_PATHS } from 'src/app/shared/constants/constants';
 import { ColumnCreationComponent } from '../../components/column-creation/column-creation.component';
 import { Column } from '../../models/column';
 import { BoardsService } from '../../services/boards.service';
@@ -13,7 +15,7 @@ export class BoardComponent implements OnInit {
   public name: string;
   public columns: Column[];
 
-  constructor(public dialog: MatDialog, private boardsService: BoardsService) {}
+  constructor(public dialog: MatDialog, private boardsService: BoardsService, private router: Router) {}
 
   ngOnInit(): void {
     this.boardsService.getColumns(this.setColumns);
@@ -27,6 +29,13 @@ export class BoardComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe(result => {
       this.name = result;
+      const successCallback = () => {
+        this.router.navigateByUrl('/.', {skipLocationChange: true}).then(() => {
+          this.router.navigate([ROUTH_PATHS.BOARD]);
+        });
+      };
+      this.boardsService.createColumn(this.name, successCallback);
+      console.log("after closing dialog", result)
     });
   }
 

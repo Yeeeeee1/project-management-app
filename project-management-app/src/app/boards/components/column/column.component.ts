@@ -4,7 +4,7 @@ import { Router } from '@angular/router';
 import { ROUTH_PATHS } from 'src/app/shared/constants/constants';
 import { Column } from '../../models/column';
 import { BoardsService } from '../../services/boards.service';
-import { ModalComponent } from '../modal/modal.component';
+import { ModalComponent } from '../deletion-modal/deletion-modal.component';
 
 @Component({
   selector: 'app-column',
@@ -16,7 +16,7 @@ export class ColumnComponent {
 
   constructor(public dialog: MatDialog, private boardsService: BoardsService, private router: Router) {}
 
-  openDeleteDialog() {
+  openDeleteModal() {
     const dialogRef = this.dialog.open(ModalComponent);
 
     dialogRef.afterClosed().subscribe(result => {

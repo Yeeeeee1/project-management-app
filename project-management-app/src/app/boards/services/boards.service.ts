@@ -11,6 +11,7 @@ import { Column } from "../models/column";
   export class BoardsService {
     private headers = {headers: {'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiIwNWNkNjM0ZC0wODFhLTRlNzQtYTM2OC02NDhiNDgxMmRiNTIiLCJsb2dpbiI6InZpdmEiLCJpYXQiOjE2NTE3NzI0MTF9.JTopK8yVRTMImStdu-wc_AXtVZyr34qZ8xQWO0WxwpQ'}}
     private boardId = 'eac0f3c3-8370-4657-b2f7-a34d65559303';
+    private columns: Column[] = [];
 
     constructor(private router: Router, private http: HttpClient) {}
 
@@ -21,16 +22,26 @@ import { Column } from "../models/column";
           .get(`${BASE_API}/boards/${this.boardId}/columns`, this.headers)
           .pipe(map((response) => (response as Column[])))
           .subscribe({
-            next: (value) => onSuccessFunction(value),
+            next: (columns) => {
+              this.columns = columns;
+              onSuccessFunction(columns)
+            },
             error: (error) => this.router.navigate(['/error']),
           });
       }
 
-      public deleteColumn(columnId: string, onSuccessFunction: () => void): void {
-        this.http.delete(`${BASE_API}/boards/${this.boardId}/columns/${columnId}`, this.headers).subscribe({
-          next: (value) => onSuccessFunction(),
-          error: (error) => this.router.navigate(['/error']),
-        })
-      }
+    public deleteColumn(columnId: string, onSuccessFunction: () => void): void {
+      this.http.delete(`${BASE_API}/boards/${this.boardId}/columns/${columnId}`, this.headers).subscribe({
+        next: () => onSuccessFunction(),
+        error: (error) => this.router.navigate(['/error']),
+      })
+    }
 
+    public createColumn(title: string, onSuccessFunction: () => void): void {
+      const column = { title: title, order: 1 + this.columns.slice(-1)[0].order}
+      this.http.post(`${BASE_API}/boards/${this.boardId}/columns`, column, this.headers).subscribe({
+        next: () => onSuccessFunction(),
+        error: (error) => this.router.navigate(['/error']),
+    })
   }
+}
