@@ -1,7 +1,7 @@
 import { Component, Input } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { Column } from '../../models/column';
-import { BoardsService } from '../../services/boards.service';
+import { ColumnsService } from '../../services/columns.service';
 import { ModalComponent } from '../deletion-modal/deletion-modal.component';
 
 @Component({
@@ -14,7 +14,7 @@ export class ColumnComponent {
 
   constructor(
     public dialog: MatDialog,
-    private boardsService: BoardsService,
+    private columnsService: ColumnsService,
   ) {}
 
   openDeleteModal() {
@@ -22,7 +22,7 @@ export class ColumnComponent {
 
     dialogRef.afterClosed().subscribe((result) => {
       if (result) {
-        this.boardsService.deleteColumn(this.column.id);
+        this.columnsService.deleteColumn(this.column.id);
       }
     });
   }
