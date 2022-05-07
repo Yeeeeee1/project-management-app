@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { ActivatedRoute, Router } from '@angular/router';
+import { Subscription } from 'rxjs';
 import { ROUTH_PATHS } from 'src/app/shared/constants/constants';
 import { ColumnCreationComponent } from '../../components/column-creation/column-creation.component';
 import { Column } from '../../models/column';
@@ -11,17 +12,21 @@ import { sortByOrderNumber } from '../../util';
   templateUrl: './board.component.html',
   styleUrls: ['./board.component.scss']
 })
-export class BoardComponent implements OnInit {
-  public name: string;
+export class BoardComponent implements OnInit, OnDestroy {
   public columns: Column[];
+  private allColumnsSubs: Subscription;
 
   constructor(public dialog: MatDialog, private boardsService: BoardsService, private router: Router,
     private activatedRoute: ActivatedRoute) {}
 
   ngOnInit(): void {
     const id = this.activatedRoute.snapshot.paramMap.get('id') ?? '';
-    this.boardsService.setBoardId(id);
-    this.boardsService.getColumns(this.setColumns);
+    this.boardsService.setIdBoard(id);
+    this.boardsService.getColumns();
+    this.allColumnsSubs = this.boardsService.columns$.subscribe(columns => {
+      sortByOrderNumber(columns);
+      this.columns = columns
+    })
   }
 
   public goToMain(): void {
@@ -31,27 +36,19 @@ export class BoardComponent implements OnInit {
   openCreateColumnForm(): void {
     const dialogRef = this.dialog.open(ColumnCreationComponent, {
       width: '400px',
-      data: {name: this.name},
+      data: {},
     });
 
     dialogRef.afterClosed().subscribe(result => {
-      this.name = result;
-
-      if(this.name !== undefined) {
-        const successCallback = () => {
-          this.router.navigateByUrl('/.', {skipLocationChange: true}).then(() => {
-            this.router.navigate([ROUTH_PATHS.BOARD]);
-          });
-        };
-        this.boardsService.createColumn(this.name, successCallback);
+      if(result !== undefined) {
+        this.boardsService.createColumn(result);
       }
     });
   }
 
-  private setColumns = (columns: Column[]):void => {
-    sortByOrderNumber(columns);
-    this.columns = columns;
-  };
+  ngOnDestroy(): void {
+    this.allColumnsSubs.unsubscribe();
+  }
 }
 
 
