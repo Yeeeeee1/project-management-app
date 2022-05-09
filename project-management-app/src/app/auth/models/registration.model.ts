@@ -1,6 +1,7 @@
 export interface IRegForm {
   id: string;
   formControlName: string;
+  name?: string;
   type: string;
   messageError: {
     email?: string;

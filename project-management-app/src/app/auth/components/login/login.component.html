@@ -1,13 +1,15 @@
-<form [formGroup]="login">
-  <h3>Login</h3>
-  <mat-form-field *ngFor="let loginField of loginFields">
-    <mat-label>{{loginField.id }}</mat-label>
-    <input matInput id="{{loginField.id}}" autocomplete="off" type="{{loginField.type}}"
-      formControlName="{{loginField.id}}">
-    <mat-error>{{createErrorMessage(loginField)}}</mat-error>
-  </mat-form-field>
-  <div class="btn-wrap">
-    <button class="registration-btn">Registration</button>
-    <button class="enter-btn" [disabled]="!login.valid">Login</button>
-  </div>
-</form>
+<div class="login-container">
+  <form [formGroup]="login">
+    <h3>Login</h3>
+    <mat-form-field *ngFor="let loginField of loginFields">
+      <mat-label>{{loginField.id }}</mat-label>
+      <input matInput [id]="loginField.id" autocomplete="off" [type]="loginField.type"
+        [formControlName]="loginField.id">
+      <mat-error>{{createErrorMessage(loginField)}}</mat-error>
+    </mat-form-field>
+    <div class="btn-wrap">
+      <button class="registration-btn" [routerLink]="register">Registration</button>
+      <button class="enter-btn" [disabled]="!login.valid" (click)="log()">Login</button>
+    </div>
+  </form>
+</div>

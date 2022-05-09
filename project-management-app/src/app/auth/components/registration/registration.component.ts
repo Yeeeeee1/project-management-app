@@ -1,7 +1,11 @@
+/* eslint-disable comma-dangle */
 import { Component, Input } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
-import { PASSWORD_REG_EX } from 'src/app/shared/constants/constants';
+import { Router } from '@angular/router';
+import { PASSWORD_REG_EX, ROUTH_PATHS } from 'src/app/shared/constants/constants';
 import { IRegForm } from '../../models/registration.model';
+import { AuthService } from '../../services/auth.service';
+import { HttpAuthService } from '../../services/http-auth.service';
 import { confirmValidator, regExValidator } from '../../util';
 
 @Component({
@@ -12,12 +16,20 @@ import { confirmValidator, regExValidator } from '../../util';
 export class RegistrationComponent {
   @Input() formError: string = '';
 
-  constructor(private fb: FormBuilder) {}
+  public login = '../login';
+
+  constructor(
+    private fb: FormBuilder,
+    public httpAuthService: HttpAuthService,
+    public authService:AuthService,
+    public router: Router
+  ) {}
 
   public regFields: IRegForm[] = [
     {
       id: 'name',
       formControlName: 'name',
+      name: 'name',
       type: 'text',
       messageError: {
         minLength: 'The name is too short',
@@ -26,8 +38,9 @@ export class RegistrationComponent {
       },
     },
     {
-      id: 'email',
-      formControlName: 'email',
+      id: 'login',
+      name: 'email',
+      formControlName: 'login',
       type: 'text',
       messageError: {
         email: 'Please enter a valid email: example@email.com',
@@ -37,6 +50,7 @@ export class RegistrationComponent {
     {
       id: 'password',
       formControlName: 'password',
+      name: 'password',
       type: 'password',
       messageError: {
         regEx:
@@ -45,8 +59,9 @@ export class RegistrationComponent {
       },
     },
     {
-      id: 'confirm Password',
+      id: 'confirmPassword',
       formControlName: 'confirmPassword',
+      name: 'confirm password',
       type: 'password',
       messageError: {
         confirm: "Passwords don't match",
@@ -60,7 +75,7 @@ export class RegistrationComponent {
       null,
       [Validators.required, Validators.minLength(3), Validators.maxLength(20)],
     ],
-    email: [null, [Validators.required, Validators.email]],
+    login: [null, [Validators.required, Validators.email]],
     password: [null, [Validators.required, regExValidator(PASSWORD_REG_EX)]],
     confirmPassword: [null, [Validators.required, confirmValidator()]],
   });
@@ -86,5 +101,17 @@ export class RegistrationComponent {
         message = '';
     }
     return message;
+  }
+
+  createUserRequest() {
+    delete this.reg.value.confirmPassword;
+    this.httpAuthService
+      .createUser(this.reg.value)
+      .subscribe((user) => this.httpAuthService
+        .login({ login: this.reg.value.login, password: this.reg.value.password })
+        .subscribe((data) => {
+          this.authService.updateToken(data.token);
+          this.router.navigate([ROUTH_PATHS.BOARDS]);
+        }));
   }
 }

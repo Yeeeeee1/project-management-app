@@ -1,7 +1,9 @@
 export const ROUTH_PATHS = {
+  BOARDS: 'boards',
+  WELCOME: 'welcome',
   AUTHORIZATION: 'auth',
-  LOGIN: 'login',
-  REGISTRATION: 'registration',
+  LOGIN: 'auth/login',
+  REGISTRATION: 'auth/registration',
   EDIT_PROFILE: 'edit-profile',
 };
 export const TOKEN = 'token';

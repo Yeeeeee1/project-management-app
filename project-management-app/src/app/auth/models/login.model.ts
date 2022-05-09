@@ -8,3 +8,10 @@ export interface ILoginForm {
     regEx?: string;
   };
 }
+export interface IUser {
+ login: string;
+  password: string;
+}
+export interface ILogin {
+  token: string;
+}
