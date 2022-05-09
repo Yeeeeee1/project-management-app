@@ -1,1 +1,13 @@
-<p>boards works!</p>
+<main>
+  <button class="create-btn" (click)="createBoard()">Создать</button>
+
+  <div class="main-wrapper">
+    <div class="main-wrapper__card" *ngFor="let data of data">
+      <a href="/board/{{ data.id }}">
+        <h3 class="main-wrapper__card__card-title">
+          {{ data.title }}
+        </h3>
+      </a>
+    </div>
+  </div>
+</main>

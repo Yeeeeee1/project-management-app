@@ -8,9 +8,11 @@ import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { MainComponent } from './pages/main/main.component';
 import { MainRoutingModule } from './main-routing.module';
 import { CoreModule } from '../core/core.module';
+import { CreateBoardModalComponent } from './components/create-board-modal/create-board-modal.component';
+import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 
 @NgModule({
-  declarations: [MainComponent],
+  declarations: [MainComponent, CreateBoardModalComponent],
   imports: [
     CommonModule,
     RouterModule,
@@ -20,6 +22,7 @@ import { CoreModule } from '../core/core.module';
     MatSlideToggleModule,
     MainRoutingModule,
     CoreModule,
+    MatDialogModule,
   ],
   exports: [],
 })

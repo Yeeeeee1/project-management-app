@@ -8,7 +8,7 @@ import { ROUTH_PATHS } from './shared/constants/constants';
 import { UserModule } from './user/user.module';
 
 const routes: Routes = [
-  /*{ path: '', redirectTo: 'main', pathMatch: 'full' },
+  { path: '', redirectTo: 'main', pathMatch: 'full' },
 
   {
     path: 'main',
@@ -24,9 +24,9 @@ const routes: Routes = [
     path: ROUTH_PATHS.AUTHORIZATION,
     loadChildren: async (): Promise<AuthModule> =>
       import('./auth/auth.module').then((x) => x.AuthModule),
-  },*/
+  },
 
-  { path: '', component: PageErrorComponent },
+  { path: '**', component: PageErrorComponent },
 ];
 
 @NgModule({
