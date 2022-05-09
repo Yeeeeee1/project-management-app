@@ -25,7 +25,6 @@ const routes: Routes = [
   {
     path: ROUTH_PATHS.AUTHORIZATION,
     loadChildren: async (): Promise<AuthModule> => import('./auth/auth.module').then((x) => x.AuthModule),
-
   },
   { path: ROUTH_PATHS.WELCOME, component: WelcomeComponent },
   { path: '**', component: PageErrorComponent },

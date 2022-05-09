@@ -2,7 +2,11 @@
 import { Component, Input } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { PASSWORD_REG_EX, ROUTH_PATHS } from 'src/app/shared/constants/constants';
+import { BehaviorSubject } from 'rxjs';
+import {
+  PASSWORD_REG_EX,
+  ROUTH_PATHS,
+} from 'src/app/shared/constants/constants';
 import { ILoginForm } from '../../models/login.model';
 import { AuthService } from '../../services/auth.service';
 import { HttpAuthService } from '../../services/http-auth.service';
@@ -17,6 +21,8 @@ export class LoginComponent {
   @Input() formError: string = '';
 
   public register = '../registration';
+
+  public errorLoginMsg = new BehaviorSubject<string>('');
 
   constructor(
     private router: Router,
@@ -72,11 +78,14 @@ export class LoginComponent {
   }
 
   public log() {
-    this.httpAuthService
-      .login(this.login.value)
-      .subscribe((data) => {
+    this.httpAuthService.login(this.login.value).subscribe((data) => {
+      if (typeof data === 'string') {
+        this.errorLoginMsg.next(data);
+      } else {
+        console.log(data);
         this.router.navigate([ROUTH_PATHS.BOARDS]);
         this.authService.updateToken(data.token);
-      });
+      }
+    });
   }
 }

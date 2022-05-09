@@ -6,8 +6,10 @@
       formControlName="{{ formField.id }}" />
     <mat-error>{{ createErrorMessage(formField) }}</mat-error>
   </mat-form-field>
-  <div> <button [disabled]="!editForm.valid" class="save-btn" mat-flat-button color="primary">save</button>
-    <button class="delete-btn" mat-flat-button>delete</button>
+  <mat-error>{{errorUpdateMsg | async}}</mat-error>
+  <div> <button [disabled]="!editForm.valid" class="save-btn" mat-flat-button color="primary"
+      (click)=" updateUser()">save</button>
+    <button class="delete-btn" mat-flat-button (click)="deleteUser()">delete</button>
   </div>
 
 </form>

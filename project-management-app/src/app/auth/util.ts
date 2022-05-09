@@ -1,7 +1,11 @@
 import {
-  AbstractControl, AsyncValidatorFn, ValidationErrors, ValidatorFn,
+  AbstractControl,
+  AsyncValidatorFn,
+  ValidationErrors,
+  ValidatorFn,
 } from '@angular/forms';
-import { Observable, tap } from 'rxjs';
+import { map, Observable, tap } from 'rxjs';
+import { IUser } from './models/login.model';
 import { HttpAuthService } from './services/http-auth.service';
 
 export function regExValidator(regEx: RegExp): ValidatorFn {
@@ -15,8 +19,4 @@ export function confirmValidator(): ValidatorFn {
     const valid = !!(control.value === control.parent?.get('password')?.value);
     return valid ? null : { confirm: 'true' };
   };
-}
-export function checkUserValidator(service:HttpAuthService):AsyncValidatorFn {
-  return (control:AbstractControl) => {
-   return service.createUser(control.value).pipe()};
 }

@@ -2,11 +2,16 @@
 import { Component, Input } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { PASSWORD_REG_EX, ROUTH_PATHS } from 'src/app/shared/constants/constants';
+import { BehaviorSubject, Subject } from 'rxjs';
+
+import {
+  PASSWORD_REG_EX,
+  ROUTH_PATHS,
+} from 'src/app/shared/constants/constants';
 import { IRegForm } from '../../models/registration.model';
 import { AuthService } from '../../services/auth.service';
 import { HttpAuthService } from '../../services/http-auth.service';
-import { checkUserValidator, confirmValidator, regExValidator } from '../../util';
+import { confirmValidator, regExValidator } from '../../util';
 
 @Component({
   selector: 'app-registration',
@@ -16,12 +21,14 @@ import { checkUserValidator, confirmValidator, regExValidator } from '../../util
 export class RegistrationComponent {
   @Input() formError: string = '';
 
+  public errorRegMsg = new BehaviorSubject<string>('');
+
   public login = '../login';
 
   constructor(
     private fb: FormBuilder,
     public httpAuthService: HttpAuthService,
-    public authService:AuthService,
+    public authService: AuthService,
     public router: Router
   ) {}
 
@@ -45,6 +52,7 @@ export class RegistrationComponent {
       messageError: {
         email: 'Please enter a valid email: example@email.com',
         required: 'Please enter a  email',
+        userExists: 'user with this email already exists',
       },
     },
     {
@@ -75,7 +83,7 @@ export class RegistrationComponent {
       null,
       [Validators.required, Validators.minLength(3), Validators.maxLength(20)],
     ],
-    login: [null, [Validators.required, Validators.email], checkUserValidator.bind(this)],
+    login: [null, [Validators.required, Validators.email]],
     password: [null, [Validators.required, regExValidator(PASSWORD_REG_EX)]],
     confirmPassword: [null, [Validators.required, confirmValidator()]],
   });
@@ -105,13 +113,21 @@ export class RegistrationComponent {
 
   createUserRequest() {
     delete this.reg.value.confirmPassword;
-    this.httpAuthService
-      .createUser(this.reg.value)
-      .subscribe((user) => this.httpAuthService
-        .login({ login: this.reg.value.login, password: this.reg.value.password })
-        .subscribe((data) => {
-          this.authService.updateToken(data.token);
-          this.router.navigate([ROUTH_PATHS.BOARDS]);
-        }));
+    this.httpAuthService.createUser(this.reg.value).subscribe((user) => {
+      if (typeof user === 'string') {
+        this.errorRegMsg.next(user);
+      } else {
+        this.httpAuthService
+          .login({
+            login: this.reg.value.login,
+            password: this.reg.value.password,
+          })
+          .subscribe((data) => {
+            console.log(data, 'data');
+            this.authService.updateToken(data.token);
+            this.router.navigate([ROUTH_PATHS.BOARDS]);
+          });
+      }
+    });
   }
 }

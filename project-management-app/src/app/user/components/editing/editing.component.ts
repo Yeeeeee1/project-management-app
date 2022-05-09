@@ -1,7 +1,15 @@
 import { Component } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
-import { regExValidator } from 'src/app/auth/util';
-import { PASSWORD_REG_EX } from 'src/app/shared/constants/constants';
+import { Router } from '@angular/router';
+import { JwtHelperService } from '@auth0/angular-jwt';
+import { BehaviorSubject } from 'rxjs';
+import { HttpAuthService } from 'src/app/auth/services/http-auth.service';
+import { confirmValidator, regExValidator } from 'src/app/auth/util';
+import {
+  PASSWORD_REG_EX,
+  ROUTH_PATHS,
+} from 'src/app/shared/constants/constants';
+import { AppStateService } from 'src/app/shared/services/app-state.service';
 import { IEditForm } from '../../models/editing.model';
 
 @Component({
@@ -10,7 +18,20 @@ import { IEditForm } from '../../models/editing.model';
   styleUrls: ['./editing.component.scss'],
 })
 export class EditingComponent {
-  constructor(private fb: FormBuilder) {}
+  public errorUpdateMsg = new BehaviorSubject('');
+
+  public userId = '';
+
+  public jwtHelper: JwtHelperService;
+
+  constructor(
+    public route: Router,
+    private fb: FormBuilder,
+    public httpAuthService: HttpAuthService,
+    public appStateService: AppStateService
+  ) {
+    this.jwtHelper = new JwtHelperService();
+  }
 
   public formFields: IEditForm[] = [
     {
@@ -24,7 +45,7 @@ export class EditingComponent {
       },
     },
     {
-      id: 'email',
+      id: 'login',
       label: 'Email',
       formControlName: 'email',
       type: 'text',
@@ -57,9 +78,9 @@ export class EditingComponent {
 
   public editForm = this.fb.group({
     name: [null, [Validators.minLength(3), Validators.maxLength(20)]],
-    email: [null, [Validators.email]],
+    login: [null, [Validators.email]],
     password: [null, [regExValidator(PASSWORD_REG_EX)]],
-    // confirmPassword: [null, [confirmValidator()]],
+    confirmPassword: [null, [confirmValidator()]],
   });
 
   createErrorMessage(regField: IEditForm): string | undefined {
@@ -83,5 +104,36 @@ export class EditingComponent {
         message = '';
     }
     return message;
+  }
+
+  updateUser() {
+    delete this.editForm.value.confirmPassword;
+
+    this.userId = this.jwtHelper.decodeToken(
+      localStorage.getItem('token') as string
+    ).userId;
+    this.httpAuthService
+      .upDateUser(this.editForm.value, this.userId)
+      .subscribe((user) => {
+        console.log(user);
+        if (typeof user === 'string') {
+          console.log('err');
+          this.errorUpdateMsg.next(user);
+        } else {
+          console.log('not err');
+          this.errorUpdateMsg.next('User updated!');
+        }
+      });
+  }
+
+  deleteUser() {
+    this.userId = this.jwtHelper.decodeToken(
+      localStorage.getItem('token') as string
+    ).userId;
+    this.httpAuthService
+      .deleteUser(this.userId)
+      .subscribe((data) => console.log(data));
+    localStorage.clear();
+    this.route.navigate([ROUTH_PATHS.WELCOME]);
   }
 }

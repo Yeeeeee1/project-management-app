@@ -10,5 +10,6 @@ export interface IRegForm {
     confirm?: string;
     minLength?: string;
     maxLength?: string;
+    userExists?: string;
   };
 }
