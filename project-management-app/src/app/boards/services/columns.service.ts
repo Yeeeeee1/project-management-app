@@ -11,7 +11,7 @@ import { Column } from "../models/column";
   export class ColumnsService {
     public columns$ = new Subject<Column[]>();
     private lastOrderNumber:number;
-    private headers = {headers: {'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiIwNWNkNjM0ZC0wODFhLTRlNzQtYTM2OC02NDhiNDgxMmRiNTIiLCJsb2dpbiI6InZpdmEiLCJpYXQiOjE2NTE3NzI0MTF9.JTopK8yVRTMImStdu-wc_AXtVZyr34qZ8xQWO0WxwpQ'}}
+    private headers = {headers: {'Authorization': 'Bearer '}}
     private idBoard: string;
 
     constructor(private router: Router, private http: HttpClient) {}
