@@ -6,11 +6,12 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { AuthModule } from './auth/auth.module';
 import { CoreModule } from './core/core.module';
-import { BoardsComponent } from './boards/pages/boards/boards.component';
 import { HttpClientModule } from '@angular/common/http';
+import { MainModule } from './main/main.module';
+import { PageErrorComponent } from './core/pages/page-error/page-error.component';
 
 @NgModule({
-  declarations: [AppComponent, BoardsComponent],
+  declarations: [AppComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
@@ -19,6 +20,7 @@ import { HttpClientModule } from '@angular/common/http';
     RouterModule,
     CoreModule,
     HttpClientModule,
+    MainModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

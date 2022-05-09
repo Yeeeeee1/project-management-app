@@ -3,10 +3,10 @@ import { Component, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-boards',
-  templateUrl: './boards.component.html',
-  styleUrls: ['./boards.component.scss'],
+  templateUrl: './main.component.html',
+  styleUrls: ['./main.component.scss'],
 })
-export class BoardsComponent implements OnInit {
+export class MainComponent implements OnInit {
   constructor(private http: HttpClient) {}
 
   ngOnInit(): void {

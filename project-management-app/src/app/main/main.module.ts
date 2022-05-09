@@ -5,12 +5,12 @@ import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
-import { FooterComponent } from './components/footer/footer.component';
-import { HeaderComponent } from './components/header/header.component';
-import { PageErrorComponent } from './pages/page-error/page-error.component';
+import { MainComponent } from './pages/main/main.component';
+import { MainRoutingModule } from './main-routing.module';
+import { CoreModule } from '../core/core.module';
 
 @NgModule({
-  declarations: [HeaderComponent, FooterComponent],
+  declarations: [MainComponent],
   imports: [
     CommonModule,
     RouterModule,
@@ -18,7 +18,9 @@ import { PageErrorComponent } from './pages/page-error/page-error.component';
     MatButtonModule,
     MatIconModule,
     MatSlideToggleModule,
+    MainRoutingModule,
+    CoreModule,
   ],
-  exports: [HeaderComponent, FooterComponent],
+  exports: [],
 })
-export class CoreModule {}
+export class MainModule {}
