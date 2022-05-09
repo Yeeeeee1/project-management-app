@@ -14,7 +14,7 @@ import { sortByOrderNumber } from '../../util';
 })
 export class BoardComponent implements OnInit, OnDestroy {
   public columns: Column[];
-  private allColumnsSubs: Subscription;
+  private columnsSubs: Subscription;
 
   constructor(public dialog: MatDialog, private columnsService: ColumnsService, private router: Router,
     private activatedRoute: ActivatedRoute) {}
@@ -23,7 +23,7 @@ export class BoardComponent implements OnInit, OnDestroy {
     const id = this.activatedRoute.snapshot.paramMap.get('id') ?? '';
     this.columnsService.setIdBoard(id);
     this.columnsService.getColumns();
-    this.allColumnsSubs = this.columnsService.columns$.subscribe(columns => {
+    this.columnsSubs = this.columnsService.columns$.subscribe(columns => {
       sortByOrderNumber(columns);
       this.columns = columns
     })
@@ -47,7 +47,7 @@ export class BoardComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
-    this.allColumnsSubs.unsubscribe();
+    this.columnsSubs.unsubscribe();
   }
 }
 
