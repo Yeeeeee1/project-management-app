@@ -6,7 +6,7 @@ import { PASSWORD_REG_EX, ROUTH_PATHS } from 'src/app/shared/constants/constants
 import { IRegForm } from '../../models/registration.model';
 import { AuthService } from '../../services/auth.service';
 import { HttpAuthService } from '../../services/http-auth.service';
-import { confirmValidator, regExValidator } from '../../util';
+import { checkUserValidator, confirmValidator, regExValidator } from '../../util';
 
 @Component({
   selector: 'app-registration',
@@ -75,7 +75,7 @@ export class RegistrationComponent {
       null,
       [Validators.required, Validators.minLength(3), Validators.maxLength(20)],
     ],
-    login: [null, [Validators.required, Validators.email]],
+    login: [null, [Validators.required, Validators.email], checkUserValidator.bind(this)],
     password: [null, [Validators.required, regExValidator(PASSWORD_REG_EX)]],
     confirmPassword: [null, [Validators.required, confirmValidator()]],
   });

@@ -1,4 +1,6 @@
-import { AbstractControl, ValidationErrors, ValidatorFn } from '@angular/forms';
+import {
+  AbstractControl, AsyncValidatorFn, ValidationErrors, ValidatorFn,
+} from '@angular/forms';
 import { Observable, tap } from 'rxjs';
 import { HttpAuthService } from './services/http-auth.service';
 
@@ -14,7 +16,7 @@ export function confirmValidator(): ValidatorFn {
     return valid ? null : { confirm: 'true' };
   };
 }
-// export function checkUserValidator(control:AbstractControl):Observable<ValidationErrors | null> {
-//   // eslint-disable-next-line max-len
-//   return this.createUser(control.value).pipe(tap((response) => (response ? null : { user: true })));
-// }
+export function checkUserValidator(service:HttpAuthService):AsyncValidatorFn {
+  return (control:AbstractControl) => {
+   return service.createUser(control.value).pipe()};
+}
