@@ -5,7 +5,7 @@ import { Router } from '@angular/router';
 import { BehaviorSubject, Subject } from 'rxjs';
 
 import {
-  PASSWORD_REG_EX,
+  PASSWORD_REG_EXP,
   ROUTH_PATHS,
 } from 'src/app/shared/constants/constants';
 import { IRegForm } from '../../models/registration.model';
@@ -84,7 +84,7 @@ export class RegistrationComponent {
       [Validators.required, Validators.minLength(3), Validators.maxLength(20)],
     ],
     login: [null, [Validators.required, Validators.email]],
-    password: [null, [Validators.required, regExValidator(PASSWORD_REG_EX)]],
+    password: [null, [Validators.required, regExValidator(PASSWORD_REG_EXP)]],
     confirmPassword: [null, [Validators.required, confirmValidator()]],
   });
 

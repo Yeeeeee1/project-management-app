@@ -6,7 +6,7 @@ import { BehaviorSubject } from 'rxjs';
 import { HttpAuthService } from 'src/app/auth/services/http-auth.service';
 import { confirmValidator, regExValidator } from 'src/app/auth/util';
 import {
-  PASSWORD_REG_EX,
+  PASSWORD_REG_EXP,
   ROUTH_PATHS,
 } from 'src/app/shared/constants/constants';
 import { AppStateService } from 'src/app/shared/services/app-state.service';
@@ -79,7 +79,7 @@ export class EditingComponent {
   public editForm = this.fb.group({
     name: [null, [Validators.minLength(3), Validators.maxLength(20)]],
     login: [null, [Validators.email]],
-    password: [null, [regExValidator(PASSWORD_REG_EX)]],
+    password: [null, [regExValidator(PASSWORD_REG_EXP)]],
     confirmPassword: [null, [confirmValidator()]],
   });
 
@@ -115,12 +115,9 @@ export class EditingComponent {
     this.httpAuthService
       .upDateUser(this.editForm.value, this.userId)
       .subscribe((user) => {
-        console.log(user);
         if (typeof user === 'string') {
-          console.log('err');
           this.errorUpdateMsg.next(user);
         } else {
-          console.log('not err');
           this.errorUpdateMsg.next('User updated!');
         }
       });

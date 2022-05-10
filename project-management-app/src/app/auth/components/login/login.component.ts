@@ -4,7 +4,7 @@ import { FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { BehaviorSubject } from 'rxjs';
 import {
-  PASSWORD_REG_EX,
+  PASSWORD_REG_EXP,
   ROUTH_PATHS,
 } from 'src/app/shared/constants/constants';
 import { ILoginForm } from '../../models/login.model';
@@ -55,7 +55,7 @@ export class LoginComponent {
 
   public login = this.fb.group({
     login: [null, [Validators.required, Validators.email]],
-    password: [null, [Validators.required, regExValidator(PASSWORD_REG_EX)]],
+    password: [null, [Validators.required, regExValidator(PASSWORD_REG_EXP)]],
   });
 
   createErrorMessage(loginField: ILoginForm): string | undefined {

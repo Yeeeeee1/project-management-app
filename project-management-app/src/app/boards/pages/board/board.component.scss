@@ -1,0 +1,42 @@
+@import "./../../../../assets/scss/variables";
+
+:host {
+  display: flex;
+  flex-direction: column;
+  margin-top: $header-height;
+  padding: 40px;
+}
+
+h1 {
+  @include fontH1;
+  margin-bottom: 30px;
+}
+
+.menu {
+  margin-bottom: 60px;
+}
+
+button {
+  @include btnWithBorder;
+  color: $white;
+  background: $light-red;
+  border:none;
+  width: 150px;
+  &:hover {
+    @include hover;
+    color: $dark-gray;
+  }
+}
+
+.back-btn {
+  background: $light-blue;
+}
+
+.columns-container {
+  display: flex;
+  overflow-x: scroll;
+}
+
+.columns-container::-webkit-scrollbar {
+  @include boardScroll;
+}

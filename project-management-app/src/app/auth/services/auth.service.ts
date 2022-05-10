@@ -6,8 +6,8 @@ import { Router } from '@angular/router';
 import { BehaviorSubject, delay, of, Subscription } from 'rxjs';
 import { JwtHelperService } from '@auth0/angular-jwt';
 import { ROUTH_PATHS } from 'src/app/shared/constants/constants';
-import { IUser } from '../models/login.model';
 import { AppStateService } from 'src/app/shared/services/app-state.service';
+import { IUser } from '../models/login.model';
 
 @Injectable({
   providedIn: 'root',
@@ -26,7 +26,7 @@ export class AuthService {
   public isLogin$ = new BehaviorSubject(!!localStorage.getItem('token'));
 
   constructor(
-    public http: HttpClient,
+    private http: HttpClient,
     private router: Router,
     public appStateService: AppStateService
   ) {
