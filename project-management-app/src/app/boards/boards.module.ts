@@ -6,7 +6,7 @@ import { RouterModule } from '@angular/router';
 import { BoardsRoutingModule } from './boards-routing.module';
 import { ColumnComponent } from './components/column/column.component';
 import { BoardComponent } from './pages/board/board.component';
-import { ModalComponent } from './components/deletion-modal/deletion-modal.component';
+import { ModalComponent } from '../core/components/deletion-modal/deletion-modal.component';
 import { MatDialogModule } from '@angular/material/dialog';
 import { ColumnCreationComponent } from './components/column-creation/column-creation.component';
 import { FormsModule } from '@angular/forms';
