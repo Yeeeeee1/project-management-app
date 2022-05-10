@@ -10,7 +10,9 @@ import {
   ROUTH_PATHS,
 } from 'src/app/shared/constants/constants';
 import { AppStateService } from 'src/app/shared/services/app-state.service';
+import { Location } from '@angular/common';
 import { IEditForm } from '../../models/editing.model';
+import { AuthService } from 'src/app/auth/services/auth.service';
 
 @Component({
   selector: 'app-editing',
@@ -22,12 +24,16 @@ export class EditingComponent {
 
   public userId = '';
 
+  public userEdited = false;
+
   public jwtHelper: JwtHelperService;
 
   constructor(
+    public location: Location,
     public route: Router,
     private fb: FormBuilder,
     public httpAuthService: HttpAuthService,
+    public authService: AuthService,
     public appStateService: AppStateService
   ) {
     this.jwtHelper = new JwtHelperService();
@@ -42,6 +48,7 @@ export class EditingComponent {
       messageError: {
         minLength: 'The name is too short',
         maxLength: 'The name is too long',
+        required: 'Please enter a name',
       },
     },
     {
@@ -50,6 +57,7 @@ export class EditingComponent {
       formControlName: 'email',
       type: 'text',
       messageError: {
+        required: 'Please enter a  email',
         email: 'Please enter a valid email: example@email.com',
       },
     },
@@ -77,10 +85,13 @@ export class EditingComponent {
   ];
 
   public editForm = this.fb.group({
-    name: [null, [Validators.minLength(3), Validators.maxLength(20)]],
-    login: [null, [Validators.email]],
-    password: [null, [regExValidator(PASSWORD_REG_EXP)]],
-    confirmPassword: [null, [confirmValidator()]],
+    name: [
+      null,
+      [Validators.required, Validators.minLength(3), Validators.maxLength(20)],
+    ],
+    login: [null, [Validators.required, Validators.email]],
+    password: [null, [Validators.required, regExValidator(PASSWORD_REG_EXP)]],
+    confirmPassword: [null, [Validators.required, confirmValidator()]],
   });
 
   createErrorMessage(regField: IEditForm): string | undefined {
@@ -112,25 +123,21 @@ export class EditingComponent {
     this.userId = this.jwtHelper.decodeToken(
       localStorage.getItem('token') as string
     ).userId;
+    localStorage.setItem('name', this.editForm.value.name);
+    this.authService.name$.next(localStorage.getItem('name') as string);
     this.httpAuthService
       .upDateUser(this.editForm.value, this.userId)
       .subscribe((user) => {
         if (typeof user === 'string') {
           this.errorUpdateMsg.next(user);
         } else {
-          this.errorUpdateMsg.next('User updated!');
+          this.userEdited = true;
         }
       });
   }
 
-  deleteUser() {
-    this.userId = this.jwtHelper.decodeToken(
-      localStorage.getItem('token') as string
-    ).userId;
-    this.httpAuthService
-      .deleteUser(this.userId)
-      .subscribe((data) => console.log(data));
-    localStorage.clear();
-    this.route.navigate([ROUTH_PATHS.WELCOME]);
+  goBack() {
+    this.location.back();
+    this.userEdited = false;
   }
 }

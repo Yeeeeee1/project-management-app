@@ -59,6 +59,31 @@ header.sticky {
   vertical-align: middle;
 }
 
-.login-btn {
+.login-btn,
+.user-btn {
   margin-right: 5px;
+}
+.user-btn,
+.logout-btn,
+.edit-btn,
+.delete-btn {
+  background: none;
+  @include btn;
+  width: auto;
+  margin: 0 0 0 5px;
+  &:hover {
+    @include hover;
+    color: $dark-gray;
+  }
+}
+.logout-btn,
+.edit-btn,
+.delete-btn {
+  display: block;
+}
+.delete-btn {
+  color: $light-red;
+  &:hover {
+    color: $red;
+  }
 }

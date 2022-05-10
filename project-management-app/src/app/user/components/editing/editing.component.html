@@ -5,11 +5,13 @@
     <input matInput id="{{ formField.id }}" autocomplete="off" type="{{ formField.type }}"
       formControlName="{{ formField.id }}" />
     <mat-error>{{ createErrorMessage(formField) }}</mat-error>
+
   </mat-form-field>
+  <span *ngIf="userEdited===true" class="edited">User was edited!</span>
   <mat-error>{{errorUpdateMsg | async}}</mat-error>
   <div> <button [disabled]="!editForm.valid" class="save-btn" mat-flat-button color="primary"
       (click)=" updateUser()">save</button>
-    <button class="delete-btn" mat-flat-button (click)="deleteUser()">delete</button>
+    <button class="cancel-btn" mat-flat-button (click)="goBack()">Cancel</button>
   </div>
 
 </form>

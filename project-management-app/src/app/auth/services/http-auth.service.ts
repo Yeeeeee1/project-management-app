@@ -2,14 +2,21 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
-import { Observable, of, catchError, BehaviorSubject } from 'rxjs';
+import { Observable, of, catchError } from 'rxjs';
+import { JwtHelperService } from '@auth0/angular-jwt';
 import { IUser, ILogin, IUpdateUser } from '../models/login.model';
 
 @Injectable({
   providedIn: 'root',
 })
 export class HttpAuthService {
-  constructor(public http: HttpClient, public router: Router) {}
+  public jwtHelper: JwtHelperService;
+
+  public userId = '';
+
+  constructor(public http: HttpClient, public router: Router) {
+    this.jwtHelper = new JwtHelperService();
+  }
 
   public handleError<T>(result?: T, operation = 'operation') {
     return (error: any): Observable<T> => of(error.error.message);
@@ -35,7 +42,10 @@ export class HttpAuthService {
   }
 
   public getUserById(id: string): Observable<IUser> {
-    return this.http.get<IUser>(`${id}`);
+    this.userId = this.jwtHelper.decodeToken(id).userId;
+    return this.http
+      .get<IUser>(`users/${this.userId}`)
+      .pipe(catchError(this.handleError<any>('userId', '')));
   }
 
   public getAllUsers(): Observable<IUpdateUser[]> {
@@ -43,6 +53,8 @@ export class HttpAuthService {
   }
 
   public deleteUser(id: string) {
-    return this.http.delete<IUser>(`users/${id}`);
+    return this.http
+      .delete<IUser>(`users/${id}`)
+      .pipe(catchError(this.handleError<any>('deleteUser', '')));
   }
 }

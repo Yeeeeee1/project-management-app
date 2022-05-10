@@ -82,9 +82,12 @@ export class LoginComponent {
       if (typeof data === 'string') {
         this.errorLoginMsg.next(data);
       } else {
-        console.log(data);
         this.router.navigate([ROUTH_PATHS.BOARDS]);
         this.authService.updateToken(data.token);
+        this.httpAuthService.getUserById(data.token).subscribe((item) => {
+          localStorage.setItem('name', item.name || '');
+          this.authService.name$.next(localStorage.getItem('name') as string);
+        });
       }
     });
   }

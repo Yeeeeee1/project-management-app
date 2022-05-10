@@ -25,6 +25,8 @@ export class AuthService {
 
   public isLogin$ = new BehaviorSubject(!!localStorage.getItem('token'));
 
+  public name$ = new BehaviorSubject(localStorage.getItem('name') || 'user');
+
   constructor(
     private http: HttpClient,
     private router: Router,

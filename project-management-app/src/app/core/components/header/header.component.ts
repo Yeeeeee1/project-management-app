@@ -1,8 +1,10 @@
 import { HostListener, Component } from '@angular/core';
-
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/auth/services/auth.service';
 import { ROUTH_PATHS } from 'src/app/shared/constants/constants';
+import { MatDialog } from '@angular/material/dialog';
+import { MatDialogComponent } from '../mat-dialog/mat-dialog.component';
+import { DialogService } from '../../services/dialog.service';
 
 @Component({
   selector: 'app-header',
@@ -20,8 +22,15 @@ export class HeaderComponent {
 
   public isLogged: boolean = true;
 
-  constructor(private router: Router, public authService:AuthService) {
-    this.authService.isLogin$.subscribe((val) => { this.isLogged = val; });
+  constructor(
+    public dialog: MatDialog,
+    private router: Router,
+    public authService: AuthService,
+    private dialogService: DialogService
+  ) {
+    this.authService.isLogin$.subscribe((val) => {
+      this.isLogged = val;
+    });
   }
 
   @HostListener('window:scroll')
@@ -31,5 +40,9 @@ export class HeaderComponent {
 
   public openEditProfile(): void {
     this.router.navigate([ROUTH_PATHS.EDIT_PROFILE]);
+  }
+
+  openDialog() {
+    this.dialogService.openDialog();
   }
 }

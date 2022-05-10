@@ -123,9 +123,14 @@ export class RegistrationComponent {
             password: this.reg.value.password,
           })
           .subscribe((data) => {
-            console.log(data, 'data');
             this.authService.updateToken(data.token);
             this.router.navigate([ROUTH_PATHS.BOARDS]);
+            this.httpAuthService.getUserById(data.token).subscribe((item) => {
+              localStorage.setItem('name', item.name || '');
+              this.authService.name$.next(
+                localStorage.getItem('name') as string
+              );
+            });
           });
       }
     });
