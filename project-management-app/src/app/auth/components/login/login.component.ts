@@ -1,8 +1,15 @@
+/* eslint-disable comma-dangle */
 import { Component, Input } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { PASSWORD_REG_EX } from 'src/app/shared/constants/constants';
+import { BehaviorSubject } from 'rxjs';
+import {
+  PASSWORD_REG_EXP,
+  ROUTH_PATHS,
+} from 'src/app/shared/constants/constants';
 import { ILoginForm } from '../../models/login.model';
+import { AuthService } from '../../services/auth.service';
+import { HttpAuthService } from '../../services/http-auth.service';
 import { regExValidator } from '../../util';
 
 @Component({
@@ -13,12 +20,21 @@ import { regExValidator } from '../../util';
 export class LoginComponent {
   @Input() formError: string = '';
 
-  constructor(private router: Router, private fb: FormBuilder) {}
+  public register = '../registration';
+
+  public errorLoginMsg = new BehaviorSubject<string>('');
+
+  constructor(
+    private router: Router,
+    private fb: FormBuilder,
+    public httpAuthService: HttpAuthService,
+    public authService: AuthService
+  ) {}
 
   public loginFields: ILoginForm[] = [
     {
-      id: 'name',
-      formControlName: 'name',
+      id: 'login',
+      formControlName: 'login',
       type: 'text',
       messageError: {
         email: 'Please enter a valid email: example@email.com',
@@ -38,8 +54,8 @@ export class LoginComponent {
   ];
 
   public login = this.fb.group({
-    name: [null, [Validators.required, Validators.email]],
-    password: [null, [Validators.required, regExValidator(PASSWORD_REG_EX)]],
+    login: [null, [Validators.required, Validators.email]],
+    password: [null, [Validators.required, regExValidator(PASSWORD_REG_EXP)]],
   });
 
   createErrorMessage(loginField: ILoginForm): string | undefined {
@@ -59,5 +75,20 @@ export class LoginComponent {
         message = '';
     }
     return message;
+  }
+
+  public log() {
+    this.httpAuthService.login(this.login.value).subscribe((data) => {
+      if (typeof data === 'string') {
+        this.errorLoginMsg.next(data);
+      } else {
+        this.router.navigate([ROUTH_PATHS.BOARDS]);
+        this.authService.updateToken(data.token);
+        this.httpAuthService.getUserById(data.token).subscribe((item) => {
+          localStorage.setItem('name', item.name || '');
+          this.authService.name$.next(localStorage.getItem('name') as string);
+        });
+      }
+    });
   }
 }

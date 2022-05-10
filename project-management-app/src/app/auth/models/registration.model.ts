@@ -1,6 +1,7 @@
 export interface IRegForm {
   id: string;
   formControlName: string;
+  name?: string;
   type: string;
   messageError: {
     email?: string;
@@ -9,5 +10,6 @@ export interface IRegForm {
     confirm?: string;
     minLength?: string;
     maxLength?: string;
+    userExists?: string;
   };
 }

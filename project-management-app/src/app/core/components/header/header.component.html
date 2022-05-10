@@ -1,25 +1,32 @@
 <header [class.sticky]="isSticky">
   <div class="navigation">
-    <a class="logo-link">
+    <a class="logo-link" routerLink="/">
       <mat-icon class="boards-icon" aria-label="Boards">dashboard</mat-icon>
     </a>
-    <button *ngIf="isLogged" (click)="openEditProfile()">Edit profile</button>
+
     <button *ngIf="isLogged">Create board</button>
   </div>
   <div>
-    <div *ngIf="isLogged">
+    <div *ngIf="(authService.isLogin$ | async)===true">
       <input class="search-field" matInput placeholder="Search..." />
       <span class="language-toggle">
         <mat-slide-toggle>EN</mat-slide-toggle>
       </span>
+      <button [matMenuTriggerFor]="menu" mat-stroked-button class="user-btn">Hello,{{authService.name$ |
+        async}}</button>
+      <mat-menu #menu="matMenu">
+        <button class="logout-btn" (click)="authService.logout()">Logout
+        </button>
+        <button *ngIf="isLogged" (click)="openEditProfile()" class="edit-btn">Edit profile</button>
+        <button *ngIf="isLogged" (click)="openDialog()" class="delete-btn">Delete profile</button>
 
-      <button mat-icon-button>
-        <mat-icon aria-label="Logout" class="logout-icon" [routerLink]="auth">logout</mat-icon>
-      </button>
+
+      </mat-menu>
+
     </div>
-    <div *ngIf="!isLogged">
-      <button mat-stroked-button color="primary" class="login-btn">Log in</button>
-      <button mat-stroked-button color="primary">Sign up</button>
+    <div *ngIf="(authService.isLogin$ | async)===false">
+      <button mat-stroked-button color="primary" class="login-btn" [routerLink]="login">Log in</button>
+      <button mat-stroked-button color="primary" [routerLink]="register">Sign up</button>
     </div>
   </div>
 </header>
