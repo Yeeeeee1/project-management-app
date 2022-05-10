@@ -36,7 +36,7 @@ import { Column } from "../models/column";
     }
 
     public createColumn(title: string): void {
-      const column = { title: title, order: 1 + this.lastOrderNumber}
+      const column = { title: title, order: 1 + (this.lastOrderNumber ?? 0)}
       this.http.post(`boards/${this.idBoard}/columns`, column).subscribe({
         next: () => this.getColumns(),
         error: () => this.router.navigate(['/error']),
