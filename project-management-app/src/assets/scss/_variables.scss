@@ -26,7 +26,7 @@ $light-blue: #76a5ea;
 $dark-gray: #0d062d;
 
 $header-height: 85px;
-$headerStickyHeight: 80px;
+$headerStickyHeight: 60px;
 $big-border-radius: 16px;
 $small-border-radius: 4px;
 
@@ -44,7 +44,9 @@ $fontFamily: "Inter", sans-serif;
 @mixin shadow {
   box-shadow: 0px 4px 4px 0 rgba(0, 0, 0, 0.25);
 }
-
+@mixin headerShadow {
+  box-shadow: 0px 2px 20px 0 rgba(0, 0, 0, 0.25);
+}
 @mixin blockCentred {
   display: flex;
   justify-content: center;
@@ -158,6 +160,7 @@ $fontFamily: "Inter", sans-serif;
 @mixin listScroll {
   &::-webkit-scrollbar {
     width: 4px;
+     background-color: $bg-gray;
   }
   &::-webkit-scrollbar-thumb {
     background-color: $gray;
@@ -166,7 +169,8 @@ $fontFamily: "Inter", sans-serif;
 }
 @mixin boardScroll {
   &::-webkit-scrollbar {
-    width: 12px;
+    height: 12px;
+     background-color: $bg-gray;
   }
   &::-webkit-scrollbar-thumb {
     background-color: $gray;
