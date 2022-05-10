@@ -15,6 +15,7 @@ header {
 
 header.sticky {
   height: $headerStickyHeight;
+  @include headerShadow;
   @include transition;
 }
 
