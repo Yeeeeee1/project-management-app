@@ -1,0 +1,17 @@
+{
+  "search": "Поиск",
+  "ru" : "РУС",
+  "create_column" : "Создать колонку",
+  "create_task" : "Создать таск",
+  "greeting" : "Привет",
+  "logout" : "Выход",
+  "edit_profile" : "Редактировать профиль",
+  "delete_profile" : "Удалить профиль",
+  "deletion_msg_text" : "Вы действительно хотите удалить это?",
+  "cancel_btn" : "Отмена",
+  "confirm_btn" : "Да",
+  "save_btn" : "Сохранить",
+  "column_name" : "Название колонки",
+  "name" : "Название",
+  "create_board_btn": "Создать доску"
+}
