@@ -8,6 +8,19 @@
           {{ data.title }}
         </h3>
       </a>
+
+      <img
+        src="../../../../assets/images/trash.png"
+        class="main-wrapper__trash-image"
+        alt="trash"
+        (click)="deleteBoard(data.id)"
+      />
+      <img
+        src="../../../../assets/images/pen.png"
+        class="main-wrapper__trash-image"
+        (click)="changeName()"
+        alt="pen"
+      />
     </div>
   </div>
 </main>

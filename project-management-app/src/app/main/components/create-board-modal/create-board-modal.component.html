@@ -6,6 +6,6 @@
   </mat-form-field>
 </div>
 <div mat-dialog-actions align="center">
-  <button mat-button>Cancel</button>
-  <button mat-button cdkFocusInitial>Create</button>
+  <button mat-button (click)="onCancel()">Cancel</button>
+  <button mat-button cdkFocusInitial (click)="createBoard()">Create</button>
 </div>

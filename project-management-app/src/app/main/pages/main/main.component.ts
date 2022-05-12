@@ -14,24 +14,30 @@ import { CreateBoardModalComponent } from '../../components/create-board-modal/c
 export class MainComponent implements OnInit, OnDestroy {
   data: IMainBoardModel[] = [];
   getBoardsSub: Subscription | null = new Subscription();
-  title = 'aa';
-  id = '5';
 
   constructor(private mainService: MainService, private dialog: MatDialog) {}
 
   ngOnInit(): void {
-    this.getBoardsSub = this.mainService
-      .getBoards()
-      .subscribe((data: IMainBoardModel[]) => {
+    this.getBoardsSub = this.mainService.clickCreateEvent.subscribe(
+      (data: IMainBoardModel[]) => {
         this.data = data;
-        console.log(1);
-      });
+      }
+    );
   }
 
-  createBoard() {
+  createBoard(): void {
     this.dialog.open(CreateBoardModalComponent);
+  }
 
-    this.mainService.createBoard({ title: this.title, id: this.id });
+  deleteBoard(id: any): void {
+    this.mainService.deleteBoard(id).subscribe((data: any) => {});
+    this.mainService.getBoards().subscribe((data: any) => {
+      this.mainService.showResults(data);
+    });
+  }
+
+  changeName(): void {
+    this.dialog.open(CreateBoardModalComponent);
   }
 
   ngOnDestroy(): void {

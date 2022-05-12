@@ -31,6 +31,13 @@ main {
       @include link;
     }
   }
+
+  &__trash-image {
+    width: 50px;
+    height: 50px;
+    padding: 15px;
+    cursor: pointer;
+  }
 }
 
 a {
