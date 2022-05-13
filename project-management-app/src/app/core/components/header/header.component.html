@@ -12,7 +12,7 @@
       <span class="language-toggle">
         <mat-slide-toggle [(ngModel)]="isLanguageChecked" (change)="onToggle($event)">{{'ru' | translate }}</mat-slide-toggle>
       </span>
-      <button [matMenuTriggerFor]="menu" mat-stroked-button class="user-btn">{{'greeting' | translate }},{{authService.name$ |
+      <button [matMenuTriggerFor]="menu" mat-stroked-button class="user-btn">{{'greeting' | translate }}, {{authService.name$ |
         async}}</button>
       <mat-menu #menu="matMenu">
         <button class="logout-btn" (click)="authService.logout()">{{'logout' | translate }}
