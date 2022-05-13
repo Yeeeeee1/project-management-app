@@ -26,8 +26,8 @@ export class MainService {
     return this.http.post(this.baseUrl, board, this.headers);
   }
 
-  changeName(board: IMainBoardModel): void {
-    this.http.put(this.baseUrl, board, this.headers);
+  changeName(board: any, id: any): any {
+    return this.http.put(this.baseUrl + '/' + id, board, this.headers);
   }
 
   deleteBoard(id: any): any {

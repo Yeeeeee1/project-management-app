@@ -3,11 +3,12 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { MainService } from '../../services/main.service';
 
 @Component({
-  selector: 'app-create-board-modal',
-  templateUrl: './create-board-modal.component.html',
-  styleUrls: ['./create-board-modal.component.scss'],
+  selector: 'app-change-board-modal',
+  templateUrl: './change-board-modal.component.html',
+  styleUrls: ['./change-board-modal.component.scss'],
 })
-export class CreateBoardModalComponent {
+export class ChangeBoardModalComponent {
+  public id = '';
   title = '';
 
   constructor(
@@ -20,12 +21,14 @@ export class CreateBoardModalComponent {
     this.dialogRef.close();
   }
 
-  createBoard(): void {
-    this.mainService.createBoard({ title: this.title }).subscribe(() => {
-      this.mainService
-        .getBoards()
-        .subscribe((data: any) => this.mainService.showResults(data));
-    });
+  changeBoard(): void {
+    this.mainService
+      .changeName({ title: this.title }, this.id)
+      .subscribe(() => {
+        this.mainService
+          .getBoards()
+          .subscribe((data: any) => this.mainService.showResults(data));
+      });
     this.onCancel();
   }
 }

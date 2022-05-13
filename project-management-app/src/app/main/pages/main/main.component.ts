@@ -1,10 +1,15 @@
 import { HttpClient } from '@angular/common/http';
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, Inject, OnDestroy, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { IMainBoardModel } from 'src/app/shared/models/IMainBoardModel';
 import { MainService } from '../../services/main.service';
-import { MatDialog } from '@angular/material/dialog';
+import {
+  MatDialog,
+  MatDialogRef,
+  MAT_DIALOG_DATA,
+} from '@angular/material/dialog';
 import { CreateBoardModalComponent } from '../../components/create-board-modal/create-board-modal.component';
+import { ChangeBoardModalComponent } from '../../components/change-board-modal/change-board-modal.component';
 
 @Component({
   selector: 'app-boards',
@@ -15,9 +20,16 @@ export class MainComponent implements OnInit, OnDestroy {
   data: IMainBoardModel[] = [];
   getBoardsSub: Subscription | null = new Subscription();
 
-  constructor(private mainService: MainService, private dialog: MatDialog) {}
+  constructor(
+    private mainService: MainService,
+    private dialog: MatDialog,
+    private dialogRef: MatDialogRef<any>
+  ) {}
 
   ngOnInit(): void {
+    this.mainService.getBoards().subscribe((data: any) => {
+      this.data = data;
+    });
     this.getBoardsSub = this.mainService.clickCreateEvent.subscribe(
       (data: IMainBoardModel[]) => {
         this.data = data;
@@ -30,14 +42,16 @@ export class MainComponent implements OnInit, OnDestroy {
   }
 
   deleteBoard(id: any): void {
-    this.mainService.deleteBoard(id).subscribe((data: any) => {});
-    this.mainService.getBoards().subscribe((data: any) => {
-      this.mainService.showResults(data);
+    this.mainService.deleteBoard(id).subscribe(() => {
+      this.mainService.getBoards().subscribe((data: any) => {
+        this.mainService.showResults(data);
+      });
     });
   }
 
-  changeName(): void {
-    this.dialog.open(CreateBoardModalComponent);
+  changeName(id: any): void {
+    let dialogRef = this.dialog.open(ChangeBoardModalComponent);
+    dialogRef.componentInstance.id = id;
   }
 
   ngOnDestroy(): void {

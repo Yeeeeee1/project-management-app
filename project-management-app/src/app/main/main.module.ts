@@ -9,10 +9,20 @@ import { MainComponent } from './pages/main/main.component';
 import { MainRoutingModule } from './main-routing.module';
 import { CoreModule } from '../core/core.module';
 import { CreateBoardModalComponent } from './components/create-board-modal/create-board-modal.component';
-import { MatDialog, MatDialogModule } from '@angular/material/dialog';
+import {
+  MatDialog,
+  MatDialogModule,
+  MatDialogRef,
+} from '@angular/material/dialog';
+import { FormsModule } from '@angular/forms';
+import { ChangeBoardModalComponent } from './components/change-board-modal/change-board-modal.component';
 
 @NgModule({
-  declarations: [MainComponent, CreateBoardModalComponent],
+  declarations: [
+    MainComponent,
+    CreateBoardModalComponent,
+    ChangeBoardModalComponent,
+  ],
   imports: [
     CommonModule,
     RouterModule,
@@ -23,7 +33,9 @@ import { MatDialog, MatDialogModule } from '@angular/material/dialog';
     MainRoutingModule,
     CoreModule,
     MatDialogModule,
+    FormsModule,
   ],
+  providers: [{ provide: MatDialogRef, useValue: {} }],
   exports: [],
 })
 export class MainModule {}
