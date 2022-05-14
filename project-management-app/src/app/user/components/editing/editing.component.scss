@@ -32,7 +32,7 @@ form {
       }
     }
   }
-  .delete-btn {
+  .cancel-btn {
     color: $white;
     background: $light-red;
 
@@ -49,4 +49,8 @@ form {
       }
     }
   }
+}
+.edited {
+  font-size: $fontSizeH4;
+  color: $green;
 }

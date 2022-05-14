@@ -1,4 +1,12 @@
-import { AbstractControl, ValidatorFn } from '@angular/forms';
+import {
+  AbstractControl,
+  AsyncValidatorFn,
+  ValidationErrors,
+  ValidatorFn,
+} from '@angular/forms';
+import { map, Observable, tap } from 'rxjs';
+import { IUser } from './models/login.model';
+import { HttpAuthService } from './services/http-auth.service';
 
 export function regExValidator(regEx: RegExp): ValidatorFn {
   return (control: AbstractControl): { [key: string]: string } | null => {

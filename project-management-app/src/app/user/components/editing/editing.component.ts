@@ -1,8 +1,18 @@
 import { Component } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
-import { regExValidator } from 'src/app/auth/util';
-import { PASSWORD_REG_EX } from 'src/app/shared/constants/constants';
+import { Router } from '@angular/router';
+import { JwtHelperService } from '@auth0/angular-jwt';
+import { BehaviorSubject } from 'rxjs';
+import { HttpAuthService } from 'src/app/auth/services/http-auth.service';
+import { confirmValidator, regExValidator } from 'src/app/auth/util';
+import {
+  PASSWORD_REG_EXP,
+  ROUTH_PATHS,
+} from 'src/app/shared/constants/constants';
+import { AppStateService } from 'src/app/shared/services/app-state.service';
+import { Location } from '@angular/common';
 import { IEditForm } from '../../models/editing.model';
+import { AuthService } from 'src/app/auth/services/auth.service';
 
 @Component({
   selector: 'app-editing',
@@ -10,7 +20,24 @@ import { IEditForm } from '../../models/editing.model';
   styleUrls: ['./editing.component.scss'],
 })
 export class EditingComponent {
-  constructor(private fb: FormBuilder) {}
+  public errorUpdateMsg = new BehaviorSubject('');
+
+  public userId = '';
+
+  public userEdited = false;
+
+  public jwtHelper: JwtHelperService;
+
+  constructor(
+    public location: Location,
+    public route: Router,
+    private fb: FormBuilder,
+    public httpAuthService: HttpAuthService,
+    public authService: AuthService,
+    public appStateService: AppStateService
+  ) {
+    this.jwtHelper = new JwtHelperService();
+  }
 
   public formFields: IEditForm[] = [
     {
@@ -21,14 +48,16 @@ export class EditingComponent {
       messageError: {
         minLength: 'The name is too short',
         maxLength: 'The name is too long',
+        required: 'Please enter a name',
       },
     },
     {
-      id: 'email',
+      id: 'login',
       label: 'Email',
       formControlName: 'email',
       type: 'text',
       messageError: {
+        required: 'Please enter a  email',
         email: 'Please enter a valid email: example@email.com',
       },
     },
@@ -56,10 +85,13 @@ export class EditingComponent {
   ];
 
   public editForm = this.fb.group({
-    name: [null, [Validators.minLength(3), Validators.maxLength(20)]],
-    email: [null, [Validators.email]],
-    password: [null, [regExValidator(PASSWORD_REG_EX)]],
-    // confirmPassword: [null, [confirmValidator()]],
+    name: [
+      null,
+      [Validators.required, Validators.minLength(3), Validators.maxLength(20)],
+    ],
+    login: [null, [Validators.required, Validators.email]],
+    password: [null, [Validators.required, regExValidator(PASSWORD_REG_EXP)]],
+    confirmPassword: [null, [Validators.required, confirmValidator()]],
   });
 
   createErrorMessage(regField: IEditForm): string | undefined {
@@ -83,5 +115,29 @@ export class EditingComponent {
         message = '';
     }
     return message;
+  }
+
+  updateUser() {
+    delete this.editForm.value.confirmPassword;
+
+    this.userId = this.jwtHelper.decodeToken(
+      localStorage.getItem('token') as string
+    ).userId;
+    localStorage.setItem('name', this.editForm.value.name);
+    this.authService.name$.next(localStorage.getItem('name') as string);
+    this.httpAuthService
+      .upDateUser(this.editForm.value, this.userId)
+      .subscribe((user) => {
+        if (typeof user === 'string') {
+          this.errorUpdateMsg.next(user);
+        } else {
+          this.userEdited = true;
+        }
+      });
+  }
+
+  goBack() {
+    this.location.back();
+    this.userEdited = false;
   }
 }
