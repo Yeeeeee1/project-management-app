@@ -8,15 +8,16 @@ import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { MatMenuModule } from '@angular/material/menu';
 import { FooterComponent } from './components/footer/footer.component';
 import { HeaderComponent } from './components/header/header.component';
-<<<<<<< HEAD
-import { PageErrorComponent } from './pages/page-error/page-error.component';
-=======
 import { WelcomeComponent } from './components/welcome/welcome.component';
 import { MatDialogComponent } from './components/mat-dialog/mat-dialog.component';
->>>>>>> bb43c90eafe6caa67fafb171364976d67968a3e3
 
 @NgModule({
-  declarations: [HeaderComponent, FooterComponent, WelcomeComponent, MatDialogComponent],
+  declarations: [
+    HeaderComponent,
+    FooterComponent,
+    WelcomeComponent,
+    MatDialogComponent,
+  ],
   imports: [
     CommonModule,
     RouterModule,
