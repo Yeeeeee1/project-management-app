@@ -16,12 +16,14 @@ import {
 } from '@angular/material/dialog';
 import { FormsModule } from '@angular/forms';
 import { ChangeBoardModalComponent } from './components/change-board-modal/change-board-modal.component';
+import { ConfirmDialogComponent } from './components/confirm-dialog/confirm-dialog.component';
 
 @NgModule({
   declarations: [
     MainComponent,
     CreateBoardModalComponent,
     ChangeBoardModalComponent,
+    ConfirmDialogComponent,
   ],
   imports: [
     CommonModule,

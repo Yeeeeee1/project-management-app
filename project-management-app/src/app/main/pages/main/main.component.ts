@@ -10,6 +10,7 @@ import {
 } from '@angular/material/dialog';
 import { CreateBoardModalComponent } from '../../components/create-board-modal/create-board-modal.component';
 import { ChangeBoardModalComponent } from '../../components/change-board-modal/change-board-modal.component';
+import { ConfirmDialogComponent } from '../../components/confirm-dialog/confirm-dialog.component';
 
 @Component({
   selector: 'app-boards',
@@ -42,11 +43,8 @@ export class MainComponent implements OnInit, OnDestroy {
   }
 
   deleteBoard(id: any): void {
-    this.mainService.deleteBoard(id).subscribe(() => {
-      this.mainService.getBoards().subscribe((data: any) => {
-        this.mainService.showResults(data);
-      });
-    });
+    let dialogRef = this.dialog.open(ConfirmDialogComponent);
+    dialogRef.componentInstance.id = id;
   }
 
   changeName(id: any): void {
