@@ -8,11 +8,11 @@ import { IMainBoardModel } from 'src/app/shared/models/IMainBoardModel';
 })
 export class MainService {
   clickCreateEvent: EventEmitter<any> = new EventEmitter();
-  baseUrl: string = 'http://localhost:4200/api/boards';
+  baseUrl: string = 'boards';
   private headers = {
     headers: {
       Authorization:
-        'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI4YTJlYWQ1ZS01NTNjLTQ5ZGQtOWEyNy1lZWMxODljZWY2Y2EiLCJsb2dpbiI6InVzZXIwMDFhYWFhIiwiaWF0IjoxNjUyMjkxMzM3fQ.1kXRTbpGBiTTCtF7Lq42NsLQKn5eTdigQS7JNoE2jP4',
+        'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiJhMDVjNmExNS1lMmE0LTQ5MTAtOTVlNi01MTM3ZDg1MWIzOWMiLCJsb2dpbiI6InVzZXIwMDFiaGIiLCJpYXQiOjE2NTI1NDk5MDZ9.G71eXFZVdLpjRw6xccnxOJl2BMjDQjodqRYl11z7yq0',
     },
   };
 

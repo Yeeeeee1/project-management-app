@@ -12,13 +12,11 @@ import { WelcomeComponent } from './core/components/welcome/welcome.component';
 import { BoardsComponent } from './boards/components/boards/boards.component';
 
 const routes: Routes = [
-  /*{ path: '', redirectTo: 'main', pathMatch: 'full' },
-
   {
-    path: 'main',
+    path: ROUTH_PATHS.MAIN,
     loadChildren: async (): Promise<MainModule> =>
       import('./main/main.module').then((x) => x.MainModule),
-  },*/
+  },
 
   { path: '', redirectTo: ROUTH_PATHS.BOARDS, pathMatch: 'full' },
 
