@@ -1,5 +1,6 @@
-$blue: #5030e5;
-$green: #68b266;
+$blue: #435e85;
+// #5030e5;
+$green: #538f51;
 $yellow: #ffa500;
 $orange: #d58d49;
 $violet: #800080;
@@ -23,7 +24,7 @@ $light-green: #8bc48a;
 $light-red: #f595a0;
 $light-blue: #76a5ea;
 
-$dark-gray: #0d062d;
+$dark-gray: #48474a;
 
 $header-height: 85px;
 $headerStickyHeight: 60px;
@@ -34,7 +35,7 @@ $fontSizeH1: 46px;
 $fontSizeH2: 20px;
 $fontSizeH3: 18px;
 $fontSizeH4: 18px;
-$fontSizeP: 12px;
+$fontSizeP: 14px;
 $fontFamily: "Inter", sans-serif;
 
 @mixin transition {
@@ -77,11 +78,6 @@ $fontFamily: "Inter", sans-serif;
   }
 }
 
-@mixin fontP {
-  font-size: $fontSizeP;
-  font-family: $fontFamily;
-  color: $gray;
-}
 @mixin fontP {
   font-size: $fontSizeP;
   font-family: $fontFamily;
@@ -160,7 +156,7 @@ $fontFamily: "Inter", sans-serif;
 @mixin listScroll {
   &::-webkit-scrollbar {
     width: 4px;
-     background-color: $bg-gray;
+    background-color: $bg-gray;
   }
   &::-webkit-scrollbar-thumb {
     background-color: $gray;
@@ -170,7 +166,7 @@ $fontFamily: "Inter", sans-serif;
 @mixin boardScroll {
   &::-webkit-scrollbar {
     height: 12px;
-     background-color: $bg-gray;
+    background-color: $bg-gray;
   }
   &::-webkit-scrollbar-thumb {
     background-color: $gray;
