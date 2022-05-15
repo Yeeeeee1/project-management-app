@@ -22,13 +22,7 @@ export class ChangeBoardModalComponent {
   }
 
   changeBoard(): void {
-    this.mainService
-      .changeName({ title: this.title }, this.id)
-      .subscribe(() => {
-        this.mainService
-          .getBoards()
-          .subscribe((data: any) => this.mainService.showResults(data));
-      });
+    this.mainService.changeName({ title: this.title }, this.id);
     this.onCancel();
   }
 }

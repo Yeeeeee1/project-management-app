@@ -21,11 +21,7 @@ export class CreateBoardModalComponent {
   }
 
   createBoard(): void {
-    this.mainService.createBoard({ title: this.title }).subscribe(() => {
-      this.mainService
-        .getBoards()
-        .subscribe((data: any) => this.mainService.showResults(data));
-    });
+    this.mainService.createBoard({ title: this.title });
     this.onCancel();
   }
 }

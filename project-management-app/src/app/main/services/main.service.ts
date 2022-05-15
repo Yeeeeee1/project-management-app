@@ -18,20 +18,28 @@ export class MainService {
 
   constructor(private http: HttpClient) {}
 
-  getBoards(): Observable<any> {
-    return this.http.get(this.baseUrl);
+  getBoards(): void {
+    this.http
+      .get(this.baseUrl)
+      .subscribe((data: any) => this.showResults(data));
   }
 
   createBoard(board: any): any {
-    return this.http.post(this.baseUrl, board);
+    return this.http
+      .post(this.baseUrl, board)
+      .subscribe((data: any) => this.getBoards());
   }
 
   changeName(board: any, id: any): any {
-    return this.http.put(this.baseUrl + '/' + id, board);
+    return this.http
+      .put(this.baseUrl + '/' + id, board)
+      .subscribe((data: any) => this.getBoards());
   }
 
   deleteBoard(id: any): any {
-    return this.http.delete(this.baseUrl + '/' + id);
+    return this.http
+      .delete(this.baseUrl + '/' + id)
+      .subscribe((data: any) => this.getBoards());
   }
 
   showResults(data: any): void {

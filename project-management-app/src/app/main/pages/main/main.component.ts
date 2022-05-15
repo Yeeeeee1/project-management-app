@@ -13,26 +13,14 @@ import { ModalComponent } from 'src/app/core/components/deletion-modal/deletion-
 })
 export class MainComponent implements OnInit, OnDestroy {
   data: IMainBoardModel[] = [];
-  getBoardsSub: Subscription | null = new Subscription();
+  subscriptions: Subscription | null = new Subscription();
   isNoBoards = false;
 
-  constructor(
-    private mainService: MainService,
-    private dialog: MatDialog,
-    private dialogRef: MatDialogRef<any>
-  ) {}
+  constructor(private mainService: MainService, private dialog: MatDialog) {}
 
   ngOnInit(): void {
-    this.mainService.getBoards().subscribe((data: any) => {
-      this.data = data;
-
-      if (!data[0]) {
-        this.isNoBoards = true;
-      } else {
-        this.isNoBoards = false;
-      }
-    });
-    this.getBoardsSub = this.mainService.clickCreateEvent.subscribe(
+    const getBoardsSub = this.mainService.getBoards();
+    const createEventSub = this.mainService.clickCreateEvent.subscribe(
       (data: IMainBoardModel[]) => {
         this.data = data;
 
@@ -43,20 +31,21 @@ export class MainComponent implements OnInit, OnDestroy {
         }
       }
     );
+
+    this.subscriptions?.add(getBoardsSub);
+    this.subscriptions?.add(createEventSub);
   }
 
   deleteBoard(id: any): void {
     const dialogRef = this.dialog.open(ModalComponent);
 
-    dialogRef.afterClosed().subscribe((result) => {
+    const dialogAfterClosedSub = dialogRef.afterClosed().subscribe((result) => {
       if (result) {
-        this.mainService.deleteBoard(id).subscribe(() => {
-          this.mainService.getBoards().subscribe((data: any) => {
-            this.mainService.showResults(data);
-          });
-        });
+        this.mainService.deleteBoard(id);
       }
     });
+
+    this.subscriptions?.add(dialogAfterClosedSub);
   }
 
   changeName(id: any): void {
@@ -65,7 +54,7 @@ export class MainComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
-    this.getBoardsSub?.unsubscribe();
-    this.getBoardsSub = null;
+    this.subscriptions?.unsubscribe();
+    this.subscriptions = null;
   }
 }
