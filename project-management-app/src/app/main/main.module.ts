@@ -7,6 +7,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { MatDialogModule, MatDialogRef } from '@angular/material/dialog';
 import { FormsModule } from '@angular/forms';
+import { TranslateModule } from '@ngx-translate/core';
 import { MainComponent } from './pages/main/main.component';
 import { MainRoutingModule } from './main-routing.module';
 import { CoreModule } from '../core/core.module';
@@ -30,6 +31,7 @@ import { ChangeBoardModalComponent } from './components/change-board-modal/chang
     CoreModule,
     MatDialogModule,
     FormsModule,
+    TranslateModule,
   ],
   providers: [{ provide: MatDialogRef, useValue: {} }],
   exports: [],
