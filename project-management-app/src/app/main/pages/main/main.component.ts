@@ -3,7 +3,6 @@ import { Subscription } from 'rxjs';
 import { IMainBoardModel } from 'src/app/shared/models/IMainBoardModel';
 import { MainService } from '../../services/main.service';
 import { MatDialog, MatDialogRef } from '@angular/material/dialog';
-import { CreateBoardModalComponent } from '../../components/create-board-modal/create-board-modal.component';
 import { ChangeBoardModalComponent } from '../../components/change-board-modal/change-board-modal.component';
 import { ModalComponent } from 'src/app/core/components/deletion-modal/deletion-modal.component';
 
