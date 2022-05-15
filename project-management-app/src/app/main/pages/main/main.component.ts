@@ -1,16 +1,11 @@
-import { HttpClient } from '@angular/common/http';
-import { Component, Inject, OnDestroy, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { IMainBoardModel } from 'src/app/shared/models/IMainBoardModel';
 import { MainService } from '../../services/main.service';
-import {
-  MatDialog,
-  MatDialogRef,
-  MAT_DIALOG_DATA,
-} from '@angular/material/dialog';
+import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { CreateBoardModalComponent } from '../../components/create-board-modal/create-board-modal.component';
 import { ChangeBoardModalComponent } from '../../components/change-board-modal/change-board-modal.component';
-import { ConfirmDialogComponent } from '../../components/confirm-dialog/confirm-dialog.component';
+import { ModalComponent } from 'src/app/core/components/deletion-modal/deletion-modal.component';
 
 @Component({
   selector: 'app-boards',
@@ -43,8 +38,17 @@ export class MainComponent implements OnInit, OnDestroy {
   }
 
   deleteBoard(id: any): void {
-    let dialogRef = this.dialog.open(ConfirmDialogComponent);
-    dialogRef.componentInstance.id = id;
+    const dialogRef = this.dialog.open(ModalComponent);
+
+    dialogRef.afterClosed().subscribe((result) => {
+      if (result) {
+        this.mainService.deleteBoard(id).subscribe(() => {
+          this.mainService.getBoards().subscribe((data: any) => {
+            this.mainService.showResults(data);
+          });
+        });
+      }
+    });
   }
 
   changeName(id: any): void {

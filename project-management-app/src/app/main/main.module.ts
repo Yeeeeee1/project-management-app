@@ -9,21 +9,15 @@ import { MainComponent } from './pages/main/main.component';
 import { MainRoutingModule } from './main-routing.module';
 import { CoreModule } from '../core/core.module';
 import { CreateBoardModalComponent } from './components/create-board-modal/create-board-modal.component';
-import {
-  MatDialog,
-  MatDialogModule,
-  MatDialogRef,
-} from '@angular/material/dialog';
+import { MatDialogModule, MatDialogRef } from '@angular/material/dialog';
 import { FormsModule } from '@angular/forms';
 import { ChangeBoardModalComponent } from './components/change-board-modal/change-board-modal.component';
-import { ConfirmDialogComponent } from './components/confirm-dialog/confirm-dialog.component';
 
 @NgModule({
   declarations: [
     MainComponent,
     CreateBoardModalComponent,
     ChangeBoardModalComponent,
-    ConfirmDialogComponent,
   ],
   imports: [
     CommonModule,

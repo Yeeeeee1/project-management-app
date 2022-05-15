@@ -14,7 +14,7 @@ export class ColumnComponent {
 
   constructor(
     public dialog: MatDialog,
-    private columnsService: ColumnsService,
+    private columnsService: ColumnsService
   ) {}
 
   openDeleteModal() {
