@@ -12,6 +12,10 @@ import { ModalComponent } from '../../../core/components/deletion-modal/deletion
 export class ColumnComponent {
   @Input() public column: Column;
 
+  public showColumnTitle: boolean = true;
+
+  public showTitleEditSection: boolean = false;
+
   constructor(
     public dialog: MatDialog,
     private columnsService: ColumnsService,
@@ -25,5 +29,19 @@ export class ColumnComponent {
         this.columnsService.deleteColumn(this.column.id);
       }
     });
+  }
+
+  public openTitleEditingSection():void {
+    this.showColumnTitle = false;
+    this.showTitleEditSection = true;
+  }
+
+  public saveTitle():void {
+    this.closeTitleEditingSection();
+  }
+
+  public closeTitleEditingSection(): void {
+    this.showColumnTitle = true;
+    this.showTitleEditSection = false;
   }
 }
