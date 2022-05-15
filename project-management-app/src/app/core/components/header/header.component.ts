@@ -1,11 +1,17 @@
 import { HostListener, Component } from '@angular/core';
 import { Router } from '@angular/router';
-import { AuthService } from 'src/app/auth/services/auth.service';
-import { LANG_CHECKED, LANG_EN, LANG_RU, ROUTH_PATHS } from 'src/app/shared/constants/constants';
 import { MatDialog } from '@angular/material/dialog';
-import { DialogService } from '../../services/dialog.service';
 import { MatSlideToggleChange } from '@angular/material/slide-toggle';
 import { TranslateService } from '@ngx-translate/core';
+import { AuthService } from '../../../auth/services/auth.service';
+import {
+  LANG_CHECKED,
+  LANG_EN,
+  LANG_RU,
+  ROUTH_PATHS,
+} from '../../../shared/constants/constants';
+import { DialogService } from '../../services/dialog.service';
+import { CreateBoardModalComponent } from '../../../main/components/create-board-modal/create-board-modal.component';
 
 @Component({
   selector: 'app-header',
@@ -30,13 +36,13 @@ export class HeaderComponent {
     private router: Router,
     public authService: AuthService,
     private dialogService: DialogService,
-    private translateService: TranslateService
+    private translateService: TranslateService,
   ) {
     this.authService.isLogin$.subscribe((val) => {
       this.isLogged = val;
     });
     this.isLanguageChecked = JSON.parse(
-      localStorage.getItem(LANG_CHECKED) || 'false'
+      localStorage.getItem(LANG_CHECKED) || 'false',
     );
     this.changeLanguage(this.isLanguageChecked);
   }
@@ -66,5 +72,9 @@ export class HeaderComponent {
     } else {
       this.translateService.use(LANG_EN);
     }
+  }
+
+  createBoard(): void {
+    this.dialog.open(CreateBoardModalComponent);
   }
 }

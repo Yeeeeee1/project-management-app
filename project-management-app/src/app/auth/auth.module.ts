@@ -36,7 +36,8 @@ import { ApiInterceptorService } from './services/api-interceptor.service';
       provide: HTTP_INTERCEPTORS,
       useClass: ApiInterceptorService,
       multi: true,
-    }, { provide: JWT_OPTIONS, useValue: JWT_OPTIONS },
+    },
+    { provide: JWT_OPTIONS, useValue: JWT_OPTIONS },
     JwtHelperService,
   ],
 })

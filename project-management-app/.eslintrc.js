@@ -1,42 +1,38 @@
 module.exports = {
-  "root": true,
-  "ignorePatterns": [
-    "projects/**/*"
-  ],
-  "overrides": [
+  root: true,
+  ignorePatterns: ["projects/**/*"],
+  overrides: [
     {
-      "files": [
-        "*.ts"
-      ],
-      "parserOptions": {
-        "project": [
-          "tsconfig.json"
-        ],
-        "createDefaultProgram": true
+      files: ["*.ts"],
+      parserOptions: {
+        project: ["tsconfig.json"],
+        tsconfigRootDir: __dirname,
+        sourceType: "module",
+        createDefaultProgram: true,
       },
-      "extends": [
+      extends: [
         "airbnb-base",
         "plugin:@angular-eslint/recommended",
         "plugin:@angular-eslint/template/process-inline-templates",
-        "plugin:import/typescript"
+        "plugin:import/typescript",
       ],
-      "plugins": ["import", "@typescript-eslint"],
-      "rules": {
+      plugins: ["import", "@typescript-eslint"],
+      rules: {
         "@angular-eslint/directive-selector": [
           "error",
           {
-            "type": "attribute",
-            "prefix": "app",
-            "style": "camelCase"
-          }
+            type: "attribute",
+            prefix: "app",
+            style: "camelCase",
+          },
         ],
         "@angular-eslint/component-selector": [
           "error",
           {
-            "type": "element",
-            "prefix": "app",
-            "style": "kebab-case"
-          }
+            type: "element",
+            prefix: "app",
+            style: "kebab-case",
+          },
         ],
         "@typescript-eslint/no-explicit-any": "error",
         "no-undef": "off",
@@ -53,29 +49,25 @@ module.exports = {
           "error",
           "ignorePackages",
           {
-              "ts": "never"
-          }
-      ]
-      }
+            ts: "never",
+          },
+        ],
+      },
     },
     {
-      "files": [
-        "*.html"
-      ],
-      "extends": [
-        "plugin:@angular-eslint/template/recommended"
-      ],
-      "rules": {}
-    }
+      files: ["*.html"],
+      extends: ["plugin:@angular-eslint/template/recommended"],
+      rules: {},
+    },
   ],
-  "settings": {
+  settings: {
     "import/parsers": {
-      "@typescript-eslint/parser": [".ts", ".tsx"]
+      "@typescript-eslint/parser": [".ts", ".tsx"],
     },
     "import/resolver": {
-      "typescript": {
-        "alwaysTryTypes": true
-      }
-    }
-  }
+      typescript: {
+        alwaysTryTypes: true,
+      },
+    },
+  },
 };

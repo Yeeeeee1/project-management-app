@@ -1,0 +1,11 @@
+<h1 mat-dialog-title>{{ "board_dialog_title" | translate }}</h1>
+<div mat-dialog-content>
+  <mat-form-field appearance="fill">
+    <mat-label>{{ "board_dialog_label" | translate }}</mat-label>
+    <input matInput [(ngModel)]="title" />
+  </mat-form-field>
+</div>
+<div mat-dialog-actions align="center">
+  <button mat-button (click)="onCancel()">{{ "board_dialog_close" | translate }}</button>
+  <button mat-button cdkFocusInitial (click)="changeBoard()">{{ "board_dialog_save" | translate }}</button>
+</div>

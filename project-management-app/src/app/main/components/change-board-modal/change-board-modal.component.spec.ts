@@ -1,20 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { ColumnComponent } from './column.component';
+import { ChangeBoardModalComponent } from './change-board-modal.component';
 
-describe('ColumnComponent', () => {
-  let component: ColumnComponent;
-  let fixture: ComponentFixture<ColumnComponent>;
+describe('ChangeBoardModalComponent', () => {
+  let component: ChangeBoardModalComponent;
+  let fixture: ComponentFixture<ChangeBoardModalComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ColumnComponent],
+      declarations: [ChangeBoardModalComponent],
     })
       .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(ColumnComponent);
+    fixture = TestBed.createComponent(ChangeBoardModalComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

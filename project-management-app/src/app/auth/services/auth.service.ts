@@ -3,7 +3,9 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
-import { BehaviorSubject, delay, of, Subscription } from 'rxjs';
+import {
+  BehaviorSubject, delay, of, Subscription
+} from 'rxjs';
 import { JwtHelperService } from '@auth0/angular-jwt';
 import { ROUTH_PATHS } from 'src/app/shared/constants/constants';
 import { AppStateService } from 'src/app/shared/services/app-state.service';

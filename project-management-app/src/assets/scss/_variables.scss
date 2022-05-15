@@ -45,9 +45,11 @@ $fontFamily: "Inter", sans-serif;
 @mixin shadow {
   box-shadow: 0px 4px 4px 0 rgba(0, 0, 0, 0.25);
 }
+
 @mixin headerShadow {
   box-shadow: 0px 2px 20px 0 rgba(0, 0, 0, 0.25);
 }
+
 @mixin blockCentred {
   display: flex;
   justify-content: center;
@@ -68,7 +70,6 @@ $fontFamily: "Inter", sans-serif;
 }
 
 @mixin link {
-  font-size: $fontSizeP;
   font-family: $fontFamily;
   color: $gray;
   @include hover;

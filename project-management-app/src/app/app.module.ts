@@ -5,16 +5,17 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RouterModule } from '@angular/router';
 import { JwtModule } from '@auth0/angular-jwt';
 import { MatDialogModule, MatDialogRef } from '@angular/material/dialog';
+import { TranslateHttpLoader } from '@ngx-translate/http-loader';
+import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { AuthModule } from './auth/auth.module';
 import { CoreModule } from './core/core.module';
+import { MainModule } from './main/main.module';
 import { BoardsComponent } from './boards/components/boards/boards.component';
 import { DialogService } from './core/services/dialog.service';
 import { HeaderComponent } from './core/components/header/header.component';
 import { MatDialogComponent } from './core/components/mat-dialog/mat-dialog.component';
-import { TranslateHttpLoader } from '@ngx-translate/http-loader';
-import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
 
 export function getToken() {
   return localStorage.getItem('token');
@@ -32,6 +33,8 @@ export function HttpLoaderFactory(http: HttpClient) {
     AuthModule,
     RouterModule,
     CoreModule,
+    HttpClientModule,
+    MainModule,
     MatDialogModule,
 
     JwtModule.forRoot({
@@ -45,8 +48,8 @@ export function HttpLoaderFactory(http: HttpClient) {
       loader: {
         provide: TranslateLoader,
         useFactory: HttpLoaderFactory,
-        deps:[HttpClient]
-      }
+        deps: [HttpClient],
+      },
     }),
 
     HttpClientModule,
