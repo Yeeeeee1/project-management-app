@@ -11,7 +11,12 @@ import { FooterComponent } from './components/footer/footer.component';
 import { HeaderComponent } from './components/header/header.component';
 import { WelcomeComponent } from './components/welcome/welcome.component';
 import { MatDialogComponent } from './components/mat-dialog/mat-dialog.component';
+
 import { PageErrorComponent } from './pages/page-error/page-error.component';
+
+import { FormsModule } from '@angular/forms';
+import { TranslateModule } from '@ngx-translate/core'; 
+
 
 @NgModule({
   declarations: [
@@ -30,6 +35,8 @@ import { PageErrorComponent } from './pages/page-error/page-error.component';
     MatIconModule,
     MatSlideToggleModule,
     MatMenuModule,
+    FormsModule,
+    TranslateModule,
   ],
   exports: [HeaderComponent, FooterComponent],
 })

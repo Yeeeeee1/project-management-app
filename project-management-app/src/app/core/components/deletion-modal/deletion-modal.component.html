@@ -1,5 +1,5 @@
-<h2 mat-dialog-title>Do you really want to delete it?</h2>
+<h2 mat-dialog-title>{{'deletion_msg_text' | translate }}</h2>
 <mat-dialog-actions align="center">
-  <button mat-button mat-dialog-close>Cancel</button>
-  <button mat-button [mat-dialog-close]="true">Yes</button>
+  <button mat-button mat-dialog-close>{{'cancel_btn' | translate }}</button>
+  <button mat-button [mat-dialog-close]="true">{{'confirm_btn' | translate }}</button>
 </mat-dialog-actions>

@@ -1,10 +1,11 @@
 import { HostListener, Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/auth/services/auth.service';
-import { ROUTH_PATHS } from 'src/app/shared/constants/constants';
+import { LANG_CHECKED, LANG_EN, LANG_RU, ROUTH_PATHS } from 'src/app/shared/constants/constants';
 import { MatDialog } from '@angular/material/dialog';
-import { MatDialogComponent } from '../mat-dialog/mat-dialog.component';
 import { DialogService } from '../../services/dialog.service';
+import { MatSlideToggleChange } from '@angular/material/slide-toggle';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-header',
@@ -22,15 +23,22 @@ export class HeaderComponent {
 
   public isLogged: boolean = true;
 
+  public isLanguageChecked: boolean;
+
   constructor(
     public dialog: MatDialog,
     private router: Router,
     public authService: AuthService,
-    private dialogService: DialogService
+    private dialogService: DialogService,
+    private translateService: TranslateService
   ) {
     this.authService.isLogin$.subscribe((val) => {
       this.isLogged = val;
     });
+    this.isLanguageChecked = JSON.parse(
+      localStorage.getItem(LANG_CHECKED) || 'false'
+    );
+    this.changeLanguage(this.isLanguageChecked);
   }
 
   @HostListener('window:scroll')
@@ -44,5 +52,19 @@ export class HeaderComponent {
 
   openDialog() {
     this.dialogService.openDialog();
+  }
+
+  public onToggle(event: MatSlideToggleChange) {
+    const isLangToggled = event.checked;
+    localStorage.setItem(LANG_CHECKED, JSON.stringify(isLangToggled));
+    this.changeLanguage(isLangToggled);
+  }
+
+  private changeLanguage(isLangToggled: boolean) {
+    if (isLangToggled) {
+      this.translateService.use(LANG_RU);
+    } else {
+      this.translateService.use(LANG_EN);
+    }
   }
 }
