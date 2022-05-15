@@ -12,7 +12,11 @@ h2 {
   @include fontH2;
 }
 
-button {
+.title-edit-section {
+  display: flex;
+}
+
+.delete-btn {
   position: absolute;
   color: $component-border-gray;
   top: 10px;
@@ -22,4 +26,19 @@ button {
     color: $red;
     @include transition;
   }
+}
+
+.edit-field {
+  @include input;
+  width: 240px;
+  height: 30px;
+  background: $white;
+}
+
+.submit-btn {
+  color: $green;
+}
+
+.cancel-btn {
+  color: $red;
 }
