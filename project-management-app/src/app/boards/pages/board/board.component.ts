@@ -7,26 +7,32 @@ import { ColumnCreationComponent } from '../../components/column-creation/column
 import { Column } from '../../models/column';
 import { ColumnsService } from '../../services/columns.service';
 import { sortByOrderNumber } from '../../util';
+
 @Component({
   selector: 'app-board',
   templateUrl: './board.component.html',
-  styleUrls: ['./board.component.scss']
+  styleUrls: ['./board.component.scss'],
 })
 export class BoardComponent implements OnInit, OnDestroy {
   public columns: Column[];
+
   private columnsSubs: Subscription;
 
-  constructor(public dialog: MatDialog, private columnsService: ColumnsService, private router: Router,
-    private activatedRoute: ActivatedRoute) {}
+  constructor(
+public dialog: MatDialog,
+private columnsService: ColumnsService,
+private router: Router,
+    private activatedRoute: ActivatedRoute,
+  ) {}
 
   ngOnInit(): void {
     const id = this.activatedRoute.snapshot.paramMap.get('id') ?? '';
     this.columnsService.setIdBoard(id);
     this.columnsService.getColumns();
-    this.columnsSubs = this.columnsService.columns$.subscribe(columns => {
+    this.columnsSubs = this.columnsService.columns$.subscribe((columns) => {
       sortByOrderNumber(columns);
-      this.columns = columns
-    })
+      this.columns = columns;
+    });
   }
 
   public goToMain(): void {
@@ -39,8 +45,8 @@ export class BoardComponent implements OnInit, OnDestroy {
       data: {},
     });
 
-    dialogRef.afterClosed().subscribe(result => {
-      if(result !== undefined) {
+    dialogRef.afterClosed().subscribe((result) => {
+      if (result !== undefined) {
         this.columnsService.createColumn(result);
       }
     });
@@ -50,5 +56,3 @@ export class BoardComponent implements OnInit, OnDestroy {
     this.columnsSubs.unsubscribe();
   }
 }
-
-

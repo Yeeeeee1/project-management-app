@@ -1,10 +1,10 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
-import { IMainBoardModel } from 'src/app/shared/models/IMainBoardModel';
-import { MainService } from '../../services/main.service';
 import { MatDialog, MatDialogRef } from '@angular/material/dialog';
+import { IMainBoardModel } from '../../../shared/models/IMainBoardModel';
+import { ModalComponent } from '../../../core/components/deletion-modal/deletion-modal.component';
+import { MainService } from '../../services/main.service';
 import { ChangeBoardModalComponent } from '../../components/change-board-modal/change-board-modal.component';
-import { ModalComponent } from 'src/app/core/components/deletion-modal/deletion-modal.component';
 
 @Component({
   selector: 'app-boards',
@@ -13,7 +13,9 @@ import { ModalComponent } from 'src/app/core/components/deletion-modal/deletion-
 })
 export class MainComponent implements OnInit, OnDestroy {
   data: IMainBoardModel[] = [];
+
   subscriptions: Subscription | null = new Subscription();
+
   isNoBoards = false;
 
   constructor(private mainService: MainService, private dialog: MatDialog) {}
@@ -29,14 +31,14 @@ export class MainComponent implements OnInit, OnDestroy {
         } else {
           this.isNoBoards = false;
         }
-      }
+      },
     );
 
     this.subscriptions?.add(getBoardsSub);
     this.subscriptions?.add(createEventSub);
   }
 
-  deleteBoard(id: any): void {
+  deleteBoard(id: string): void {
     const dialogRef = this.dialog.open(ModalComponent);
 
     const dialogAfterClosedSub = dialogRef.afterClosed().subscribe((result) => {
@@ -48,8 +50,8 @@ export class MainComponent implements OnInit, OnDestroy {
     this.subscriptions?.add(dialogAfterClosedSub);
   }
 
-  changeName(id: any): void {
-    let dialogRef = this.dialog.open(ChangeBoardModalComponent);
+  changeName(id: string): void {
+    const dialogRef = this.dialog.open(ChangeBoardModalComponent);
     dialogRef.componentInstance.id = id;
   }
 

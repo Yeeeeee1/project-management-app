@@ -14,8 +14,7 @@ import { BoardsComponent } from './boards/components/boards/boards.component';
 const routes: Routes = [
   {
     path: ROUTH_PATHS.MAIN,
-    loadChildren: async (): Promise<MainModule> =>
-      import('./main/main.module').then((x) => x.MainModule),
+    loadChildren: async (): Promise<MainModule> => import('./main/main.module').then((x) => x.MainModule),
   },
 
   { path: '', redirectTo: ROUTH_PATHS.BOARDS, pathMatch: 'full' },
@@ -27,20 +26,17 @@ const routes: Routes = [
   },
   {
     path: ROUTH_PATHS.EDIT_PROFILE,
-    loadChildren: async (): Promise<UserModule> =>
-      import('./user/user.module').then((x) => x.UserModule),
+    loadChildren: async (): Promise<UserModule> => import('./user/user.module').then((x) => x.UserModule),
     canActivate: [AuthGuard],
   },
   {
     path: ROUTH_PATHS.AUTHORIZATION,
-    loadChildren: async (): Promise<AuthModule> =>
-      import('./auth/auth.module').then((x) => x.AuthModule),
+    loadChildren: async (): Promise<AuthModule> => import('./auth/auth.module').then((x) => x.AuthModule),
   },
   { path: ROUTH_PATHS.WELCOME, component: WelcomeComponent },
   {
     path: ROUTH_PATHS.BOARD,
-    loadChildren: async (): Promise<BoardsModule> =>
-      import('./boards/boards.module').then((x) => x.BoardsModule),
+    loadChildren: async (): Promise<BoardsModule> => import('./boards/boards.module').then((x) => x.BoardsModule),
   },
 
   { path: '**', component: PageErrorComponent },

@@ -36,7 +36,7 @@ export class HttpAuthService {
 
   public upDateUser(
     user: IUser,
-    userId: string | undefined
+    userId: string | undefined,
   ): Observable<IUpdateUser> {
     return this.http.put<IUpdateUser>(`users/${userId}`, user);
   }

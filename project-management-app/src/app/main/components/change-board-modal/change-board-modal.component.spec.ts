@@ -8,9 +8,9 @@ describe('ChangeBoardModalComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ ChangeBoardModalComponent ]
+      declarations: [ChangeBoardModalComponent],
     })
-    .compileComponents();
+      .compileComponents();
   });
 
   beforeEach(() => {

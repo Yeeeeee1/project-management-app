@@ -9,12 +9,13 @@ import { MainService } from '../../services/main.service';
 })
 export class ChangeBoardModalComponent {
   public id = '';
+
   title = '';
 
   constructor(
-    public dialogRef: MatDialogRef<any>,
+    public dialogRef: MatDialogRef<unknown>,
     @Inject(MAT_DIALOG_DATA) public data: { name: string },
-    private mainService: MainService
+    private mainService: MainService,
   ) {}
 
   onCancel(): void {
