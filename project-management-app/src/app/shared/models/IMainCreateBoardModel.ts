@@ -1,3 +1,3 @@
 export interface IMainCreateBoardModel {
-  title: string | null;
+  title: string;
 }
