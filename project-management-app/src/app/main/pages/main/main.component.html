@@ -1,7 +1,6 @@
 <main>
-  <button class="create-btn" (click)="createBoard()">Создать</button>
-
   <div class="main-wrapper">
+    <h2 class="no-boards" *ngIf="isNoBoards">No boards...</h2>
     <div class="main-wrapper__card" *ngFor="let data of data">
       <a href="/board/{{ data.id }}">
         <h3 class="main-wrapper__card__card-title">

@@ -15,6 +15,7 @@ import { ModalComponent } from 'src/app/core/components/deletion-modal/deletion-
 export class MainComponent implements OnInit, OnDestroy {
   data: IMainBoardModel[] = [];
   getBoardsSub: Subscription | null = new Subscription();
+  isNoBoards = false;
 
   constructor(
     private mainService: MainService,
@@ -25,16 +26,24 @@ export class MainComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     this.mainService.getBoards().subscribe((data: any) => {
       this.data = data;
+
+      if (!data[0]) {
+        this.isNoBoards = true;
+      } else {
+        this.isNoBoards = false;
+      }
     });
     this.getBoardsSub = this.mainService.clickCreateEvent.subscribe(
       (data: IMainBoardModel[]) => {
         this.data = data;
+
+        if (!data[0]) {
+          this.isNoBoards = true;
+        } else {
+          this.isNoBoards = false;
+        }
       }
     );
-  }
-
-  createBoard(): void {
-    this.dialog.open(CreateBoardModalComponent);
   }
 
   deleteBoard(id: any): void {

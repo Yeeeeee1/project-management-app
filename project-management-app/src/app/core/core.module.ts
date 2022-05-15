@@ -10,6 +10,8 @@ import { FooterComponent } from './components/footer/footer.component';
 import { HeaderComponent } from './components/header/header.component';
 import { WelcomeComponent } from './components/welcome/welcome.component';
 import { MatDialogComponent } from './components/mat-dialog/mat-dialog.component';
+import { FormsModule } from '@angular/forms';
+import { TranslateModule } from '@ngx-translate/core';
 
 @NgModule({
   declarations: [
@@ -26,6 +28,8 @@ import { MatDialogComponent } from './components/mat-dialog/mat-dialog.component
     MatIconModule,
     MatSlideToggleModule,
     MatMenuModule,
+    FormsModule,
+    TranslateModule,
   ],
   exports: [HeaderComponent, FooterComponent],
 })

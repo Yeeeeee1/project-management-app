@@ -12,9 +12,13 @@ main {
 
 .main-wrapper {
   width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
 
   &__card {
-    width: 200px;
+    width: 250px;
     // height: 100px;
     @include shadow;
     display: flex;
@@ -29,10 +33,10 @@ main {
       @include fontH3;
       overflow: hidden;
       text-overflow: ellipsis;
-      text-align: center;
+      text-align: left;
       padding: 15px;
       margin: 0;
-      // width: 150px;
+      width: 150px;
       @include link;
     }
   }

@@ -3,8 +3,8 @@
   <button class="back-btn" mat-icon-button matTooltip="Go to main" (click)="goToMain()">
     <mat-icon aria-label="Logout">arrow_back</mat-icon>
   </button>
-  <button (click)="openCreateColumnForm()">Create column</button>
-  <button *ngIf="columns && columns.length > 0">Create task</button>
+  <button (click)="openCreateColumnForm()">{{'create_column' | translate }}</button>
+  <button *ngIf="columns && columns.length > 0">{{'create_task' | translate }}</button>
 </div>
 
 <div class="columns-container">

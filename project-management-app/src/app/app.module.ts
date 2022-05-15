@@ -1,4 +1,4 @@
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -14,9 +14,15 @@ import { BoardsComponent } from './boards/components/boards/boards.component';
 import { DialogService } from './core/services/dialog.service';
 import { HeaderComponent } from './core/components/header/header.component';
 import { MatDialogComponent } from './core/components/mat-dialog/mat-dialog.component';
+import { TranslateHttpLoader } from '@ngx-translate/http-loader';
+import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
 
 export function getToken() {
   return localStorage.getItem('token');
+}
+
+export function HttpLoaderFactory(http: HttpClient) {
+  return new TranslateHttpLoader(http, '../assets/i18n/', '.json');
 }
 @NgModule({
   declarations: [AppComponent, BoardsComponent],
@@ -35,6 +41,15 @@ export function getToken() {
       config: {
         tokenGetter: getToken,
       },
+    }),
+
+    TranslateModule.forRoot({
+      defaultLanguage: 'en',
+      loader: {
+        provide: TranslateLoader,
+        useFactory: HttpLoaderFactory,
+        deps:[HttpClient]
+      }
     }),
 
     HttpClientModule,

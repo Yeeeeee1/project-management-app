@@ -13,6 +13,7 @@ import { FormsModule } from '@angular/forms';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatTooltipModule } from '@angular/material/tooltip';
+import { TranslateModule } from '@ngx-translate/core'; 
 
 @NgModule({
   declarations: [BoardComponent, ColumnComponent, ModalComponent, ColumnCreationComponent],
@@ -28,6 +29,7 @@ import { MatTooltipModule } from '@angular/material/tooltip';
     MatFormFieldModule,
     MatInputModule,
     MatTooltipModule,
+    TranslateModule,
   ],
   exports: [],
 })
