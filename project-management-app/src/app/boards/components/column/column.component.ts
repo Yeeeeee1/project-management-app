@@ -36,7 +36,9 @@ export class ColumnComponent {
     this.showTitleEditSection = true;
   }
 
-  public saveTitle():void {
+  public saveTitle(title: string):void {
+    this.column.title = title;
+    this.columnsService.updateColumn(this.column);
     this.closeTitleEditingSection();
   }
 
