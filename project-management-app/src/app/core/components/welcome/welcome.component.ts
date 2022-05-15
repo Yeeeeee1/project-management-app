@@ -9,12 +9,12 @@ import { MatExpansionPanel } from '@angular/material/expansion/expansion-panel';
 export class WelcomeComponent {
   @ViewChild('panel') panel: MatExpansionPanel;
 
-  public up: boolean = false;
+  public upDirection: boolean = false;
 
   constructor() {}
 
   public panelVisibleHandler() {
     this.panel.toggle();
-    this.up = !this.up;
+    this.upDirection = !this.upDirection;
   }
 }
