@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ROUTH_PATHS } from 'src/app/shared/constants/constants';
 
 @Component({
   selector: 'app-page-error',
@@ -6,8 +7,9 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./page-error.component.scss'],
 })
 export class PageErrorComponent implements OnInit {
-  constructor() { }
+  constructor() {}
 
-  ngOnInit(): void {
-  }
+  public boards = './../boards';
+
+  ngOnInit(): void {}
 }

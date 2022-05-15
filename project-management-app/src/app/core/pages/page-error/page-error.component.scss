@@ -1,4 +1,53 @@
-p {
-  margin-top: 120px;
-  font-size: 56px;
+@import "./../../../../assets/scss/variables";
+.not-found-wrap {
+  box-sizing: border-box;
+  height: calc(100% - 120px);
+  width: 100%;
+  display: flex;
+  padding-top: 120px;
+}
+.not-found-container {
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 800px;
+  height: 485px;
+  background: #fff;
+  @include headerShadow;
+
+  img {
+    width: 343px;
+  }
+  h1 {
+    font-size: 64px;
+    font-family: $fontFamily;
+    font-weight: 600;
+    color: $dark-gray;
+  }
+  p {
+    font-size: $fontSizeH2;
+    font-family: $fontFamily;
+    font-weight: 600;
+    color: $dark-gray;
+  }
+}
+.not-found-description {
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+  width: 460px;
+  height: 100%;
+  padding: 110px 35px;
+}
+.home-btn {
+  @include btn;
+  background: $light-violet;
+  color: $white;
+  &:hover {
+    background-color: $violet;
+    color: $white;
+  }
 }

@@ -1,9 +1,251 @@
-div {
-  margin: 0 auto;
+@import "./../../../../assets/scss/variables";
+* {
+  font-family: $fontFamily;
 }
-p {
-  font-size: 56px;
-}
+
 .welcome-wrap {
-  height: 150%;
+  box-sizing: border-box;
+  margin: 0 auto;
+  width: 1440px;
+  padding-top: 120px;
+
+  h1 {
+    @include fontH1;
+  }
+  p {
+    @include fontP;
+  }
+  h2 {
+    @include fontH2;
+  }
+  .welcome {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .welcome-inner-wrap {
+    display: flex;
+    justify-content: space-between;
+  }
+  .example {
+    @include task;
+    width: calc(50% - 100px);
+    img {
+      width: 100%;
+    }
+  }
+  .welcome-description {
+    @include task;
+    width: calc(50% - 50px);
+    height: fit-content;
+  }
+  .title {
+    margin-left: 15px;
+    &::after {
+      content: "";
+      display: block;
+      height: 3px;
+      position: relative;
+      width: calc(100% + 15px);
+
+      transition: 1s;
+      margin-left: -15px;
+      opacity: 1;
+    }
+    &:hover::after {
+      transition: 1s;
+      width: 0;
+      opacity: 0;
+    }
+
+    &::before {
+      content: "";
+      display: block;
+      height: 10px;
+      width: 10px;
+      position: relative;
+      top: 20px;
+      left: -15px;
+      border-radius: 50%;
+      background: #000;
+    }
+  }
+
+  .container {
+    @include list;
+    width: calc(100% - 40px);
+    margin-top: 25px;
+  }
+
+  .title-team::after,
+  .title-team::before {
+    background: $light-blue;
+  }
+
+  .title-course::after,
+  .title-course::before {
+    background: $light-red;
+  }
+
+  .arrowDown,
+  .arrowUp {
+    margin: 0 auto 30px;
+  }
+  .arrowDown span {
+    display: block;
+    width: 25px;
+    height: 25px;
+    border-bottom: 5px solid $light-violet;
+    border-right: 5px solid $light-violet;
+    transform: rotate(45deg);
+    margin: -16px;
+    animation: arrow-down 2s infinite;
+  }
+  .arrowDown span:nth-child(2) {
+    animation-delay: -0.2s;
+  }
+
+  .arrowUp span {
+    display: block;
+    width: 25px;
+    height: 25px;
+    border-bottom: 5px solid $light-violet;
+    border-right: 5px solid $light-violet;
+    transform: rotate(225deg);
+    margin: -16px;
+    animation: arrow-up 2s infinite;
+  }
+  .arrowUp span:nth-child(2) {
+    animation-delay: 0.2s;
+  }
+
+  @keyframes arrow-down {
+    0% {
+      opacity: 0;
+      transform: rotate(45deg) translate(-10px, -10px);
+    }
+    50% {
+      opacity: 1;
+    }
+    100% {
+      opacity: 0;
+      transform: rotate(45deg) translate(10px, 10px);
+    }
+  }
+
+  @keyframes arrow-up {
+    0% {
+      opacity: 0;
+      transform: rotate(225deg) translate(-25px, -25px);
+    }
+    50% {
+      opacity: 1;
+    }
+    100% {
+      opacity: 0;
+      transform: rotate(225deg) translate(-5px, -5px);
+    }
+  }
+
+  .sign-up {
+    @include btn;
+    color: $white;
+    background: $opacity-yellow;
+    &:hover {
+      background: $yellow;
+    }
+  }
+  .more-btn {
+    @include btn;
+    margin: 0 auto;
+    background: none;
+    @include fontH3;
+
+    &:hover {
+      @include fontH2;
+    }
+    &:active {
+      @include fontH3;
+    }
+  }
+  .team-wrap {
+    display: flex;
+    justify-content: space-between;
+    gap: 25px;
+  }
+  .team-person {
+    @include task;
+    width: 27%;
+  }
+
+  .course-description {
+    @include task;
+    width: calc(100% - 40px);
+    display: flex;
+
+    p {
+      margin: 30px auto;
+      text-align: center;
+    }
+    a {
+      @include btn;
+      line-height: 40px;
+
+      text-decoration: none;
+      color: $white;
+      background: $light-green;
+      text-align: center;
+      &:hover {
+        background: $green;
+      }
+      align-self: center;
+    }
+    img {
+      max-width: 30%;
+    }
+
+    h3 {
+      align-self: center;
+      @include fontH3;
+    }
+  }
+
+  .course {
+    margin-bottom: 20px;
+  }
+}
+.mat-expansion-panel:not([class*="mat-elevation-z"]) {
+  box-shadow: none;
+  box-sizing: border-box;
+
+  @include task;
+  padding: 0;
+  width: 100%;
+}
+
+.mat-expansion-panel-content {
+  padding: 20px;
+}
+.app-description {
+  display: flex;
+  flex-direction: column;
+  h3 {
+    margin-top: 20px;
+  }
+}
+.team-person {
+  img {
+    width: 60%;
+    display: block;
+    margin: 0 auto;
+  }
+  h3 {
+    @include fontH3;
+    text-align: center;
+    margin: 15px 0;
+  }
+}
+.course-inner-description {
+  display: flex;
+  flex-direction: column;
 }

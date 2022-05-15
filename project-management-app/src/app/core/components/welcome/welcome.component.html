@@ -1,3 +1,89 @@
 <div class="welcome-wrap">
-  <p>welcome page is here!</p>
+  <h1>Welcome to PMApp!</h1>
+  <section class="container welcome">
+    <div class="welcome-inner-wrap">
+      <div class="welcome-description">
+        <h2>It's not enough to be strong to win. <br>The whole team must believe in victory</h2>
+        <p>The best app for task management, millions of downloads in the future!</p>
+        <button class="sign-up">Sign up</button>
+      </div>
+      <div class="example"> <img src="./../../../../assets/images/example.png" alt=""></div>
+
+    </div>
+
+    <div [ngClass]="{arrowDown:!up, arrowUp:up}">
+      <span></span>
+      <span></span>
+
+    </div>
+    <button class="more-btn" (click)="panelVisibleHandler()">More...</button>
+    <mat-expansion-panel hideToggle #panel>
+
+      <div class="app-description">
+        <div>
+          <h3>Localization</h3>
+          <p>Choose the language russian or english</p>
+        </div>
+        <div>
+          <h3>No limit for work</h3>
+          <p>Create boards, columns and task as much as you like</p>
+        </div>
+        <div>
+          <h3>Drug-n-drop</h3>
+          <p> Drug-n-drop for columns and for tasks</p>
+        </div>
+        <div>
+          <h3>Search</h3>
+          <p> Global search for a tasks by number, title,users who participate in it and by the text of the task
+            description</p>
+        </div>
+      </div>
+    </mat-expansion-panel>
+
+
+  </section>
+  <section class="team container">
+    <h2 class="title title-team">Our team</h2>
+    <div class="team-wrap">
+      <div class="team-person"> <img src="./../../../../assets/images/Vitalii.png" alt="">
+        <p>about team lead</p>
+      </div>
+      <div class="team-person"><img src="./../../../../assets/images/Volha.png" alt="">
+        <p>about Olga</p>
+      </div>
+      <div class="team-person"><img src="./../../../../assets/images/alina.png" alt="">
+        <h3>Alina Husarava</h3>
+        <ul>
+
+          <li>Page 404</li>
+          <li>Page Welcome</li>
+          <li>Authorization</li>
+        </ul>
+      </div>
+    </div>
+
+  </section>
+  <section class="course container">
+    <h2 class="title title-course">Online course "Development with Angular"</h2>
+
+    <div class="course-description">
+      <img src="../../../../assets/images/logos1.svg" alt="">
+      <div class="course-inner-description">
+        <h3>RSScool course Angular</h3>
+        <p>The course is intended for RS School students who have passed RS School stage #2, as well as for new
+          students who have knowledge and practical experience in using the following technologies and tools:<br>
+          JavaScript,
+          typescript, Git, GitHub (clone, add, commit, push, pull, merge, rebase, work with Pull Request), npm, webpack,
+          CSS3 / HTML, Chrome DevTools Figma, Understanding the concept of REST API.<br> <strong>Learning is
+            free.</strong>
+        </p>
+        <a href="https://rs.school/angular/">Start it free</a>
+      </div>
+      <img src="../../../../assets/images/logos 2.svg" alt="">
+
+    </div>
+
+
+  </section>
+
 </div>
