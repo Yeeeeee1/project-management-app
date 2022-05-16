@@ -1,7 +1,7 @@
 <form [formGroup]="editForm" class="edit-form">
   <h2>User edit</h2>
   <mat-form-field *ngFor="let formField of formFields">
-    <mat-label>{{ formField.label }}</mat-label>
+    <mat-label>{{'labels.' + formField.label | translate }}</mat-label>
     <input matInput id="{{ formField.id }}" autocomplete="off" type="{{ formField.type }}"
       formControlName="{{ formField.id }}" />
     <mat-error>{{ createErrorMessage(formField) }}</mat-error>

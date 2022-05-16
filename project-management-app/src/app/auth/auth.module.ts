@@ -12,6 +12,7 @@ import { RegistrationComponent } from './components/registration/registration.co
 import { AuthRoutingModule } from './auth-routing.module';
 import { AuthInterceptorService } from './services/auth-interceptor.service';
 import { ApiInterceptorService } from './services/api-interceptor.service';
+import { TranslateModule } from '@ngx-translate/core';
 
 @NgModule({
   declarations: [AuthComponent, LoginComponent, RegistrationComponent],
@@ -24,6 +25,7 @@ import { ApiInterceptorService } from './services/api-interceptor.service';
     MatInputModule,
     RouterModule,
     HttpClientModule,
+    TranslateModule,
   ],
   exports: [],
   providers: [

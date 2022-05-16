@@ -1,4 +1,4 @@
-import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { HttpBackend, HttpClient, HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -21,7 +21,9 @@ export function getToken() {
   return localStorage.getItem('token');
 }
 
-export function HttpLoaderFactory(http: HttpClient) {
+export function HttpLoaderFactory(handler: HttpBackend) {
+
+    const http = new HttpClient(handler);
   return new TranslateHttpLoader(http, '../assets/i18n/', '.json');
 }
 @NgModule({
@@ -48,7 +50,7 @@ export function HttpLoaderFactory(http: HttpClient) {
       loader: {
         provide: TranslateLoader,
         useFactory: HttpLoaderFactory,
-        deps: [HttpClient],
+        deps: [HttpBackend],
       },
     }),
 
