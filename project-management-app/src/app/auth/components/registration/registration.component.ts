@@ -2,12 +2,14 @@
 import { Component, Input } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { TranslateService } from '@ngx-translate/core';
 import { BehaviorSubject, Subject } from 'rxjs';
 
 import {
   PASSWORD_REG_EXP,
   ROUTH_PATHS,
 } from 'src/app/shared/constants/constants';
+import { TranslateVariablesService } from 'src/app/shared/translate-variables.service';
 import { IRegForm } from '../../models/registration.model';
 import { AuthService } from '../../services/auth.service';
 import { HttpAuthService } from '../../services/http-auth.service';
@@ -26,22 +28,24 @@ export class RegistrationComponent {
   public login = '../login';
 
   constructor(
+   public translateService:TranslateVariablesService,
     private fb: FormBuilder,
     public httpAuthService: HttpAuthService,
     public authService: AuthService,
     public router: Router
-  ) {}
+  ) { }
 
   public regFields: IRegForm[] = [
     {
       id: 'name',
+      // '{{name | translate}}',
       formControlName: 'name',
       name: 'name',
       type: 'text',
       messageError: {
         minLength: 'The name is too short',
         maxLength: 'The name is too long',
-        required: 'Please enter a name',
+        required: 'Please, enter a name'
       },
     },
     {

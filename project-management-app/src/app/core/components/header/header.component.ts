@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { MatDialog } from '@angular/material/dialog';
 import { MatSlideToggleChange } from '@angular/material/slide-toggle';
 import { TranslateService } from '@ngx-translate/core';
+import { TranslateVariablesService } from 'src/app/shared/translate-variables.service';
 import { AuthService } from '../../../auth/services/auth.service';
 import {
   LANG_CHECKED,
@@ -32,6 +33,7 @@ export class HeaderComponent {
   public isLanguageChecked: boolean;
 
   constructor(
+    public translate:TranslateVariablesService,
     public dialog: MatDialog,
     private router: Router,
     public authService: AuthService,
@@ -64,6 +66,7 @@ export class HeaderComponent {
     const isLangToggled = event.checked;
     localStorage.setItem(LANG_CHECKED, JSON.stringify(isLangToggled));
     this.changeLanguage(isLangToggled);
+  
   }
 
   private changeLanguage(isLangToggled: boolean) {

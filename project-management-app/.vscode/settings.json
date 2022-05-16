@@ -1,0 +1,7 @@
+{
+ "eslint.workingDirectories": [
+
+],
+"files.eol": "\n",
+"javascript.format.placeOpenBraceOnNewLineForControlBlocks": true
+}

@@ -12,6 +12,7 @@ import {
 import { AppStateService } from 'src/app/shared/services/app-state.service';
 import { Location } from '@angular/common';
 import { AuthService } from 'src/app/auth/services/auth.service';
+import { TranslateService } from '@ngx-translate/core';
 import { IEditForm } from '../../models/editing.model';
 
 @Component({
@@ -28,7 +29,10 @@ export class EditingComponent {
 
   public jwtHelper: JwtHelperService;
 
+  public required = '';
+
   constructor(
+    public translate:TranslateService,
     public location: Location,
     public route: Router,
     private fb: FormBuilder,
@@ -42,18 +46,18 @@ export class EditingComponent {
   public formFields: IEditForm[] = [
     {
       id: 'name',
-      label: 'Name',
+      label: 'name',
       formControlName: 'name',
       type: 'text',
       messageError: {
         minLength: 'The name is too short',
         maxLength: 'The name is too long',
-        required: 'Please enter a name',
+
       },
     },
     {
       id: 'login',
-      label: 'Email',
+      label: 'email',
       formControlName: 'email',
       type: 'text',
       messageError: {
@@ -63,7 +67,7 @@ export class EditingComponent {
     },
     {
       id: 'password',
-      label: 'Password',
+      label: 'password',
       formControlName: 'password',
       type: 'password',
       messageError: {
@@ -98,7 +102,7 @@ export class EditingComponent {
     let message: string | undefined;
     switch (true) {
       case !!this.editForm?.get(regField.id)?.errors?.['required']:
-        message = regField.messageError.required;
+        this.translate.get('required', { label: regField.label }).subscribe((val) => { message = val; });
         break;
       case !!this.editForm?.get(regField.id)?.errors?.['email']:
         message = regField.messageError.email;

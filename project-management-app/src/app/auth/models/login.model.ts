@@ -17,6 +17,7 @@ export interface ILogin {
   token: string;
 }
 export interface IUpdateUser {
+
   id: string;
   login: string;
   password?: string;
