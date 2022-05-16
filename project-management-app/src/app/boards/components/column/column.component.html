@@ -1,11 +1,11 @@
-<h2 *ngIf="showColumnTitle" (click)="openTitleEditingSection()" >{{column.title}}</h2>
+<h2 *ngIf="showColumnTitle" (click)="toggleTitleEditingSection()" >{{column.title}}</h2>
 <div *ngIf="showTitleEditSection" class="title-edit-section">
   <input class="edit-field" value={{column.title}} #title>
   <button mat-icon-button>
     <mat-icon aria-label="Submit" class="submit-btn" (click)="saveTitle(title.value)">check_circle</mat-icon>
   </button>
   <button mat-icon-button>
-    <mat-icon aria-label="Cancel" class="cancel-btn" (click)="closeTitleEditingSection()">cancel</mat-icon>
+    <mat-icon aria-label="Cancel" class="cancel-btn" (click)="toggleTitleEditingSection()">cancel</mat-icon>
   </button>
 </div>
 <button mat-icon-button class="delete-btn">

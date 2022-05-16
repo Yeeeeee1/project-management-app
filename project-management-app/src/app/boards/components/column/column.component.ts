@@ -31,21 +31,16 @@ export class ColumnComponent {
     });
   }
 
-  public openTitleEditingSection():void {
-    this.showColumnTitle = false;
-    this.showTitleEditSection = true;
-  }
-
   public saveTitle(title: string):void {
     if(title !== '') {
       this.column.title = title;
       this.columnsService.updateColumn(this.column);
     }
-    this.closeTitleEditingSection();
+    this.toggleTitleEditingSection();
   }
 
-  public closeTitleEditingSection(): void {
-    this.showColumnTitle = true;
-    this.showTitleEditSection = false;
+  public toggleTitleEditingSection(): void {
+    this.showColumnTitle = !this.showColumnTitle;
+    this.showTitleEditSection = !this.showColumnTitle;
   }
 }
