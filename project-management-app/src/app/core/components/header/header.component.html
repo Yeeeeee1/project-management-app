@@ -4,29 +4,51 @@
       <mat-icon class="boards-icon" aria-label="Boards">dashboard</mat-icon>
     </a>
 
-    <button *ngIf="isLogged">Create board</button>
+    <button *ngIf="isLogged" (click)="createBoard()">
+      {{ "create_board_btn" | translate }}
+    </button>
   </div>
   <div>
-    <div *ngIf="(authService.isLogin$ | async)===true">
-      <input class="search-field" matInput placeholder="Search..." />
+    <div *ngIf="(authService.isLogin$ | async) === true">
+      <input
+        class="search-field"
+        matInput
+        placeholder="{{ 'search' | translate }}..."
+      />
       <span class="language-toggle">
-        <mat-slide-toggle>EN</mat-slide-toggle>
+        <mat-slide-toggle
+          [(ngModel)]="isLanguageChecked"
+          (change)="onToggle($event)"
+          >{{ "ru" | translate }}</mat-slide-toggle
+        >
       </span>
-      <button [matMenuTriggerFor]="menu" mat-stroked-button class="user-btn">Hello,{{authService.name$ |
-        async}}</button>
+      <button [matMenuTriggerFor]="menu" mat-stroked-button class="user-btn">
+        {{ "greeting" | translate }}, {{ authService.name$ | async }}
+      </button>
       <mat-menu #menu="matMenu">
-        <button class="logout-btn" (click)="authService.logout()">Logout
+        <button class="logout-btn" (click)="authService.logout()">
+          {{ "logout" | translate }}
         </button>
-        <button *ngIf="isLogged" (click)="openEditProfile()" class="edit-btn">Edit profile</button>
-        <button *ngIf="isLogged" (click)="openDialog()" class="delete-btn">Delete profile</button>
-
-
+        <button *ngIf="isLogged" (click)="openEditProfile()" class="edit-btn">
+          {{ "edit_profile" | translate }}
+        </button>
+        <button *ngIf="isLogged" (click)="openDialog()" class="delete-btn">
+          {{ "delete_profile" | translate }}
+        </button>
       </mat-menu>
-
     </div>
-    <div *ngIf="(authService.isLogin$ | async)===false">
-      <button mat-stroked-button color="primary" class="login-btn" [routerLink]="login">Log in</button>
-      <button mat-stroked-button color="primary" [routerLink]="register">Sign up</button>
+    <div *ngIf="(authService.isLogin$ | async) === false">
+      <button
+        mat-stroked-button
+        color="primary"
+        class="login-btn"
+        [routerLink]="login"
+      >
+        Log in
+      </button>
+      <button mat-stroked-button color="primary" [routerLink]="register">
+        Sign up
+      </button>
     </div>
   </div>
 </header>

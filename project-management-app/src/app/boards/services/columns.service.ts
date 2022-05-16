@@ -9,7 +9,9 @@ import { Column } from '../models/column';
 })
 export class ColumnsService {
   public columns$ = new Subject<Column[]>();
-  private lastOrderNumber: number;
+
+  private lastOrderNumber:number;
+
   private idBoard: string;
 
   constructor(private router: Router, private http: HttpClient) {}
@@ -17,7 +19,7 @@ export class ColumnsService {
   public getColumns(): void {
     this.http
       .get(`boards/${this.idBoard}/columns`)
-      .pipe(map((response) => response as Column[]))
+      .pipe(map((response) => (response as Column[])))
       .subscribe({
         next: (columns) => {
           this.columns$.next(columns);
@@ -35,13 +37,10 @@ export class ColumnsService {
   }
 
   public createColumn(title: string): void {
-    const column = { title: title, order: 1 + this.lastOrderNumber };
+    const column = { title, order: 1 + (this.lastOrderNumber ?? 0) };
     this.http.post(`boards/${this.idBoard}/columns`, column).subscribe({
       next: () => this.getColumns(),
-      error: () => {
-        console.log(Error);
-        this.router.navigate(['/error']);
-      },
+      error: () => this.router.navigate(['/error']),
     });
   }
 

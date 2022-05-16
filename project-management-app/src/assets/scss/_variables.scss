@@ -1,5 +1,5 @@
-$blue: #5030e5;
-$green: #68b266;
+$blue: #435e85;
+$green: #538f51;
 $yellow: #ffa500;
 $orange: #d58d49;
 $violet: #800080;
@@ -23,10 +23,10 @@ $light-green: #8bc48a;
 $light-red: #f595a0;
 $light-blue: #76a5ea;
 
-$dark-gray: #0d062d;
+$dark-gray: #48474a;
 
 $header-height: 85px;
-$headerStickyHeight: 80px;
+$headerStickyHeight: 60px;
 $big-border-radius: 16px;
 $small-border-radius: 4px;
 
@@ -34,7 +34,7 @@ $fontSizeH1: 46px;
 $fontSizeH2: 20px;
 $fontSizeH3: 18px;
 $fontSizeH4: 18px;
-$fontSizeP: 12px;
+$fontSizeP: 14px;
 $fontFamily: "Inter", sans-serif;
 
 @mixin transition {
@@ -43,6 +43,10 @@ $fontFamily: "Inter", sans-serif;
 
 @mixin shadow {
   box-shadow: 0px 4px 4px 0 rgba(0, 0, 0, 0.25);
+}
+
+@mixin headerShadow {
+  box-shadow: 0px 2px 20px 0 rgba(0, 0, 0, 0.25);
 }
 
 @mixin blockCentred {
@@ -65,7 +69,6 @@ $fontFamily: "Inter", sans-serif;
 }
 
 @mixin link {
-  font-size: $fontSizeP;
   font-family: $fontFamily;
   color: $gray;
   @include hover;
@@ -75,11 +78,6 @@ $fontFamily: "Inter", sans-serif;
   }
 }
 
-@mixin fontP {
-  font-size: $fontSizeP;
-  font-family: $fontFamily;
-  color: $gray;
-}
 @mixin fontP {
   font-size: $fontSizeP;
   font-family: $fontFamily;
@@ -167,7 +165,6 @@ $fontFamily: "Inter", sans-serif;
 }
 @mixin boardScroll {
   &::-webkit-scrollbar {
-    pointer-events: none;
     height: 12px;
     background-color: $bg-gray;
   }

@@ -1,0 +1,59 @@
+@import "../../../../assets/scss/variables";
+
+main {
+  width: 100%;
+  // margin-top: 200px;
+
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.main-wrapper {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+
+  &__card {
+    width: 250px;
+    // height: 100px;
+    @include shadow;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: $small-border-radius;
+    border: 1px solid $component-border-gray;
+    margin: 15px;
+    cursor: pointer;
+
+    &__card-title {
+      @include fontH3;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      text-align: left;
+      padding: 15px;
+      margin: 0;
+      width: 150px;
+      @include link;
+    }
+  }
+
+  &__trash-image {
+    width: 25px;
+    height: 25px;
+    padding: 5px;
+    cursor: pointer;
+  }
+}
+
+a {
+  text-decoration: none;
+}
+
+.create-btn {
+  @include btn;
+  margin: 20px;
+}

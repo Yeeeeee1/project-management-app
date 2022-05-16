@@ -11,8 +11,8 @@ import {
 } from 'src/app/shared/constants/constants';
 import { AppStateService } from 'src/app/shared/services/app-state.service';
 import { Location } from '@angular/common';
-import { IEditForm } from '../../models/editing.model';
 import { AuthService } from 'src/app/auth/services/auth.service';
+import { IEditForm } from '../../models/editing.model';
 
 @Component({
   selector: 'app-editing',
@@ -34,7 +34,7 @@ export class EditingComponent {
     private fb: FormBuilder,
     public httpAuthService: HttpAuthService,
     public authService: AuthService,
-    public appStateService: AppStateService
+    public appStateService: AppStateService,
   ) {
     this.jwtHelper = new JwtHelperService();
   }
@@ -121,7 +121,7 @@ export class EditingComponent {
     delete this.editForm.value.confirmPassword;
 
     this.userId = this.jwtHelper.decodeToken(
-      localStorage.getItem('token') as string
+      localStorage.getItem('token') as string,
     ).userId;
     localStorage.setItem('name', this.editForm.value.name);
     this.authService.name$.next(localStorage.getItem('name') as string);

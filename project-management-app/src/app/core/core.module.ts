@@ -6,21 +6,35 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { MatMenuModule } from '@angular/material/menu';
+import { MatExpansionModule } from '@angular/material/expansion';
+import { FormsModule } from '@angular/forms';
+import { TranslateModule } from '@ngx-translate/core';
 import { FooterComponent } from './components/footer/footer.component';
 import { HeaderComponent } from './components/header/header.component';
 import { WelcomeComponent } from './components/welcome/welcome.component';
 import { MatDialogComponent } from './components/mat-dialog/mat-dialog.component';
 
+import { PageErrorComponent } from './pages/page-error/page-error.component';
+
 @NgModule({
-  declarations: [HeaderComponent, FooterComponent, WelcomeComponent, MatDialogComponent],
+  declarations: [
+    HeaderComponent,
+    FooterComponent,
+    WelcomeComponent,
+    MatDialogComponent,
+    PageErrorComponent,
+  ],
   imports: [
     CommonModule,
     RouterModule,
     MatInputModule,
     MatButtonModule,
+    MatExpansionModule,
     MatIconModule,
     MatSlideToggleModule,
     MatMenuModule,
+    FormsModule,
+    TranslateModule,
   ],
   exports: [HeaderComponent, FooterComponent],
 })

@@ -1,0 +1,21 @@
+{
+  "search": "Search",
+  "ru": "RU",
+  "create_column": "Create column",
+  "create_task": "Create task",
+  "greeting": "Hello",
+  "logout": "Logout",
+  "edit_profile": "Edit profile",
+  "delete_profile": "Delete profile",
+  "deletion_msg_text": "Do you really want to delete it?",
+  "cancel_btn": "Cancel",
+  "confirm_btn": "Yes",
+  "save_btn": "Save",
+  "column_name": "Column name",
+  "name": "Name",
+  "create_board_btn": "Create board",
+  "board_dialog_title": "Board name:",
+  "board_dialog_label": "Title",
+  "board_dialog_save": "Save",
+  "board_dialog_close": "Close"
+}
