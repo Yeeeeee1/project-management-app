@@ -44,6 +44,13 @@ export class ColumnsService {
     });
   }
 
+  updateColumn(column: Column): void {
+    this.http.put(`boards/${this.idBoard}/columns/${column.id}`, {title: column.title, order: column.order}).subscribe({
+      next: () => this.getColumns(),
+      error: () => this.router.navigate(['/error']),
+    })
+  }
+
   public setIdBoard(id: string) {
     this.idBoard = id;
   }

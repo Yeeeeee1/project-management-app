@@ -1,4 +1,13 @@
-<h2>{{column.title}}</h2>
-<button mat-icon-button>
-  <mat-icon aria-label="Delete" class="delete-btn" (click)="openDeleteModal()">delete</mat-icon>
+<h2 *ngIf="showColumnTitle" (click)="toggleTitleEditingSection()" >{{column.title}}</h2>
+<div *ngIf="showTitleEditSection" class="title-edit-section">
+  <input class="edit-field" value={{column.title}} #title>
+  <button mat-icon-button>
+    <mat-icon aria-label="Submit" class="submit-btn" (click)="saveTitle(title.value)">check_circle</mat-icon>
+  </button>
+  <button mat-icon-button>
+    <mat-icon aria-label="Cancel" class="cancel-btn" (click)="toggleTitleEditingSection()">cancel</mat-icon>
+  </button>
+</div>
+<button mat-icon-button class="delete-btn">
+  <mat-icon aria-label="Delete" (click)="openDeleteModal()">delete</mat-icon>
 </button>
