@@ -19,6 +19,7 @@
   "create_board_btn": "Create board",
   "board_dialog_title": "Board name:",
   "board_dialog_label": "Title",
+  "board_dialog_label-desc": "Description",
   "board_dialog_save": "Save",
   "board_dialog_close": "Close",
   "edit_user": "User edit",

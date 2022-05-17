@@ -19,6 +19,7 @@
   "create_board_btn": "Создать доску",
   "board_dialog_title": "Имя доски:",
   "board_dialog_label": "Имя",
+  "board_dialog_label-desc": "Описание",
   "board_dialog_save": "Сохранить",
   "board_dialog_close": "Закрыть",
   "edit_user": "Изменить пользователя",

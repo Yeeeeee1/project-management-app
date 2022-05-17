@@ -115,7 +115,7 @@ export class RegistrationComponent {
           })
           .subscribe((data) => {
             this.authService.updateToken(data.token);
-            this.router.navigate([ROUTH_PATHS.BOARDS]);
+            this.router.navigate([ROUTH_PATHS.MAIN]);
             this.httpAuthService.getUserById(data.token).subscribe((item) => {
               localStorage.setItem('name', item.name || '');
               this.authService.name$.next(

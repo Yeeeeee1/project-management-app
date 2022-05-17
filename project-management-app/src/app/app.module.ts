@@ -14,20 +14,17 @@ import { CoreModule } from './core/core.module';
 import { MainModule } from './main/main.module';
 import { BoardsComponent } from './boards/components/boards/boards.component';
 import { HeaderComponent } from './core/components/header/header.component';
-import { TaskComponent } from './core/components/task/task.component';
-
 
 export function getToken() {
   return localStorage.getItem('token');
 }
 
 export function HttpLoaderFactory(handler: HttpBackend) {
-
-    const http = new HttpClient(handler);
+  const http = new HttpClient(handler);
   return new TranslateHttpLoader(http, '../assets/i18n/', '.json');
 }
 @NgModule({
-  declarations: [AppComponent, BoardsComponent, TaskComponent],
+  declarations: [AppComponent, BoardsComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,

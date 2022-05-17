@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { TaskModalComponent } from '../task-modal/task-modal.component';
 
 @Component({
   selector: 'app-boards',
@@ -6,4 +7,5 @@ import { Component } from '@angular/core';
   styleUrls: ['./boards.component.scss'],
 })
 export class BoardsComponent {
+
 }

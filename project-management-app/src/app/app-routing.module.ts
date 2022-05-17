@@ -16,9 +16,10 @@ const routes: Routes = [
   {
     path: ROUTH_PATHS.MAIN,
     loadChildren: async (): Promise<MainModule> => import('./main/main.module').then((x) => x.MainModule),
+    canActivate: [AuthGuard],
   },
 
-  { path: '', redirectTo: ROUTH_PATHS.BOARDS, pathMatch: 'full' },
+  { path: '', redirectTo: ROUTH_PATHS.MAIN, pathMatch: 'full' },
 
   {
     path: ROUTH_PATHS.BOARDS,

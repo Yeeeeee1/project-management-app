@@ -14,9 +14,12 @@ import { ModalComponent } from '../core/components/deletion-modal/deletion-modal
 import { BoardComponent } from './pages/board/board.component';
 import { ColumnComponent } from './components/column/column.component';
 import { BoardsRoutingModule } from './boards-routing.module';
+import { TaskComponent } from './components/task/task.component';
+import { TaskModalComponent } from './components/task-modal/task-modal.component';
 
 @NgModule({
-  declarations: [BoardComponent, ColumnComponent, ModalComponent, ColumnCreationComponent],
+  declarations: [BoardComponent, ColumnComponent, ModalComponent,
+    ColumnCreationComponent, TaskComponent, TaskModalComponent],
   imports: [
     CommonModule,
     RouterModule,
@@ -30,6 +33,7 @@ import { BoardsRoutingModule } from './boards-routing.module';
     MatInputModule,
     MatTooltipModule,
     TranslateModule,
+
   ],
   exports: [],
 })
