@@ -2,7 +2,9 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
-import { Observable, of, catchError } from 'rxjs';
+import {
+  Observable, of, catchError, tap,
+} from 'rxjs';
 import { JwtHelperService } from '@auth0/angular-jwt';
 import { IUser, ILogin, IUpdateUser } from '../models/login.model';
 

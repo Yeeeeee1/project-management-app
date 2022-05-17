@@ -22,7 +22,7 @@ import { UserComponent } from './pages/user.component';
     MatInputModule,
     UserRoutingModule,
     MatButtonModule,
-     TranslateModule,
+    TranslateModule,
   ],
 })
 export class UserModule { }

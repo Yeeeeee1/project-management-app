@@ -28,6 +28,7 @@ export class RegistrationComponent {
   public login = '../login';
 
   constructor(
+     public translate:TranslateService,
    public translateService:TranslateVariablesService,
     private fb: FormBuilder,
     public httpAuthService: HttpAuthService,
@@ -38,47 +39,27 @@ export class RegistrationComponent {
   public regFields: IRegForm[] = [
     {
       id: 'name',
-      // '{{name | translate}}',
       formControlName: 'name',
       name: 'name',
       type: 'text',
-      messageError: {
-        minLength: 'The name is too short',
-        maxLength: 'The name is too long',
-        required: 'Please, enter a name'
-      },
     },
     {
       id: 'login',
-      name: 'email',
+      name: 'login',
       formControlName: 'login',
       type: 'text',
-      messageError: {
-        email: 'Please enter a valid email: example@email.com',
-        required: 'Please enter a  email',
-        userExists: 'user with this email already exists',
-      },
     },
     {
       id: 'password',
       formControlName: 'password',
       name: 'password',
       type: 'password',
-      messageError: {
-        regEx:
-          'Your password must be have at least 8 characters long, 1 uppercase, 1 lowercase character, 1 number, 1 special character, e.g., ! @ # ? ]',
-        required: 'Please enter a password',
-      },
     },
     {
       id: 'confirmPassword',
       formControlName: 'confirmPassword',
       name: 'confirm password',
       type: 'password',
-      messageError: {
-        confirm: "Passwords don't match",
-        required: 'Please confirm a password',
-      },
     },
   ];
 
@@ -92,21 +73,27 @@ export class RegistrationComponent {
     confirmPassword: [null, [Validators.required, confirmValidator()]],
   });
 
-  createErrorMessage(regField: IRegForm): string | undefined {
+  createErrorMessage(regField: IRegForm, label:string): string | undefined {
     let message: string | undefined;
     switch (true) {
       case !!this.reg?.get(regField.id)?.errors?.['required']:
-        message = regField.messageError.required;
+        this.translate.get('required_error', { label: (label === 'электронная почта' ? 'электронную почту' : label) }).subscribe((val) => { message = val; });
         break;
       case !!this.reg?.get(regField.id)?.errors?.['email']:
-        message = regField.messageError.email;
+        this.translate.get('email_error').subscribe((val) => { message = val; });
         break;
 
       case !!this.reg?.get(regField.id)?.errors?.['regEx']:
-        message = regField.messageError.regEx;
+        this.translate.get('regEx_error').subscribe((val) => { message = val; });
         break;
       case !!this.reg?.get(regField.formControlName)?.errors?.['confirm']:
-        message = regField.messageError.confirm;
+        this.translate.get('confirm_error').subscribe((val) => { message = val; }); break;
+      case !!this.reg?.get(regField.id)?.errors?.['minlength']:
+        this.translate.get('min_error').subscribe((val) => { message = val; });
+        break;
+
+      case !!this.reg?.get(regField.id)?.errors?.['maxlength']:
+        this.translate.get('max_error').subscribe((val) => { message = val; });
 
         break;
       default:

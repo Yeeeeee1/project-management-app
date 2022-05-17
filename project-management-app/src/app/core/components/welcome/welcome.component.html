@@ -1,11 +1,11 @@
 <div class="welcome-wrap">
-  <h1>Welcome to PMApp!</h1>
+  <h1>{{"welcome_title" | translate}}</h1>
   <section class="container welcome">
     <div class="welcome-inner-wrap">
       <div class="welcome-description">
-        <h2>It's not enough to be strong to win. <br>The whole team must believe in victory</h2>
-        <p>The best app for task management, millions of downloads in the future!</p>
-        <button class="sign-up">Sign up</button>
+        <h2>{{"quote_1" | translate}}<br>{{"quote_2" | translate}}</h2>
+        <p>{{"welcome_description" | translate}}</p>
+        <button class="sign-up" [routerLink]="registration">{{"registration_btn" | translate}}</button>
       </div>
       <div class="example"> <img src="./../../../../assets/images/example.png" alt=""></div>
 
@@ -16,26 +16,25 @@
       <span></span>
 
     </div>
-    <button class="more-btn" (click)="panelVisibleHandler()">More...</button>
+    <button class="more-btn" (click)="panelVisibleHandler()">{{"more_btn" | translate}}</button>
     <mat-expansion-panel hideToggle #panel>
 
       <div class="app-description">
         <div>
-          <h3>Localization</h3>
-          <p>Choose the language russian or english</p>
+          <h3>{{"localization" | translate}}</h3>
+          <p>{{"localization_description" |translate}}</p>
         </div>
         <div>
-          <h3>No limit for work</h3>
-          <p>Create boards, columns and task as much as you like</p>
+          <h3>{{"no_limit" | translate}}</h3>
+          <p>{{"no_limit_description" | translate}}</p>
         </div>
         <div>
-          <h3>Drug-n-drop</h3>
-          <p> Drug-n-drop for columns and for tasks</p>
+          <h3>{{"dragndrop" | translate}}</h3>
+          <p> {{"dragndrop_description" | translate}}</p>
         </div>
         <div>
-          <h3>Search</h3>
-          <p> Global search for a tasks by number, title,users who participate in it and by the text of the task
-            description</p>
+          <h3>{{"search" | translate}}</h3>
+          <p>{{"search-description" | translate}} </p>
         </div>
       </div>
     </mat-expansion-panel>
@@ -43,7 +42,7 @@
 
   </section>
   <section class="team container">
-    <h2 class="title title-team">Our team</h2>
+    <h2 class="title title-team">{{"team" | translate}}</h2>
     <div class="team-wrap">
       <div class="team-person"> <img src="./../../../../assets/images/Konstantin.png" alt="">
         <p>about team lead</p>
@@ -51,35 +50,31 @@
       <div class="team-person"><img src="./../../../../assets/images/Volha.png" alt="">
         <p>about Olga</p>
       </div>
-      <div class="team-person"><img src="./../../../../assets/images/alina.png" alt="">
-        <h3>Alina Husarava</h3>
+      <div class="team-person"><img src="./../../../../assets/images/alina.png" alt="Alina Husarava">
+        <h3>{{"alina"| translate}}</h3>
         <ul>
-
-          <li>Page 404</li>
-          <li>Page Welcome</li>
-          <li>Authorization</li>
+          <li>{{"404"| translate}}</li>
+          <li>{{"page_welcome"| translate}}</li>
+          <li>{{"auth"| translate}}</li>
+          <li>{{"styles"| translate}}</li>
         </ul>
       </div>
     </div>
 
   </section>
   <section class="course container">
-    <h2 class="title title-course">Online course "Development with Angular"</h2>
+    <h2 class="title title-course">{{"course_title" | translate}}</h2>
 
     <div class="course-description">
-      <img src="../../../../assets/images/logos1.svg" alt="">
+      <img src="../../../../assets/images/logos1.svg" alt="logos">
       <div class="course-inner-description">
-        <h3>RSScool course Angular</h3>
-        <p>The course is intended for RS School students who have passed RS School stage #2, as well as for new
-          students who have knowledge and practical experience in using the following technologies and tools:<br>
-          JavaScript,
-          typescript, Git, GitHub (clone, add, commit, push, pull, merge, rebase, work with Pull Request), npm, webpack,
-          CSS3 / HTML, Chrome DevTools Figma, Understanding the concept of REST API.<br> <strong>Learning is
-            free.</strong>
+        <h3>{{"course_subtitle" | translate}}</h3>
+        <p>{{"course_description_1" | translate}}<br>
+          {{"course_description_2" | translate}}<br> <strong>{{"course_description_3" | translate}}</strong>
         </p>
-        <a href="https://rs.school/angular/">Start it free</a>
+        <a href="https://rs.school/angular/">{{"course_btn"| translate}}</a>
       </div>
-      <img src="../../../../assets/images/logos 2.svg" alt="">
+      <img src="../../../../assets/images/logos 2.svg" alt="logos">
 
     </div>
 
