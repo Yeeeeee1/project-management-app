@@ -39,6 +39,8 @@ export class EditingComponent {
     private fb: FormBuilder,
     public httpAuthService: HttpAuthService,
     public authService: AuthService,
+
+    
     public appStateService: AppStateService,
   ) {
     this.jwtHelper = new JwtHelperService();

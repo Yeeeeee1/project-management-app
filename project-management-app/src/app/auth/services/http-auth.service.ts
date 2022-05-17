@@ -10,6 +10,7 @@ import { IUser, ILogin, IUpdateUser } from '../models/login.model';
 
 @Injectable({
   providedIn: 'root',
+  
 })
 export class HttpAuthService {
   public jwtHelper: JwtHelperService;

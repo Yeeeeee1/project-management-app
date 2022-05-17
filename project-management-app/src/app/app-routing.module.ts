@@ -8,8 +8,9 @@ import { PageErrorComponent } from './core/pages/page-error/page-error.component
 import { ROUTH_PATHS } from './shared/constants/constants';
 import { UserModule } from './user/user.module';
 import { CoreModule } from './core/core.module';
-import { WelcomeComponent } from './core/components/welcome/welcome.component';
+
 import { BoardsComponent } from './boards/components/boards/boards.component';
+import { WelcomeComponent } from './core/pages/welcome/welcome.component';
 
 const routes: Routes = [
   {
