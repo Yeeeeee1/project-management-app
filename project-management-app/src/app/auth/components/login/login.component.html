@@ -1,16 +1,16 @@
 <div class="login-container">
   <form [formGroup]="login">
-    <h3>Login</h3>
+    <h3>{{"login" | translate}}</h3>
     <mat-form-field *ngFor="let loginField of loginFields">
-      <mat-label>{{loginField.id }}</mat-label>
+      <mat-label #label>{{'labels.' + loginField.id | translate}}</mat-label>
       <input matInput [id]="loginField.id" autocomplete="off" [type]="loginField.type" [formControlName]="loginField.id"
         (click)="errorLoginMsg.next('')">
-      <mat-error>{{createErrorMessage(loginField)}}</mat-error>
+      <mat-error>{{createErrorMessage(loginField, label.innerText)}}</mat-error>
     </mat-form-field>
     <mat-error>{{errorLoginMsg | async}}</mat-error>
     <div class="btn-wrap">
-      <button class="registration-btn" [routerLink]="register">Registration</button>
-      <button class="enter-btn" [disabled]="!login.valid" (click)="log()">Login</button>
+      <button class="registration-btn" [routerLink]="register">{{"registration" | translate}}</button>
+      <button class="enter-btn" [disabled]="!login.valid" (click)="log()">{{"login" | translate}}</button>
     </div>
   </form>
 </div>

@@ -1,0 +1,55 @@
+@import "../../../../assets/scss/variables";
+.dialog-container {
+  font-size: $fontSizeH2;
+
+  #content {
+    margin: 25px 0;
+    text-align: center;
+width: 380px;
+  }
+  #actions {
+    align-items: center;
+  }
+}
+
+button {
+  @include btn;
+  width: 47%;
+  &:hover {
+    @include hover;
+  }
+}
+.cancel-btn {
+  color: $white;
+
+  background: $light-blue;
+  &:hover {
+    background: #587eb5;
+  }
+  &:disabled {
+    @include disabled;
+    color: $white;
+    background: $opacity-blue;
+    &:hover {
+      color: $white;
+      background: $opacity-blue;
+    }
+  }
+}
+.delete-btn {
+  color: $white;
+  background: $light-red;
+
+  &:hover {
+    background: $red;
+  }
+  &:disabled {
+    @include disabled;
+    color: $white;
+    background: $opacity-red;
+    &:hover {
+      color: $white;
+      background: $opacity-red;
+    }
+  }
+}

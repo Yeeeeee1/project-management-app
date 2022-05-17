@@ -3,7 +3,7 @@ export interface IEditForm {
   label: string;
   formControlName: string;
   type: string;
-  messageError: {
+  messageError?: {
     email?: string;
     required?: string;
     regEx?: string;

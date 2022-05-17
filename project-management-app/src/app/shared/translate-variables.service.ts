@@ -7,6 +7,4 @@ import { BehaviorSubject } from 'rxjs';
 })
 export class TranslateVariablesService {
   constructor(public translateService:TranslateService) { }
-
-
 }
