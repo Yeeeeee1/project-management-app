@@ -13,9 +13,8 @@ import { AuthModule } from './auth/auth.module';
 import { CoreModule } from './core/core.module';
 import { MainModule } from './main/main.module';
 import { BoardsComponent } from './boards/components/boards/boards.component';
-import { DialogService } from './core/services/dialog.service';
 import { HeaderComponent } from './core/components/header/header.component';
-import { MatDialogComponent } from './core/components/mat-dialog/mat-dialog.component';
+
 
 export function getToken() {
   return localStorage.getItem('token');
@@ -61,9 +60,9 @@ export function HttpLoaderFactory(handler: HttpBackend) {
       provide: MatDialogRef,
       useValue: {},
     },
-    DialogService,
+
   ],
   bootstrap: [AppComponent],
-  entryComponents: [HeaderComponent, MatDialogComponent],
+  entryComponents: [HeaderComponent],
 })
 export class AppModule {}

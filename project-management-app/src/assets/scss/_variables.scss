@@ -128,7 +128,7 @@ $fontFamily: "Inter", sans-serif;
   @include fontH4;
 }
 @mixin btn {
-  width: 122px;
+  min-width: 130px;
   height: 40px;
   border: none;
   border-radius: $small-border-radius;

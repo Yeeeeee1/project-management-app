@@ -3,7 +3,7 @@ export interface IRegForm {
   formControlName: string;
   name?: string;
   type: string;
-  messageError: {
+  messageError?: {
     email?: string;
     required?: string;
     regEx?: string;
