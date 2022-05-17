@@ -23,7 +23,7 @@ export class ColumnsService {
       .subscribe({
         next: (columns) => {
           this.columns$.next(columns);
-          this.lastOrderNumber = columns.slice(-1)[0].order;
+          this.lastOrderNumber = columns.slice(-1)[0]?.order;
         },
         error: () => this.router.navigate(['/error']),
       });
@@ -42,6 +42,13 @@ export class ColumnsService {
       next: () => this.getColumns(),
       error: () => this.router.navigate(['/error']),
     });
+  }
+
+  updateColumn(column: Column): void {
+    this.http.put(`boards/${this.idBoard}/columns/${column.id}`, {title: column.title, order: column.order}).subscribe({
+      next: () => this.getColumns(),
+      error: () => this.router.navigate(['/error']),
+    })
   }
 
   public setIdBoard(id: string) {

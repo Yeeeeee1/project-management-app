@@ -10,6 +10,8 @@ import { MainService } from '../../services/main.service';
 export class CreateBoardModalComponent {
   title = '';
 
+  description = '';
+
   constructor(
     public dialogRef: MatDialogRef<unknown>,
     @Inject(MAT_DIALOG_DATA) public data: { name: string },
@@ -21,7 +23,7 @@ export class CreateBoardModalComponent {
   }
 
   createBoard(): void {
-    this.mainService.createBoard({ title: this.title });
+    this.mainService.createBoard({ title: this.title, description: this.description });
     this.onCancel();
   }
 }
