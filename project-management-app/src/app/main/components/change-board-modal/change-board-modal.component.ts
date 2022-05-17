@@ -12,6 +12,8 @@ export class ChangeBoardModalComponent {
 
   title = '';
 
+  description = '';
+
   constructor(
     public dialogRef: MatDialogRef<unknown>,
     @Inject(MAT_DIALOG_DATA) public data: { name: string },
@@ -23,7 +25,7 @@ export class ChangeBoardModalComponent {
   }
 
   changeBoard(): void {
-    this.mainService.changeName({ title: this.title }, this.id);
+    this.mainService.changeName({ title: this.title, description: this.description }, this.id);
     this.onCancel();
   }
 }
