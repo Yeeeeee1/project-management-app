@@ -64,14 +64,14 @@ export class LoginComponent {
     let message: string | undefined;
     switch (true) {
       case !!this.login?.get(loginField.id)?.errors?.['required']:
-        this.translate.get('required_err', { label: (label === 'электронная почта' ? 'электронную почту' : label) }).subscribe((val) => { message = val; });
+        this.translate.get('required_error', { label: (label === 'электронная почта' ? 'электронную почту' : label) }).subscribe((val) => { message = val; });
         break;
       case !!this.login?.get(loginField.id)?.errors?.['email']:
-        this.translate.get('email_err').subscribe((val) => { message = val; });
+        this.translate.get('email_error').subscribe((val) => { message = val; });
         break;
 
       case !!this.login?.get(loginField.id)?.errors?.['regEx']:
-        this.translate.get('regEx_err').subscribe((val) => { message = val; });
+        this.translate.get('regEx_error').subscribe((val) => { message = val; });
         break;
       default:
         message = '';
