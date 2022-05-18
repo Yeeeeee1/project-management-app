@@ -33,6 +33,7 @@ header.sticky {
   }
   .create-board-btn {
   @include btnWithBorder;
+  width: auto;
 }
 }
 

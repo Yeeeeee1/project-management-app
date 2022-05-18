@@ -84,7 +84,7 @@ export class LoginComponent {
       if (typeof data === 'string') {
         this.errorLoginMsg.next(data);
       } else {
-        this.router.navigate([ROUTH_PATHS.BOARDS]);
+        this.router.navigate([ROUTH_PATHS.MAIN]);
         this.authService.updateToken(data.token);
         this.httpAuthService.getUserById(data.token).subscribe((item) => {
           localStorage.setItem('name', item.name || '');
