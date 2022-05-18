@@ -1,7 +1,7 @@
 <main>
   <div class="main-wrapper">
     <h2 class="no-boards" *ngIf="isNoBoards">No boards...</h2>
-    <div class="main-wrapper__card" *ngFor="let data of data">
+    <div class="main-wrapper__card" *ngFor="let data of data | search: term">
       <a href="/boards/{{ data.id }}">
         <h3 class="main-wrapper__card__card-title">
           {{ data.title }}

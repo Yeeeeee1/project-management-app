@@ -5,7 +5,7 @@
     </a>
 
     <button *ngIf="isLogged" (click)="createBoard()">
-      {{ "create_board_btn" | translate }}
+      {{ 'create_board_btn' | translate }}
     </button>
   </div>
   <div>
@@ -14,26 +14,28 @@
         class="search-field"
         matInput
         placeholder="{{ 'search' | translate }}..."
+        [(ngModel)]="term"
+        (input)="search()"
       />
       <span class="language-toggle">
         <mat-slide-toggle
           [(ngModel)]="isLanguageChecked"
           (change)="onToggle($event)"
-          >{{ "ru" | translate }}</mat-slide-toggle
+          >{{ 'ru' | translate }}</mat-slide-toggle
         >
       </span>
       <button [matMenuTriggerFor]="menu" mat-stroked-button class="user-btn">
-        {{ "greeting" | translate }}, {{ authService.name$ | async }}
+        {{ 'greeting' | translate }}, {{ authService.name$ | async }}
       </button>
       <mat-menu #menu="matMenu">
         <button class="logout-btn" (click)="authService.logout()">
-          {{ "logout" | translate }}
+          {{ 'logout' | translate }}
         </button>
         <button *ngIf="isLogged" (click)="openEditProfile()" class="edit-btn">
-          {{ "edit_profile" | translate }}
+          {{ 'edit_profile' | translate }}
         </button>
         <button *ngIf="isLogged" (click)="openDialog()" class="delete-btn">
-          {{ "delete_profile" | translate }}
+          {{ 'delete_profile' | translate }}
         </button>
       </mat-menu>
     </div>

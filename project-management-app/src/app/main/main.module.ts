@@ -13,12 +13,14 @@ import { MainRoutingModule } from './main-routing.module';
 import { CoreModule } from '../core/core.module';
 import { CreateBoardModalComponent } from './components/create-board-modal/create-board-modal.component';
 import { ChangeBoardModalComponent } from './components/change-board-modal/change-board-modal.component';
+import { SearchPipe } from '../shared/pipes/search.pipe';
 
 @NgModule({
   declarations: [
     MainComponent,
     CreateBoardModalComponent,
     ChangeBoardModalComponent,
+    SearchPipe,
   ],
   imports: [
     CommonModule,

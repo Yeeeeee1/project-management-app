@@ -1,4 +1,8 @@
-import { HttpBackend, HttpClient, HttpClientModule } from '@angular/common/http';
+import {
+  HttpBackend,
+  HttpClient,
+  HttpClientModule,
+} from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -16,14 +20,14 @@ import { BoardsComponent } from './boards/components/boards/boards.component';
 import { DialogService } from './core/services/dialog.service';
 import { HeaderComponent } from './core/components/header/header.component';
 import { MatDialogComponent } from './core/components/mat-dialog/mat-dialog.component';
+import { SearchPipe } from './shared/pipes/search.pipe';
 
 export function getToken() {
   return localStorage.getItem('token');
 }
 
 export function HttpLoaderFactory(handler: HttpBackend) {
-
-    const http = new HttpClient(handler);
+  const http = new HttpClient(handler);
   return new TranslateHttpLoader(http, '../assets/i18n/', '.json');
 }
 @NgModule({
@@ -38,7 +42,6 @@ export function HttpLoaderFactory(handler: HttpBackend) {
     HttpClientModule,
     MainModule,
     MatDialogModule,
-
     JwtModule.forRoot({
       config: {
         tokenGetter: getToken,
