@@ -2,6 +2,8 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { map, Observable, Subject } from 'rxjs';
+import { MainService } from 'src/app/main/services/main.service';
+import { IMainBoardModel } from 'src/app/shared/models/IMainBoardModel';
 import { Column } from '../models/column';
 
 @Injectable({
@@ -17,10 +19,6 @@ export class ColumnsService {
   private idBoard: string;
 
   constructor(private router: Router, private http: HttpClient) {}
-
-  public getId() {
-    return this.idBoard;
-  }
 
   public getColumns(): void {
     this.http
