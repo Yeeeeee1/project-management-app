@@ -51,4 +51,10 @@ export class MainService {
   showResults(data: IMainBoardModel[]): void {
     this.clickCreateEvent.emit(data);
   }
+
+  public getBoardById(id: string) {
+    return this.http
+      .get(`boards/${id}`)
+      .pipe(map((response) => (response as IMainBoardModel)));
+  }
 }

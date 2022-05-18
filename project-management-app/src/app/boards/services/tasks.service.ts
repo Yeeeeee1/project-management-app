@@ -85,7 +85,7 @@ export class TaskService {
   public deleteTask(): void {
     this.taskId$.subscribe((id) => { this.taskId = id; });
     this.columnId$.subscribe((id) => { this.columnId = id as string; });
-    this.http.delete(`boards/${this.columnsService.getId()}/columns/${this.columnId}/tasks/${this.taskId}`).subscribe({
+    this.http.delete(`boards/${this.columnsService.getIdBoard()}/columns/${this.columnId}/tasks/${this.taskId}`).subscribe({
       next: () => this.columnsService.getColumns(),
       error: () => this.router.navigate(['/error']),
     });
