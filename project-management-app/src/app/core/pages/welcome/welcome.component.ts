@@ -11,6 +11,8 @@ export class WelcomeComponent {
 
   public upDirection: boolean = false;
 
+  public registration = '../auth/registration';
+
   constructor() {}
 
   public panelVisibleHandler() {

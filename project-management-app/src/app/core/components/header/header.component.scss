@@ -31,6 +31,10 @@ header.sticky {
       color: $dark-gray;
     }
   }
+  .create-board-btn {
+  @include btnWithBorder;
+  width: auto;
+}
 }
 
 .logo-link {
@@ -70,6 +74,7 @@ header.sticky {
 .delete-btn {
   background: none;
   @include btn;
+
   width: auto;
   margin: 0 0 0 5px;
   &:hover {
@@ -81,6 +86,7 @@ header.sticky {
 .edit-btn,
 .delete-btn {
   display: block;
+   text-align: left;
 }
 .delete-btn {
   color: $light-red;
@@ -88,3 +94,21 @@ header.sticky {
     color: $red;
   }
 }
+
+
+.right-wrap {
+  display: flex;
+  align-items: baseline;
+}
+.header-btn-wrap {
+margin-left: 20px;
+}
+.login-btn, .signup-btn {
+  @include btnWithBorder;
+  width: auto;
+  color: $gray;
+  &:hover {
+    color:$dark-gray;
+  }
+}
+

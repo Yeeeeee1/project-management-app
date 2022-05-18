@@ -11,17 +11,15 @@ import { FormsModule } from '@angular/forms';
 import { TranslateModule } from '@ngx-translate/core';
 import { FooterComponent } from './components/footer/footer.component';
 import { HeaderComponent } from './components/header/header.component';
-import { WelcomeComponent } from './components/welcome/welcome.component';
-import { MatDialogComponent } from './components/mat-dialog/mat-dialog.component';
 
 import { PageErrorComponent } from './pages/page-error/page-error.component';
+import { WelcomeComponent } from './pages/welcome/welcome.component';
 
 @NgModule({
   declarations: [
     HeaderComponent,
     FooterComponent,
     WelcomeComponent,
-    MatDialogComponent,
     PageErrorComponent,
   ],
   imports: [

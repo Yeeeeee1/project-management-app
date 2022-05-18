@@ -1,5 +1,5 @@
-<h2 mat-dialog-title>{{'deletion_msg_text' | translate }}</h2>
-<mat-dialog-actions align="center">
-  <button mat-button mat-dialog-close>{{'cancel_btn' | translate }}</button>
-  <button mat-button [mat-dialog-close]="true">{{'confirm_btn' | translate }}</button>
+<h2 mat-dialog-title id="content" [ngStyle]="{'width':'380px'}">{{'deletion_msg_text' | translate }}</h2>
+<mat-dialog-actions align="center" id="actions">
+  <button mat-button mat-dialog-close class="cancel-btn">{{'cancel_btn' | translate }}</button>
+  <button mat-button [mat-dialog-close]="true" class="delete-btn">{{'confirm_btn' | translate }}</button>
 </mat-dialog-actions>

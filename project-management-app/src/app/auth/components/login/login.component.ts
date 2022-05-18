@@ -2,6 +2,7 @@
 import { Component, Input } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { TranslateService } from '@ngx-translate/core';
 import { BehaviorSubject } from 'rxjs';
 import {
   PASSWORD_REG_EXP,
@@ -25,6 +26,7 @@ export class LoginComponent {
   public errorLoginMsg = new BehaviorSubject<string>('');
 
   constructor(
+     public translate:TranslateService,
     private router: Router,
     private fb: FormBuilder,
     public httpAuthService: HttpAuthService,
@@ -58,18 +60,18 @@ export class LoginComponent {
     password: [null, [Validators.required, regExValidator(PASSWORD_REG_EXP)]],
   });
 
-  createErrorMessage(loginField: ILoginForm): string | undefined {
+  createErrorMessage(loginField: ILoginForm, label:string): string | undefined {
     let message: string | undefined;
     switch (true) {
       case !!this.login?.get(loginField.id)?.errors?.['required']:
-        message = loginField.messageError.required;
+        this.translate.get('required_error', { label: (label === 'электронная почта' ? 'электронную почту' : label) }).subscribe((val) => { message = val; });
         break;
       case !!this.login?.get(loginField.id)?.errors?.['email']:
-        message = loginField.messageError.email;
+        this.translate.get('email_error').subscribe((val) => { message = val; });
         break;
 
       case !!this.login?.get(loginField.id)?.errors?.['regEx']:
-        message = loginField.messageError.regEx;
+        this.translate.get('regEx_error').subscribe((val) => { message = val; });
         break;
       default:
         message = '';
@@ -82,7 +84,7 @@ export class LoginComponent {
       if (typeof data === 'string') {
         this.errorLoginMsg.next(data);
       } else {
-        this.router.navigate([ROUTH_PATHS.BOARDS]);
+        this.router.navigate([ROUTH_PATHS.MAIN]);
         this.authService.updateToken(data.token);
         this.httpAuthService.getUserById(data.token).subscribe((item) => {
           localStorage.setItem('name', item.name || '');

@@ -191,7 +191,7 @@
     a {
       @include btn;
       line-height: 40px;
-
+padding: 0 10px;
       text-decoration: none;
       color: $white;
       background: $light-green;

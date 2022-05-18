@@ -1,20 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { MatDialogComponent } from './mat-dialog.component';
+import { TaskEditComponent } from './task-edit.component';
 
-describe('MatDialogComponent', () => {
-  let component: MatDialogComponent;
-  let fixture: ComponentFixture<MatDialogComponent>;
+describe('TaskEditComponent', () => {
+  let component: TaskEditComponent;
+  let fixture: ComponentFixture<TaskEditComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [MatDialogComponent],
+      declarations: [ TaskEditComponent ]
     })
-      .compileComponents();
+    .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(MatDialogComponent);
+    fixture = TestBed.createComponent(TaskEditComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

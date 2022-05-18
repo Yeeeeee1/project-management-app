@@ -1,17 +1,17 @@
 <form [formGroup]="editForm" class="edit-form">
-  <h2>User edit</h2>
+  <h2>{{"edit_user" | translate}}</h2>
   <mat-form-field *ngFor="let formField of formFields">
-    <mat-label>{{'labels.' + formField.label | translate }}</mat-label>
+    <mat-label #label>{{'labels.' + formField.label | translate }}</mat-label>
     <input matInput id="{{ formField.id }}" autocomplete="off" type="{{ formField.type }}"
       formControlName="{{ formField.id }}" />
-    <mat-error>{{ createErrorMessage(formField) }}</mat-error>
+    <mat-error>{{ createErrorMessage(formField, label.innerText) }}</mat-error>
 
   </mat-form-field>
-  <span *ngIf="userEdited===true" class="edited">User was edited!</span>
+  <span *ngIf="userEdited===true" class="edited">{{"edited" | translate}}</span>
   <mat-error>{{errorUpdateMsg | async}}</mat-error>
   <div> <button [disabled]="!editForm.valid" class="save-btn" mat-flat-button color="primary"
-      (click)=" updateUser()">save</button>
-    <button class="cancel-btn" mat-flat-button (click)="goBack()">Cancel</button>
+      (click)=" updateUser()">{{"save_btn" | translate}}</button>
+    <button class="cancel-btn" mat-flat-button (click)="goBack()">{{"cancel_btn" | translate}}</button>
   </div>
 
 </form>

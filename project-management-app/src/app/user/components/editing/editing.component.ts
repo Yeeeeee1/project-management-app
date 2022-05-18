@@ -13,6 +13,7 @@ import { AppStateService } from 'src/app/shared/services/app-state.service';
 import { Location } from '@angular/common';
 import { AuthService } from 'src/app/auth/services/auth.service';
 import { TranslateService } from '@ngx-translate/core';
+import { MatLabel } from '@angular/material/form-field';
 import { IEditForm } from '../../models/editing.model';
 
 @Component({
@@ -38,6 +39,8 @@ export class EditingComponent {
     private fb: FormBuilder,
     public httpAuthService: HttpAuthService,
     public authService: AuthService,
+
+    
     public appStateService: AppStateService,
   ) {
     this.jwtHelper = new JwtHelperService();
@@ -49,42 +52,24 @@ export class EditingComponent {
       label: 'name',
       formControlName: 'name',
       type: 'text',
-      messageError: {
-        minLength: 'The name is too short',
-        maxLength: 'The name is too long',
-
-      },
     },
     {
       id: 'login',
-      label: 'email',
+      label: 'login',
       formControlName: 'email',
       type: 'text',
-      messageError: {
-        required: 'Please enter a  email',
-        email: 'Please enter a valid email: example@email.com',
-      },
     },
     {
       id: 'password',
       label: 'password',
       formControlName: 'password',
       type: 'password',
-      messageError: {
-        regEx:
-          'Your password must be have at least 8 characters long, 1 uppercase, 1 lowercase character, 1 number, 1 special character, e.g., ! @ # ? ]',
-        required: 'Please enter a password',
-      },
     },
     {
       id: 'confirmPassword',
-      label: 'Confirm password',
+      label: 'confirm password',
       formControlName: 'confirmPassword',
       type: 'password',
-      messageError: {
-        confirm: "Passwords don't match",
-        required: 'Please confirm a password',
-      },
     },
   ];
 
@@ -98,22 +83,27 @@ export class EditingComponent {
     confirmPassword: [null, [Validators.required, confirmValidator()]],
   });
 
-  createErrorMessage(regField: IEditForm): string | undefined {
+  createErrorMessage(regField: IEditForm, label:string): string | undefined {
     let message: string | undefined;
     switch (true) {
       case !!this.editForm?.get(regField.id)?.errors?.['required']:
-        this.translate.get('required', { label: regField.label }).subscribe((val) => { message = val; });
+        this.translate.get('required_err', { label: (label === 'электронная почта' ? 'электронную почту' : label) }).subscribe((val) => { message = val; });
         break;
       case !!this.editForm?.get(regField.id)?.errors?.['email']:
-        message = regField.messageError.email;
+        this.translate.get('email_err').subscribe((val) => { message = val; });
         break;
 
       case !!this.editForm?.get(regField.id)?.errors?.['regEx']:
-        message = regField.messageError.regEx;
+        this.translate.get('regEx_err').subscribe((val) => { message = val; });
         break;
       case !!this.editForm?.get(regField.id)?.errors?.['confirm']:
-        message = regField.messageError.confirm;
+        this.translate.get('confirm_err').subscribe((val) => { message = val; }); break;
+      case !!this.editForm?.get(regField.id)?.errors?.['minlength']:
+        this.translate.get('min_err').subscribe((val) => { message = val; });
+        break;
 
+      case !!this.editForm?.get(regField.id)?.errors?.['maxlength']:
+        this.translate.get('max_err').subscribe((val) => { message = val; });
         break;
       default:
         message = '';

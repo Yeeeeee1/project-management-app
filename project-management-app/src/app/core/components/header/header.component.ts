@@ -4,14 +4,15 @@ import { MatDialog } from '@angular/material/dialog';
 import { MatSlideToggleChange } from '@angular/material/slide-toggle';
 import { TranslateService } from '@ngx-translate/core';
 import { TranslateVariablesService } from 'src/app/shared/translate-variables.service';
+import { UserService } from 'src/app/user/user.service';
 import { AuthService } from '../../../auth/services/auth.service';
+import { ModalComponent } from '../deletion-modal/deletion-modal.component';
 import {
   LANG_CHECKED,
   LANG_EN,
   LANG_RU,
   ROUTH_PATHS,
 } from '../../../shared/constants/constants';
-import { DialogService } from '../../services/dialog.service';
 import { CreateBoardModalComponent } from '../../../main/components/create-board-modal/create-board-modal.component';
 import { SearchService } from '../../services/search.service';
 
@@ -39,9 +40,10 @@ export class HeaderComponent {
     public dialog: MatDialog,
     private router: Router,
     public authService: AuthService,
-    private dialogService: DialogService,
+    private userService: UserService,
     private translateService: TranslateService,
-    private searchService: SearchService
+    private searchService: SearchService,
+
   ) {
     this.authService.isLogin$.subscribe((val) => {
       this.isLogged = val;
@@ -65,8 +67,14 @@ export class HeaderComponent {
     this.router.navigate([ROUTH_PATHS.EDIT_PROFILE]);
   }
 
-  openDialog() {
-    this.dialogService.openDialog();
+  openDeleteModal() {
+    const dialogRef = this.dialog.open(ModalComponent);
+
+    dialogRef.afterClosed().subscribe((result) => {
+      if (result) {
+        this.userService.deleteUser();
+      }
+    });
   }
 
   public onToggle(event: MatSlideToggleChange) {
