@@ -85,14 +85,10 @@ export class TaskService {
   public deleteTask(): void {
     this.taskId$.subscribe((id) => { this.taskId = id; });
     this.columnId$.subscribe((id) => { this.columnId = id as string; });
-    this.http.delete(`boards/${this.columnsService.idBoard}/columns/${this.columnId}/tasks/${this.taskId}`).subscribe({
+    this.http.delete(`boards/${this.columnsService.getId()}/columns/${this.columnId}/tasks/${this.taskId}`).subscribe({
       next: () => this.columnsService.getColumns(),
       error: () => this.router.navigate(['/error']),
     });
     console.log(this.taskId, this.columnId);
   }
-//   public getTask( id:string )
-//   {
-//      this.http.get()
-//   }
 }

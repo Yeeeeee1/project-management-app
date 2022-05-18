@@ -14,9 +14,13 @@ export class ColumnsService {
 
   private lastOrderNumber:number;
 
-  public idBoard: string;
+  private idBoard: string;
 
   constructor(private router: Router, private http: HttpClient) {}
+
+  public getId() {
+    return this.idBoard;
+  }
 
   public getColumns(): void {
     this.http
