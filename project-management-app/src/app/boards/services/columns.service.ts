@@ -67,4 +67,8 @@ export class ColumnsService {
   public setIdBoard(id: string) {
     this.idBoard = id;
   }
+
+  public getIdBoard() {
+    return this.idBoard;
+  }
 }
