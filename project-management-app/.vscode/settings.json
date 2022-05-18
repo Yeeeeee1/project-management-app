@@ -3,5 +3,8 @@
 
 ],
 "files.eol": "\n",
-"javascript.format.placeOpenBraceOnNewLineForControlBlocks": true
+"javascript.format.placeOpenBraceOnNewLineForControlBlocks": true,
+"editor.unfoldOnClickAfterEndOfLine": true,
+"javascript.format.insertSpaceAfterOpeningAndBeforeClosingNonemptyParenthesis": true,
+"typescript.format.insertSpaceAfterOpeningAndBeforeClosingNonemptyParenthesis": true
 }

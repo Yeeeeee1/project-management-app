@@ -65,5 +65,7 @@
 "course_descry_2":"JavaScript, typescript, Git, GitHub (clone, add, commit, push, pull, merge, rebase, work with Pull Request), npm, webpack, CSS3 / HTML, Chrome DevTools Figma, Понимание концепции REST API.",
 "course_descry_3":"Бесплатное обучение",
 "course_btn":"Начни бесплатно",
-"edited":"Пользователь был изменен!"
+"edited":"Пользователь был изменен!",
+"title_modal_task":"Название задачи",
+"description_modal_task":"Описание задачи"
 }

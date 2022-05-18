@@ -1,4 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
+
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
@@ -10,25 +11,28 @@ import { IUser, ILogin, IUpdateUser } from '../models/login.model';
 
 @Injectable({
   providedIn: 'root',
-  
+
 })
-export class HttpAuthService {
+export class HttpAuthService
+{
   public jwtHelper: JwtHelperService;
 
   public userId = '';
 
-  constructor(public http: HttpClient, public router: Router) {
+  constructor(public http: HttpClient, public router: Router)
+  {
     this.jwtHelper = new JwtHelperService();
   }
 
-  public handleError<T>(result?: T, operation = 'operation') {
-    return (error: any): Observable<T> => of(error.error.message);
+  public handleError<T>(result?: T, operation = 'operation')
+  {
+    return (error: { error: { message: T; }; }): Observable<T> => of(error.error.message);
   }
 
-  public createUser(user: IUser): Observable<IUser> {
+  public createUser(user: IUser): Observable<IUser | string> {
     return this.http
       .post<IUser>('signup', user)
-      .pipe(catchError(this.handleError<any>('this is a error', '')));
+      .pipe(catchError(this.handleError<string>('this is a error', '')));
   }
 
   public login(user: IUser): Observable<ILogin> {

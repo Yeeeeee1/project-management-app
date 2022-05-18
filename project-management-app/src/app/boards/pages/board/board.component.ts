@@ -1,9 +1,10 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Subscription } from 'rxjs';
+import { map, Subscription, switchMap } from 'rxjs';
 import { ROUTH_PATHS } from 'src/app/shared/constants/constants';
 import { ColumnCreationComponent } from '../../components/column-creation/column-creation.component';
+import { TaskModalComponent } from '../../components/task-modal/task-modal.component';
 import { Column } from '../../models/column';
 import { ColumnsService } from '../../services/columns.service';
 import { sortByOrderNumber } from '../../util';
@@ -29,10 +30,11 @@ private router: Router,
     const id = this.activatedRoute.snapshot.paramMap.get('id') ?? '';
     this.columnsService.setIdBoard(id);
     this.columnsService.getColumns();
-    this.columnsSubs = this.columnsService.columns$.subscribe((columns) => {
-      sortByOrderNumber(columns);
-      this.columns = columns;
-    });
+    this.columnsSubs = this.columnsService.columns$
+      .subscribe((columns) => {
+        sortByOrderNumber(columns);
+        this.columns = columns;
+      });
   }
 
   public goToMain(): void {
@@ -54,5 +56,9 @@ private router: Router,
 
   ngOnDestroy(): void {
     this.columnsSubs.unsubscribe();
+  }
+
+  createTask(): void {
+    this.dialog.open(TaskModalComponent);
   }
 }

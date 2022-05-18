@@ -16,6 +16,7 @@
   "more_btn":"More...",
   "column_name": "Column name",
   "name": "Name",
+
   "create_board_btn": "Create board",
   "board_dialog_title": "Board name:",
   "board_dialog_label": "Title",
@@ -61,5 +62,7 @@
 "course_descry_2":"JavaScript, typescript, Git, GitHub (clone, add, commit, push, pull, merge, rebase, work with Pull Request), npm, webpack, CSS3 / HTML, Chrome DevTools Figma, Understanding the concept of REST API.",
 "course_descry_3":"Learning is free.",
 "course_btn":"Start it free",
-"edited":"User was edited!"
+"edited":"User was edited!",
+"title_modal_task":"Task title",
+"description_modal_task":"Task description"
 }

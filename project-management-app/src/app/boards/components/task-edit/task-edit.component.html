@@ -1,4 +1,4 @@
-<form [formGroup]="columnsSelect">
+<form formGroup="taskEdit">
   <div mat-dialog-content>
 
     <mat-form-field appearance="fill">
@@ -21,7 +21,7 @@
   </div>
   <div mat-dialog-actions align="center">
     <button mat-button (click)="onCancel()">{{ "board_dialog_close" | translate }}</button>
-    <button mat-button cdkFocusInitial (click)="createBoard()">{{ "board_dialog_save" | translate }}</button>
+    <button mat-button cdkFocusInitial>{{ "board_dialog_save" | translate }}</button>
 
   </div>
 </form>

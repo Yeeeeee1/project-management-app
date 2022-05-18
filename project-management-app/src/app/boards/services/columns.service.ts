@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
-import { map, Subject } from 'rxjs';
+import { map, Observable, Subject } from 'rxjs';
 import { Column } from '../models/column';
 
 @Injectable({
@@ -10,9 +10,11 @@ import { Column } from '../models/column';
 export class ColumnsService {
   public columns$ = new Subject<Column[]>();
 
+  public firstColumn: string;
+
   private lastOrderNumber:number;
 
-  private idBoard: string;
+  public idBoard: string;
 
   constructor(private router: Router, private http: HttpClient) {}
 
@@ -24,6 +26,7 @@ export class ColumnsService {
         next: (columns) => {
           this.columns$.next(columns);
           this.lastOrderNumber = columns.slice(-1)[0].order;
+          this.firstColumn = columns[0].title;
         },
         error: () => this.router.navigate(['/error']),
       });
@@ -45,10 +48,16 @@ export class ColumnsService {
   }
 
   updateColumn(column: Column): void {
-    this.http.put(`boards/${this.idBoard}/columns/${column.id}`, {title: column.title, order: column.order}).subscribe({
+    this.http.put(`boards/${this.idBoard}/columns/${column.id}`, { title: column.title, order: column.order }).subscribe({
       next: () => this.getColumns(),
       error: () => this.router.navigate(['/error']),
-    })
+    });
+  }
+
+  public getColumn(id: string):Observable<Column> {
+    return this.http
+      .get(`boards/${this.idBoard}/columns/${id}`)
+      .pipe(map((response) => (response as Column)));
   }
 
   public setIdBoard(id: string) {

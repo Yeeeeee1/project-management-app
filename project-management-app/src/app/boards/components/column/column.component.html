@@ -1,4 +1,4 @@
-<h2 *ngIf="showColumnTitle" (click)="toggleTitleEditingSection()" >{{column.title}}</h2>
+<h2 *ngIf="showColumnTitle" (click)="toggleTitleEditingSection()">{{column.title}}</h2>
 <div *ngIf="showTitleEditSection" class="title-edit-section">
   <input class="edit-field" value={{column.title}} #title>
   <button mat-icon-button>
@@ -11,3 +11,4 @@
 <button mat-icon-button class="delete-btn">
   <mat-icon aria-label="Delete" (click)="openDeleteModal()">delete</mat-icon>
 </button>
+<app-task *ngFor="let task of tasks" [task]="task"></app-task>
