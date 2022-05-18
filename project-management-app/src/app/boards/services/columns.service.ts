@@ -18,10 +18,6 @@ export class ColumnsService {
 
   constructor(private router: Router, private http: HttpClient) {}
 
-  public getId() {
-    return this.idBoard;
-  }
-
   public getColumns(): void {
     this.http
       .get(`boards/${this.idBoard}/columns`)
@@ -66,5 +62,9 @@ export class ColumnsService {
 
   public setIdBoard(id: string) {
     this.idBoard = id;
+  }
+
+  public getIdBoard(): string {
+    return this.idBoard;
   }
 }

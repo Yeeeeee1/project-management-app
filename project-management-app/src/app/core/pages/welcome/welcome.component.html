@@ -8,7 +8,6 @@
         <button class="sign-up" [routerLink]="registration">{{"registration_btn" | translate}}</button>
       </div>
       <div class="example"> <img src="./../../../../assets/images/example.png" alt=""></div>
-
     </div>
 
     <div [ngClass]="{arrowDown:!upDirection, arrowUp:upDirection}">
@@ -48,7 +47,13 @@
         <p>about team lead</p>
       </div>
       <div class="team-person"><img src="./../../../../assets/images/Volha.png" alt="">
-        <p>about Olga</p>
+        <h3>{{"olga"| translate}}</h3>
+        <ul>
+          <li>{{"organizing_team"| translate}}</li>
+          <li>{{"header_functionality"| translate}}</li>
+          <li>{{"columns_functionality"| translate}}</li>
+          <li>{{"localization_functionality"| translate}}</li>
+        </ul>
       </div>
       <div class="team-person"><img src="./../../../../assets/images/alina.png" alt="Alina Husarava">
         <h3>{{"alina"| translate}}</h3>

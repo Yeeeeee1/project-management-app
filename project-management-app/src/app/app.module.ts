@@ -13,7 +13,6 @@ import { AppComponent } from './app.component';
 import { AuthModule } from './auth/auth.module';
 import { CoreModule } from './core/core.module';
 import { MainModule } from './main/main.module';
-import { BoardsComponent } from './boards/components/boards/boards.component';
 import { HeaderComponent } from './core/components/header/header.component';
 
 export function getToken() {
@@ -25,7 +24,7 @@ export function HttpLoaderFactory(handler: HttpBackend) {
   return new TranslateHttpLoader(http, '../assets/i18n/', '.json');
 }
 @NgModule({
-  declarations: [AppComponent, BoardsComponent],
+  declarations: [AppComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,

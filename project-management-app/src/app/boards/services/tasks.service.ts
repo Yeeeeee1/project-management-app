@@ -49,7 +49,7 @@ export class TaskService {
       userId: this.jwtHelper.decodeToken(localStorage.getItem('token') as string).userId,
     };
     console.log(task.order, this.lastOrderNumber, task.userId, form.description);
-    this.http.post(`boards/${this.columnsService.getId()}/columns/${form.column}/tasks`, task).subscribe({
+    this.http.post(`boards/${this.columnsService.getIdBoard()}/columns/${form.column}/tasks`, task).subscribe({
       next: () => this.columnsService.getColumns(),
       error: () => this.router.navigate(['/error']),
     });
@@ -57,7 +57,7 @@ export class TaskService {
 
   public getTasks(id:string): void {
     this.http
-      .get(`boards/${this.columnsService.getId()}/columns/${id}/tasks`)
+      .get(`boards/${this.columnsService.getIdBoard()}/columns/${id}/tasks`)
       .pipe(map((response) => (response as ITask[])))
       .subscribe({
         next: (tasks) => {
@@ -78,7 +78,7 @@ export class TaskService {
       description: form.description,
       userId: this.jwtHelper.decodeToken(localStorage.getItem('token') as string).userId,
     };
-    this.http.put(`boards/${this.columnsService.getId()}/columns/${form.column}/tasks/${this.taskId}`, task).subscribe({
+    this.http.put(`boards/${this.columnsService.getIdBoard()}/columns/${form.column}/tasks/${this.taskId}`, task).subscribe({
       next: () => this.columnsService.getColumns(),
       error: () => this.router.navigate(['/error']),
     });
@@ -86,7 +86,7 @@ export class TaskService {
 
   public deleteTask(): void {
     console.log(this.taskId, this.columnId);
-    this.http.delete(`boards/${this.columnsService.getId()}/columns/${this.columnId}/tasks/${this.taskId}`).subscribe({
+    this.http.delete(`boards/${this.columnsService.getIdBoard()}/columns/${this.columnId}/tasks/${this.taskId}`).subscribe({
       next: () => this.columnsService.getColumns(),
       error: () => this.router.navigate(['/error']),
     });
