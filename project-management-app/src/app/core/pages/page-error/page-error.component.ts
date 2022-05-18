@@ -6,5 +6,5 @@ import { Component } from '@angular/core';
   styleUrls: ['./page-error.component.scss'],
 })
 export class PageErrorComponent {
-  public boards = './../boards';
+  public main = './../main';
 }

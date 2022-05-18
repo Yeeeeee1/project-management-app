@@ -23,7 +23,6 @@
   "board_dialog_save": "Сохранить",
   "board_dialog_close": "Закрыть",
   "edit_user": "Изменить пользователя",
-
   "login": "Войти",
   "registration": "Зарегистрироваться",
   "email": "Электронная почта",
@@ -57,10 +56,10 @@
   "team": "Наша команда",
   "alina": "Алина Гусарова",
   "olga": "Ольга Скоркина",
-  "organizing_team" : "Организация команды и распределение тасков",
-  "header_functionality" : "Шапка сайта",
-  "columns_functionality" : "Создание/удаление/редактирование колонок",
-  "localization_functionality" : "Локализация",
+  "organizing_team": "Организация команды и распределение тасков",
+  "header_functionality": "Шапка сайта",
+  "columns_functionality": "Создание/удаление/редактирование колонок",
+  "localization_functionality": "Локализация",
   "404": "Страница 404",
   "page_welcome": "Страница приветствия",
   "auth": "Авторизация",
@@ -71,5 +70,7 @@
   "course_description_2": "JavaScript, typescript, Git, GitHub (clone, add, commit, push, pull, merge, rebase, work with Pull Request), npm, webpack, CSS3 / HTML, Chrome DevTools Figma, Понимание концепции REST API.",
   "course_description_3": "Бесплатное обучение",
   "course_btn": "Начни бесплатно",
-  "edited": "Пользователь был изменен!"
+  "edited": "Пользователь был изменен!",
+  "title_modal_task": "Название задачи",
+  "description_modal_task": "Описание задачи"
 }

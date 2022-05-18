@@ -7,25 +7,25 @@ import { JwtModule } from '@auth0/angular-jwt';
 import { MatDialogModule, MatDialogRef } from '@angular/material/dialog';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
+import { MatSelectModule } from '@angular/material/select';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { AuthModule } from './auth/auth.module';
 import { CoreModule } from './core/core.module';
 import { MainModule } from './main/main.module';
 import { HeaderComponent } from './core/components/header/header.component';
-
+import { TaskEditComponent } from './boards/components/task-edit/task-edit.component';
 
 export function getToken() {
   return localStorage.getItem('token');
 }
 
 export function HttpLoaderFactory(handler: HttpBackend) {
-
-    const http = new HttpClient(handler);
+  const http = new HttpClient(handler);
   return new TranslateHttpLoader(http, '../assets/i18n/', '.json');
 }
 @NgModule({
-  declarations: [AppComponent],
+  declarations: [AppComponent, TaskEditComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
@@ -36,6 +36,7 @@ export function HttpLoaderFactory(handler: HttpBackend) {
     HttpClientModule,
     MainModule,
     MatDialogModule,
+    MatSelectModule,
 
     JwtModule.forRoot({
       config: {
