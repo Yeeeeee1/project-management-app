@@ -1,7 +1,8 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
-import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { Subject } from 'rxjs';
+import { ModalComponent } from 'src/app/core/components/deletion-modal/deletion-modal.component';
 import { MainService } from 'src/app/main/services/main.service';
 import { Column } from '../../models/column';
 import { ColumnsService } from '../../services/columns.service';
@@ -36,6 +37,7 @@ private fb: FormBuilder,
     private mainService: MainService,
     public columnsService: ColumnsService,
     private tasksService:TaskService,
+    public dialog: MatDialog,
   ) {
     this.columnsService.getColumns();
     this.columnsService.columns$.subscribe((val) => {
