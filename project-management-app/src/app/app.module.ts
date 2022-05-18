@@ -15,7 +15,6 @@ import { CoreModule } from './core/core.module';
 import { MainModule } from './main/main.module';
 import { BoardsComponent } from './boards/components/boards/boards.component';
 import { HeaderComponent } from './core/components/header/header.component';
-import { TaskEditComponent } from './boards/components/task-edit/task-edit.component';
 
 export function getToken() {
   return localStorage.getItem('token');
@@ -26,7 +25,7 @@ export function HttpLoaderFactory(handler: HttpBackend) {
   return new TranslateHttpLoader(http, '../assets/i18n/', '.json');
 }
 @NgModule({
-  declarations: [AppComponent, BoardsComponent, TaskEditComponent],
+  declarations: [AppComponent, BoardsComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,

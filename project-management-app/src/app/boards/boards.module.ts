@@ -18,10 +18,11 @@ import { ColumnComponent } from './components/column/column.component';
 import { BoardsRoutingModule } from './boards-routing.module';
 import { TaskComponent } from './components/task/task.component';
 import { TaskModalComponent } from './components/task-modal/task-modal.component';
+import { TaskEditComponent } from './components/task-edit/task-edit.component';
 
 @NgModule({
   declarations: [BoardComponent, ColumnComponent, ModalComponent,
-    ColumnCreationComponent, TaskComponent, TaskModalComponent],
+    ColumnCreationComponent, TaskComponent, TaskModalComponent, TaskEditComponent],
   imports: [
     CommonModule,
     RouterModule,
