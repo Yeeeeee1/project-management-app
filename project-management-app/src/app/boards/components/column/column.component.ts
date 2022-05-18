@@ -13,7 +13,9 @@ import { ITask } from '../../models/task';
 export class ColumnComponent implements OnInit {
   @Input() public column: Column;
 
-  public tasks:ITask[] | undefined;
+  public tasks: ITask[] | undefined;
+
+  public columnId :string | undefined;
 
   public showColumnTitle: boolean = true;
 
@@ -29,7 +31,7 @@ export class ColumnComponent implements OnInit {
   ngOnInit(): void {
     console.log(this.column);
     this.columnsService.getColumn(this.column.id)
-      .subscribe((column) => { this.tasks = column.tasks; });
+      .subscribe((column) => { this.tasks = column.tasks; this.columnId = column.id; });
   }
 
   openDeleteModal() {

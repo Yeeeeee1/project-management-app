@@ -1,5 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
+import { Subject } from 'rxjs';
 import { ITask } from '../../models/task';
 import { ColumnsService } from '../../services/columns.service';
 import { TaskService } from '../../services/tasks.service';
@@ -14,13 +15,17 @@ import { TaskModalComponent } from '../task-modal/task-modal.component';
 export class TaskComponent {
   @Input() task: ITask;
 
+  @Input() columnId: string | undefined;
+
   constructor(
 public dialog: MatDialog,
 private columnsService: ColumnsService,
-tasksService:TaskService,
+private tasksService:TaskService,
   ) { }
 
-  editTask() {
+  editTask(id:string, columnId:string | undefined) {
     this.dialog.open(TaskEditComponent);
+    this.tasksService.taskId$.next(id);
+    this.tasksService.columnId$.next(columnId);
   }
 }

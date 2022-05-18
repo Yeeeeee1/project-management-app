@@ -49,4 +49,10 @@ private fb: FormBuilder,
   onCancel(): void {
     this.dialogRef.close();
   }
+
+  deleteTask() {
+    this.tasksService.deleteTask();
+    console.log('del');
+    this.onCancel();
+  }
 }

@@ -11,4 +11,4 @@
 <button mat-icon-button class="delete-btn">
   <mat-icon aria-label="Delete" (click)="openDeleteModal()">delete</mat-icon>
 </button>
-<app-task *ngFor="let task of tasks" [task]="task"></app-task>
+<app-task *ngFor="let task of tasks" [task]="task" [columnId]="columnId"></app-task>

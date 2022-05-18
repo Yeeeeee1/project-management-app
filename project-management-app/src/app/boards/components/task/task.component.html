@@ -1,4 +1,4 @@
-<div class="task-wrap" (click)="editTask()">
+<div class="task-wrap" (click)="editTask(task.id, columnId)">
   <h3 class="task-title">{{task.title}}</h3>
   <p class="task-description">{{task.description}}</p>
   <div><input type="checkbox"><span>{{task.done}}</span></div>
