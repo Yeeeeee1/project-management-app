@@ -24,16 +24,10 @@ export class TaskEditComponent implements OnInit {
 
   columns: Column[];
 
-  public taskEdit = this.fb.group({
-    title: [null, [Validators.required, Validators.minLength(3), Validators.maxLength(20)]],
-    description: [null, [Validators.required, Validators.minLength(3), Validators.maxLength(20)]],
-    column: [null, [Validators.required, Validators.minLength(3), Validators.maxLength(20)]],
-  });
-
   constructor(
 private fb: FormBuilder,
     public dialogRef: MatDialogRef<unknown>,
-    @Inject(MAT_DIALOG_DATA) public data: { name: string },
+    @Inject(MAT_DIALOG_DATA) public data: { id: string; columnId:string},
     private mainService: MainService,
     public columnsService: ColumnsService,
     private tasksService:TaskService,
@@ -44,6 +38,12 @@ private fb: FormBuilder,
       this.columns = val;
     });
   }
+
+  public taskEdit = this.fb.group({
+    title: [null, [Validators.required, Validators.minLength(3), Validators.maxLength(20)]],
+    description: [null, [Validators.required, Validators.minLength(3), Validators.maxLength(20)]],
+    column: [null, [Validators.required, Validators.minLength(3), Validators.maxLength(20)]],
+  });
 
   ngOnInit(): void {
   }

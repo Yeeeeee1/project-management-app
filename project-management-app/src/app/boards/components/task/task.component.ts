@@ -23,7 +23,7 @@ private columnsService: ColumnsService,
 private tasksService:TaskService,
   ) { }
 
-  editTask(id:string, columnId:string | undefined) {
+  editTask(id: string, columnId: string | undefined) {
     this.dialog.open(TaskEditComponent);
     this.tasksService.taskId$.next(id);
     this.tasksService.columnId$.next(columnId);

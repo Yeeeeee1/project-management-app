@@ -36,6 +36,8 @@ export class TaskService {
     this.jwtHelper = new JwtHelperService();
 
     this.appStateService.userId.subscribe((id) => { this.userId = id; });
+    this.taskId$.subscribe((id) => { this.taskId = id; });
+    this.columnId$.subscribe((id) => { this.columnId = id as string; });
   }
 
   public createTask(form: ITaskForm): void {
@@ -48,7 +50,7 @@ export class TaskService {
     };
     console.log(task.order, this.lastOrderNumber, task.userId, form.description);
     this.http.post(`boards/${this.columnsService.getIdBoard()}/columns/${form.column}/tasks`, task).subscribe({
-      next: () => this.getTasks(form.column),
+      next: () => this.columnsService.getColumns(),
       error: () => this.router.navigate(['/error']),
     });
   }
@@ -83,12 +85,10 @@ export class TaskService {
   }
 
   public deleteTask(): void {
-    this.taskId$.subscribe((id) => { this.taskId = id; });
-    this.columnId$.subscribe((id) => { this.columnId = id as string; });
+    console.log(this.taskId, this.columnId);
     this.http.delete(`boards/${this.columnsService.getIdBoard()}/columns/${this.columnId}/tasks/${this.taskId}`).subscribe({
       next: () => this.columnsService.getColumns(),
       error: () => this.router.navigate(['/error']),
     });
-    console.log(this.taskId, this.columnId);
   }
 }
