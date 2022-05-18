@@ -25,8 +25,8 @@ export class ColumnsService {
       .subscribe({
         next: (columns) => {
           this.columns$.next(columns);
-          this.lastOrderNumber = columns.slice(-1)[0].order;
-          this.firstColumn = columns[0].title;
+          this.lastOrderNumber = columns.slice(-1)[0]?.order;
+          this.firstColumn = columns[0]?.title;
         },
         error: () => this.router.navigate(['/error']),
       });
