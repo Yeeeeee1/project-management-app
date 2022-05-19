@@ -8,6 +8,7 @@ import { PageErrorComponent } from './core/pages/page-error/page-error.component
 import { ROUTH_PATHS } from './shared/constants/constants';
 import { UserModule } from './user/user.module';
 import { WelcomeComponent } from './core/pages/welcome/welcome.component';
+import { SearchResultsComponent } from './search-results/search-results/search-results.component';
 
 const routes: Routes = [
   {
@@ -17,6 +18,8 @@ const routes: Routes = [
   },
 
   { path: '', redirectTo: ROUTH_PATHS.MAIN, pathMatch: 'full' },
+
+  {path: ROUTH_PATHS.RESULTS, component: SearchResultsComponent},
 
   {
     path: ROUTH_PATHS.EDIT_PROFILE,

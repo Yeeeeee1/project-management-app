@@ -5,6 +5,7 @@ import { IMainBoardModel } from '../../../shared/models/IMainBoardModel';
 import { ModalComponent } from '../../../core/components/deletion-modal/deletion-modal.component';
 import { MainService } from '../../services/main.service';
 import { ChangeBoardModalComponent } from '../../components/change-board-modal/change-board-modal.component';
+import { SearchService } from 'src/app/core/services/search.service';
 
 @Component({
   selector: 'app-boards',
@@ -14,13 +15,22 @@ import { ChangeBoardModalComponent } from '../../components/change-board-modal/c
 export class MainComponent implements OnInit, OnDestroy {
   data: IMainBoardModel[] = [];
 
+  term = '';
+
   subscriptions: Subscription | null = new Subscription();
 
   isNoBoards = false;
 
-  constructor(private mainService: MainService, private dialog: MatDialog) {}
+  constructor(
+    private mainService: MainService,
+    private dialog: MatDialog,
+    private searchService: SearchService
+  ) {}
 
   ngOnInit(): void {
+    this.searchService.searchEvent.subscribe(
+      (data: string) => (this.term = data)
+    );
     const getBoardsSub = this.mainService.getBoards();
     const createEventSub = this.mainService.clickCreateEvent.subscribe(
       (data: IMainBoardModel[]) => {
@@ -31,7 +41,7 @@ export class MainComponent implements OnInit, OnDestroy {
         } else {
           this.isNoBoards = false;
         }
-      },
+      }
     );
 
     this.subscriptions?.add(getBoardsSub);

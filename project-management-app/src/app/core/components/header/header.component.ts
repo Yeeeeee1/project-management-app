@@ -1,4 +1,4 @@
-import { HostListener, Component } from '@angular/core';
+import { HostListener, Component, Output, EventEmitter } from '@angular/core';
 import { Router } from '@angular/router';
 import { MatDialog } from '@angular/material/dialog';
 import { MatSlideToggleChange } from '@angular/material/slide-toggle';
@@ -14,6 +14,7 @@ import {
   ROUTH_PATHS,
 } from '../../../shared/constants/constants';
 import { CreateBoardModalComponent } from '../../../main/components/create-board-modal/create-board-modal.component';
+import { SearchService } from '../../services/search.service';
 
 @Component({
   selector: 'app-header',
@@ -21,6 +22,7 @@ import { CreateBoardModalComponent } from '../../../main/components/create-board
   styleUrls: ['./header.component.scss'],
 })
 export class HeaderComponent {
+  public term = '';
   public isSticky: boolean;
 
   public auth = ROUTH_PATHS.AUTHORIZATION;
@@ -34,19 +36,20 @@ export class HeaderComponent {
   public isLanguageChecked: boolean;
 
   constructor(
-    public translate:TranslateVariablesService,
+    public translate: TranslateVariablesService,
     public dialog: MatDialog,
     private router: Router,
     public authService: AuthService,
     private userService: UserService,
     private translateService: TranslateService,
+    private searchService: SearchService,
 
   ) {
     this.authService.isLogin$.subscribe((val) => {
       this.isLogged = val;
     });
     this.isLanguageChecked = JSON.parse(
-      localStorage.getItem(LANG_CHECKED) || 'false',
+      localStorage.getItem(LANG_CHECKED) || 'false'
     );
     this.changeLanguage(this.isLanguageChecked);
   }
@@ -54,6 +57,11 @@ export class HeaderComponent {
   @HostListener('window:scroll')
   public onWindowScroll(): void {
     this.isSticky = window.scrollY > 0;
+  }
+
+  public search(): void {
+    this.searchService.search(this.term);
+    this.router.navigate([ROUTH_PATHS.RESULTS])
   }
 
   public openEditProfile(): void {

@@ -59,6 +59,8 @@ private fb: FormBuilder,
   }
 
   deleteTask() {
+    this.tasksService.deleteTask();
+
     const dialogRef = this.dialog.open(
       ModalComponent,
     );
@@ -80,6 +82,7 @@ private fb: FormBuilder,
       columnId: this.data.columnId,
     };
     this.tasksService.updateTask(form);
+    
     this.onCancel();
   }
 }
