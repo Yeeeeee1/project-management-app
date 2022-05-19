@@ -9,8 +9,9 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { TranslateModule } from '@ngx-translate/core';
-import { MatOptionSelectionChange } from '@angular/material/core';
+import { MatOptionModule } from '@angular/material/core';
 import { MatSelectModule } from '@angular/material/select';
+import { MatCheckboxModule } from '@angular/material/checkbox';
 import { ColumnCreationComponent } from './components/column-creation/column-creation.component';
 import { ModalComponent } from '../core/components/deletion-modal/deletion-modal.component';
 import { BoardComponent } from './pages/board/board.component';
@@ -38,6 +39,8 @@ import { TaskEditComponent } from './components/task-edit/task-edit.component';
     TranslateModule,
     ReactiveFormsModule,
     MatSelectModule,
+    MatCheckboxModule,
+    MatOptionModule,
   ],
   exports: [],
 })

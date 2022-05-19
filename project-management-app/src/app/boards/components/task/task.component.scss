@@ -2,5 +2,24 @@
 
 .task-wrap {
   @include task;
-  
+
+}
+
+.task-description {
+     word-break: break-all;
+}
+.delete-btn {
+  position: relative;
+  color: $component-border-gray;
+top:0;
+  left: calc(100% - 30px);
+  z-index: 2;
+
+  :hover {
+    color: $red;
+    @include transition;
+  }
+}
+.task-title {
+  margin: 0 0 -35px;
 }

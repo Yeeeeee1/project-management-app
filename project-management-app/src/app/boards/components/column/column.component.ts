@@ -29,7 +29,6 @@ export class ColumnComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    console.log(this.column);
     this.columnsService.getColumn(this.column.id)
       .subscribe((column) => { this.tasks = column.tasks; this.columnId = column.id; });
   }
@@ -55,5 +54,11 @@ export class ColumnComponent implements OnInit {
   public toggleTitleEditingSection(): void {
     this.showColumnTitle = !this.showColumnTitle;
     this.showTitleEditSection = !this.showColumnTitle;
+  }
+
+  public arrColor = ['#ee384b', '#d58d49', '#ffce00', '#538f51', '#435e85', '#800080'];
+
+  public randomColor(i:number) {
+    return i < 7 ? this.arrColor[i - 1] : this.arrColor[(i % 5) - 1];
   }
 }

@@ -27,7 +27,8 @@ export class TaskEditComponent implements OnInit {
   constructor(
 private fb: FormBuilder,
     public dialogRef: MatDialogRef<unknown>,
-    @Inject(MAT_DIALOG_DATA) public data: { id: string; columnId:string},
+    @Inject(MAT_DIALOG_DATA) public data:
+      { title: string, description: string, done: boolean, columnId: string, order:number},
     private mainService: MainService,
     public columnsService: ColumnsService,
     private tasksService:TaskService,
@@ -40,9 +41,14 @@ private fb: FormBuilder,
   }
 
   public taskEdit = this.fb.group({
-    title: [null, [Validators.required, Validators.minLength(3), Validators.maxLength(20)]],
-    description: [null, [Validators.required, Validators.minLength(3), Validators.maxLength(20)]],
-    column: [null, [Validators.required, Validators.minLength(3), Validators.maxLength(20)]],
+    title: [this.data.title,
+      [Validators.required]],
+    description: [this.data.description,
+      [Validators.required]],
+    column: [this.data.columnId,
+      [Validators.required]],
+    checkbox: [this.data.done],
+
   });
 
   ngOnInit(): void {
@@ -53,8 +59,27 @@ private fb: FormBuilder,
   }
 
   deleteTask() {
-    this.tasksService.deleteTask();
-    console.log('del');
+    const dialogRef = this.dialog.open(
+      ModalComponent,
+    );
+    dialogRef.afterClosed().subscribe((result) => {
+      if (result) {
+        this.tasksService.deleteTask();
+      }
+    });
+
+    this.onCancel();
+  }
+
+  upDateTask() {
+    const form = {
+      title: this.taskEdit.value.title,
+      done: this.taskEdit.value.checkbox,
+      order: this.data.order as number,
+      description: this.taskEdit.value.description,
+      columnId: this.data.columnId,
+    };
+    this.tasksService.updateTask(form);
     this.onCancel();
   }
 }

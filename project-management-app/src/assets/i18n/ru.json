@@ -72,5 +72,8 @@
   "course_btn": "Начни бесплатно",
   "edited": "Пользователь был изменен!",
   "title_modal_task": "Название задачи",
-  "description_modal_task": "Описание задачи"
+  "description_modal_task": "Описание задачи",
+  "board_dialog_delete":"Удалить",
+  "done":"Готово",
+  "column_modal_task":"Колонка"
 }

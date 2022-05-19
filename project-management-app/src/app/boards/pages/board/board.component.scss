@@ -3,8 +3,11 @@
 :host {
   display: flex;
   flex-direction: column;
-  margin-top: $header-height;
-  padding: 40px;
+box-sizing: border-box;
+  padding-top: 110px;
+  height: calc(100% - 101px);
+  margin: 0 50px;
+
 }
 
 h1 {
@@ -13,30 +16,42 @@ h1 {
 }
 
 .menu {
-  margin-bottom: 60px;
+  margin-bottom: 40px;
 }
 
 button {
-  @include btnWithBorder;
+  @include btn;
   color: $white;
   background: $light-red;
-  border: none;
+
   width: 170px;
   &:hover {
     @include hover;
-    color: $dark-gray;
+     background: $red;
   }
 }
 
-.back-btn {
+.create-col-btn {
   background: $light-blue;
+  &:hover {
+    @include hover;
+     background: $blue;
+  }
 }
-
+.create-task-btn {
+  background: $light-green;
+  &:hover {
+    @include hover;
+     background: $green;
+  }
+}
 .columns-container {
   display: flex;
   overflow-x: auto;
-  height: 65vh;
+
   @include boardScroll;
+  padding-bottom: 30px;
+  height: inherit;
 }
 
 .columns-inner-container {

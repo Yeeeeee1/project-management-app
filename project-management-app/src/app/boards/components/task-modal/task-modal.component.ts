@@ -3,7 +3,7 @@ import {
   FormBuilder, Validators,
 } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { Subject } from 'rxjs';
+import { BehaviorSubject, Subject } from 'rxjs';
 import { MainService } from 'src/app/main/services/main.service';
 import { Column } from '../../models/column';
 import { ColumnsService } from '../../services/columns.service';
@@ -19,17 +19,13 @@ export class TaskModalComponent {
 
   description = '';
 
-  selected: string = this.columnsService.firstColumn;
+  selected = new BehaviorSubject<string>(this.columnsService.firstColumn);
 
   columns$ = new Subject<Column[]>();
 
   columns: Column[];
 
-  public columnsSelect = this.fb.group({
-    title: [null, [Validators.required, Validators.minLength(3), Validators.maxLength(20)]],
-    description: [null, [Validators.required, Validators.minLength(3), Validators.maxLength(20)]],
-    column: [null, [Validators.required, Validators.minLength(3), Validators.maxLength(20)]],
-  });
+  public defaultColumn:string = '';
 
   constructor(
      private fb: FormBuilder,
@@ -42,8 +38,16 @@ export class TaskModalComponent {
     this.columnsService.getColumns();
     this.columnsService.columns$.subscribe((val) => {
       this.columns = val;
+      this.defaultColumn = val[0].id;
     });
   }
+
+  public columnsSelect = this.fb.group({
+    title: [null, [Validators.required, Validators.minLength(3), Validators.maxLength(20)]],
+    description: [null, [Validators.required, Validators.minLength(3), Validators.maxLength(20)]],
+    columnId:
+      [this.defaultColumn, [Validators.required]],
+  });
 
   onCancel(): void {
     this.dialogRef.close();
@@ -51,10 +55,11 @@ export class TaskModalComponent {
 
   createBoard(): void {
     this.tasksService.createTask(this.columnsSelect.value);
+    console.log(this.columnsSelect.value);
     this.onCancel();
   }
 
   selectColumn(event:Event) {
-    this.selected = (event.target as HTMLSelectElement).value;
+    this.selected.next((event.target as HTMLSelectElement).value);
   }
 }
