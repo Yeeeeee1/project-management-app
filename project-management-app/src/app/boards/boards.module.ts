@@ -12,6 +12,7 @@ import { TranslateModule } from '@ngx-translate/core';
 import { MatOptionModule } from '@angular/material/core';
 import { MatSelectModule } from '@angular/material/select';
 import { MatCheckboxModule } from '@angular/material/checkbox';
+import { DragDropModule } from '@angular/cdk/drag-drop';
 import { ColumnCreationComponent } from './components/column-creation/column-creation.component';
 import { ModalComponent } from '../core/components/deletion-modal/deletion-modal.component';
 import { BoardComponent } from './pages/board/board.component';
@@ -41,6 +42,7 @@ import { TaskEditComponent } from './components/task-edit/task-edit.component';
     MatSelectModule,
     MatCheckboxModule,
     MatOptionModule,
+    DragDropModule,
   ],
   exports: [],
 })

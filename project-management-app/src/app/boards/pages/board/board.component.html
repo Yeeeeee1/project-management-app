@@ -9,6 +9,8 @@
 </div>
 
 <div class="columns-container">
-  <div class="columns-inner-container"></div>
-  <app-column *ngFor="let column of columns" [column]="column"></app-column>
+  <div class="columns-inner-container" cdkDropListGroup cdkDropList>
+    <app-column *ngFor=" let column of columns" [column]="column" [columns]="columns" cdkDropList cdkDrag>
+    </app-column>
+  </div>
 </div>

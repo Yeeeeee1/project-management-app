@@ -1,5 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
+import { CdkDragDrop, moveItemInArray, transferArrayItem } from '@angular/cdk/drag-drop';
 import { Column } from '../../models/column';
 import { ColumnsService } from '../../services/columns.service';
 import { ModalComponent } from '../../../core/components/deletion-modal/deletion-modal.component';
@@ -13,7 +14,9 @@ import { ITask } from '../../models/task';
 export class ColumnComponent implements OnInit {
   @Input() public column: Column;
 
-  public tasks: ITask[] | undefined;
+  @Input() public columns: Column[];
+
+  public tasks: ITask[];
 
   public columnId :string | undefined;
 
@@ -30,7 +33,9 @@ export class ColumnComponent implements OnInit {
 
   ngOnInit(): void {
     this.columnsService.getColumn(this.column.id)
-      .subscribe((column) => { this.tasks = column.tasks; this.columnId = column.id; });
+      .subscribe((column) => {
+        this.tasks = (column.tasks as ITask[]); this.columnId = column.id;
+      });
   }
 
   openDeleteModal() {
@@ -60,5 +65,18 @@ export class ColumnComponent implements OnInit {
 
   public randomColor(i:number) {
     return i < 7 ? this.arrColor[i - 1] : this.arrColor[(i % 5) - 1];
+  }
+
+  drop(event: CdkDragDrop<ITask[] >) {
+    if (event.previousContainer === event.container) {
+      moveItemInArray(this.tasks, event.previousIndex, event.currentIndex);
+    } else {
+      transferArrayItem(
+        this.tasks,
+        event.container.data,
+        event.previousIndex,
+        event.currentIndex,
+      );
+    }
   }
 }
