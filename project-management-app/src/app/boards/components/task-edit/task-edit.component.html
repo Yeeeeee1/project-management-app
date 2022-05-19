@@ -9,15 +9,7 @@
       <mat-label>{{ "description_modal_task" | translate }}</mat-label>
       <textarea matInput formControlName="description"></textarea>
     </mat-form-field>
-    <mat-form-field appearance="fill">
-      <mat-label>{{ "column_modal_task" | translate }}</mat-label>
-      <mat-select formControlName="column" [value]="selected">
 
-        <mat-option *ngFor="let column of columns " [value]="column.id">
-          {{column.title}}
-        </mat-option>
-      </mat-select>
-    </mat-form-field>
     <mat-form-field appearance="fill">
       <input matInput placeholder="Input" style="display: none">
 

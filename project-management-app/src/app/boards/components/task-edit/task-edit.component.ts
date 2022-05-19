@@ -45,8 +45,7 @@ private fb: FormBuilder,
       [Validators.required]],
     description: [this.data.description,
       [Validators.required]],
-    column: [this.data.columnId,
-      [Validators.required]],
+
     checkbox: [this.data.done],
 
   });
@@ -78,7 +77,9 @@ private fb: FormBuilder,
       order: this.data.order as number,
       description: this.taskEdit.value.description,
       columnId: this.data.columnId,
+
     };
+
     this.tasksService.updateTask(form);
     this.onCancel();
   }

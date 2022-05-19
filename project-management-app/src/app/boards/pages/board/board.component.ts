@@ -9,6 +9,7 @@ import { ColumnCreationComponent } from '../../components/column-creation/column
 import { TaskModalComponent } from '../../components/task-modal/task-modal.component';
 import { Column } from '../../models/column';
 import { ColumnsService } from '../../services/columns.service';
+import { TaskService } from '../../services/tasks.service';
 import { sortByOrderNumber } from '../../util';
 
 @Component({
@@ -31,6 +32,7 @@ export class BoardComponent implements OnInit, OnDestroy {
     private router: Router,
     private activatedRoute: ActivatedRoute,
     private mainService: MainService,
+    public taskService:TaskService,
   ) {}
 
   ngOnInit(): void {
@@ -75,16 +77,18 @@ export class BoardComponent implements OnInit, OnDestroy {
     this.dialog.open(TaskModalComponent);
   }
 
-  // drop(event: CdkDragDrop<Column[]>) {
-  //   if (event.previousContainer === event.container) {
-  //     moveItemInArray(this.columns, event.previousIndex, event.currentIndex);
-  //   } else {
-  //     transferArrayItem(
-  //       this.columns,
-  //       event.container.data,
-  //       event.previousIndex,
-  //       event.currentIndex,
-  //     );
-  //   }
-  // }
+  drop(event: CdkDragDrop<Column[]>) {
+    console.log(event);
+    if (event.previousContainer === event.container) {
+      console.log(event);
+      moveItemInArray(this.columns, event.previousIndex, event.currentIndex);
+    } else {
+      transferArrayItem(
+        this.columns,
+        event.container.data,
+        event.previousIndex,
+        event.currentIndex,
+      );
+    }
+  }
 }
