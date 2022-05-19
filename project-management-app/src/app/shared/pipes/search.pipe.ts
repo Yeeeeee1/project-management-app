@@ -5,7 +5,7 @@ import { IMainBoardModel } from '../models/IMainBoardModel';
   name: 'search',
 })
 export class SearchPipe implements PipeTransform {
-  transform(args: any, value: any): any[] {
+  transform(args: string, value: IMainBoardModel[]): IMainBoardModel[] {
 
     args = args.toLowerCase();
 
