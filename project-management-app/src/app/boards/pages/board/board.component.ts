@@ -1,3 +1,4 @@
+import { CdkDragDrop, moveItemInArray, transferArrayItem } from '@angular/cdk/drag-drop';
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -73,4 +74,17 @@ export class BoardComponent implements OnInit, OnDestroy {
   createTask(): void {
     this.dialog.open(TaskModalComponent);
   }
+
+  // drop(event: CdkDragDrop<Column[]>) {
+  //   if (event.previousContainer === event.container) {
+  //     moveItemInArray(this.columns, event.previousIndex, event.currentIndex);
+  //   } else {
+  //     transferArrayItem(
+  //       this.columns,
+  //       event.container.data,
+  //       event.previousIndex,
+  //       event.currentIndex,
+  //     );
+  //   }
+  // }
 }

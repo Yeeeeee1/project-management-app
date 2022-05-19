@@ -7,7 +7,7 @@
     </mat-form-field>
     <mat-form-field appearance="fill">
       <mat-label>{{ "description_modal_task" | translate }}</mat-label>
-      <input matInput formControlName="description" />
+      <textarea matInput formControlName="description"></textarea>
     </mat-form-field>
     <mat-form-field appearance="fill">
       <mat-label>{{ "column_modal_task" | translate }}</mat-label>
@@ -18,11 +18,16 @@
         </mat-option>
       </mat-select>
     </mat-form-field>
+    <mat-form-field appearance="fill">
+      <input matInput placeholder="Input" style="display: none">
+
+      <mat-checkbox matInput formControlName="checkbox">{{"done" | translate}}</mat-checkbox>
+    </mat-form-field>
   </div>
   <div mat-dialog-actions align="center">
     <button mat-button (click)="onCancel()">{{ "board_dialog_close" | translate }}</button>
     <button mat-button (click)="deleteTask()">{{ "board_dialog_delete" | translate }}</button>
-    <button mat-button cdkFocusInitial>{{ "board_dialog_save" | translate }}</button>
+    <button mat-button cdkFocusInitial (click)="upDateTask()">{{ "board_dialog_save" | translate }}</button>
 
   </div>
 </form>

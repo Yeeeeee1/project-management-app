@@ -10,7 +10,6 @@ import { UserModule } from './user/user.module';
 import { WelcomeComponent } from './core/pages/welcome/welcome.component';
 import { SearchResultsComponent } from './search-results/search-results/search-results.component';
 
-
 const routes: Routes = [
   {
     path: ROUTH_PATHS.MAIN,

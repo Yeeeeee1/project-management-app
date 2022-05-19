@@ -11,9 +11,9 @@
     </mat-form-field>
     <mat-form-field appearance="fill">
       <mat-label>{{ "column_modal_task" | translate }}</mat-label>
-      <mat-select formControlName="column" [value]="selected">
+      <mat-select formControlName="columnId" [value]="selected | async">
 
-        <mat-option *ngFor="let column of columns " [value]="column.id">
+        <mat-option *ngFor="let column of columns " [value]="column.id" onselect="selectColumn()">
           {{column.title}}
         </mat-option>
       </mat-select>
@@ -21,7 +21,9 @@
   </div>
   <div mat-dialog-actions align="center">
     <button mat-button (click)="onCancel()">{{ "board_dialog_close" | translate }}</button>
-    <button mat-button cdkFocusInitial (click)="createBoard()">{{ "board_dialog_save" | translate }}</button>
+    <button mat-button cdkFocusInitial (click)="createBoard()" [disabled]="!columnsSelect.valid">{{ "board_dialog_save"
+      |
+      translate }}</button>
 
   </div>
 </form>
