@@ -1,0 +1,89 @@
+<div class="welcome-wrap">
+  <h1>{{"welcome_title" | translate}}</h1>
+  <section class="container welcome">
+    <div class="welcome-inner-wrap">
+      <div class="welcome-description">
+        <h2>{{"quote_1" | translate}}<br>{{"quote_2" | translate}}</h2>
+        <p>{{"welcome_description" | translate}}</p>
+        <button class="sign-up" [routerLink]="registration">{{"registration_btn" | translate}}</button>
+      </div>
+      <div class="example"> <img src="./../../../../assets/images/example.png" alt=""></div>
+    </div>
+
+    <div [ngClass]="{arrowDown:!upDirection, arrowUp:upDirection}">
+      <span></span>
+      <span></span>
+
+    </div>
+    <button class="more-btn" (click)="panelVisibleHandler()">{{"more_btn" | translate}}</button>
+    <mat-expansion-panel hideToggle #panel>
+
+      <div class="app-description">
+        <div>
+          <h3>{{"localization" | translate}}</h3>
+          <p>{{"localization_description" |translate}}</p>
+        </div>
+        <div>
+          <h3>{{"no_limit" | translate}}</h3>
+          <p>{{"no_limit_description" | translate}}</p>
+        </div>
+        <div>
+          <h3>{{"dragndrop" | translate}}</h3>
+          <p> {{"dragndrop_description" | translate}}</p>
+        </div>
+        <div>
+          <h3>{{"search" | translate}}</h3>
+          <p>{{"search-description" | translate}} </p>
+        </div>
+      </div>
+    </mat-expansion-panel>
+
+
+  </section>
+  <section class="team container">
+    <h2 class="title title-team">{{"team" | translate}}</h2>
+    <div class="team-wrap">
+      <div class="team-person"> <img src="./../../../../assets/images/Konstantin.png" alt="">
+        <p>about team lead</p>
+      </div>
+      <div class="team-person"><img src="./../../../../assets/images/Volha.png" alt="">
+        <h3>{{"olga"| translate}}</h3>
+        <ul>
+          <li>{{"organizing_team"| translate}}</li>
+          <li>{{"header_functionality"| translate}}</li>
+          <li>{{"columns_functionality"| translate}}</li>
+          <li>{{"localization_functionality"| translate}}</li>
+        </ul>
+      </div>
+      <div class="team-person"><img src="./../../../../assets/images/alina.png" alt="Alina Husarava">
+        <h3>{{"alina"| translate}}</h3>
+        <ul>
+          <li>{{"404"| translate}}</li>
+          <li>{{"page_welcome"| translate}}</li>
+          <li>{{"auth"| translate}}</li>
+          <li>{{"styles"| translate}}</li>
+        </ul>
+      </div>
+    </div>
+
+  </section>
+  <section class="course container">
+    <h2 class="title title-course">{{"course_title" | translate}}</h2>
+
+    <div class="course-description">
+      <img src="../../../../assets/images/logos1.svg" alt="logos">
+      <div class="course-inner-description">
+        <h3>{{"course_subtitle" | translate}}</h3>
+        <p>{{"course_description_1" | translate}}<br>
+          {{"course_description_2" | translate}}<br> <strong>{{"course_description_3" | translate}}</strong>
+        </p>
+        <a href="https://rs.school/angular/">{{"course_btn"| translate}}</a>
+      </div>
+      <img src="../../../../assets/images/logos 2.svg" alt="logos">
+
+    </div>
+
+
+  </section>
+
+</div>

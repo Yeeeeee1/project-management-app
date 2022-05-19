@@ -1,0 +1,43 @@
+<header [class.sticky]="isSticky">
+  <div class="navigation">
+    <a class="logo-link" routerLink="/">
+      <mat-icon class="boards-icon" aria-label="Boards">dashboard</mat-icon>
+    </a>
+
+    <button *ngIf="isLogged" (click)="createBoard()" class="create-board-btn">
+      {{ "create_board_btn" | translate }}
+    </button>
+  </div>
+  <div class="right-wrap">
+    <div>
+      <input *ngIf="(authService.isLogin$ | async) === true" class="search-field" matInput
+        placeholder="{{ 'search' | translate }}..." />
+      <span class="language-toggle">
+        <mat-slide-toggle [(ngModel)]="isLanguageChecked" (change)="onToggle($event)">{{ "ru" | translate }}
+        </mat-slide-toggle>
+      </span>
+      <button *ngIf="isLogged" [matMenuTriggerFor]="menu" mat-stroked-button class="user-btn">
+        {{ "greeting" | translate }}, {{ authService.name$ | async }}
+      </button>
+      <mat-menu #menu="matMenu">
+        <button class="logout-btn" (click)="authService.logout()">
+          {{ "logout" | translate }}
+        </button>
+        <button *ngIf="isLogged" (click)="openEditProfile()" class="edit-btn">
+          {{ "edit_profile" | translate }}
+        </button>
+        <button *ngIf="isLogged" (click)="openDeleteModal()" class=" delete-btn">
+          {{ "delete_profile" | translate }}
+        </button>
+      </mat-menu>
+    </div>
+    <div *ngIf="(authService.isLogin$ | async) === false" class="header-btn-wrap">
+      <button mat-stroked-button color="primary" class="login-btn" [routerLink]="login">
+        {{"log_in" | translate}}
+      </button>
+      <button mat-stroked-button color="primary" [routerLink]="register" class="signup-btn">
+        {{"registration_btn" | translate}}
+      </button>
+    </div>
+  </div>
+</header>

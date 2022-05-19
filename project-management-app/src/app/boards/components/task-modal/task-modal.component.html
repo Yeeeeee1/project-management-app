@@ -1,0 +1,29 @@
+<form [formGroup]="columnsSelect">
+  <div mat-dialog-content>
+
+    <mat-form-field appearance="fill">
+      <mat-label>{{ "title_modal_task" | translate }}</mat-label>
+      <input matInput formControlName="title" />
+    </mat-form-field>
+    <mat-form-field appearance="fill">
+      <mat-label>{{ "description_modal_task" | translate }}</mat-label>
+      <input matInput formControlName="description" />
+    </mat-form-field>
+    <mat-form-field appearance="fill">
+      <mat-label>{{ "column_modal_task" | translate }}</mat-label>
+      <mat-select formControlName="columnId" [value]="selected | async">
+
+        <mat-option *ngFor="let column of columns " [value]="column.id" onselect="selectColumn()">
+          {{column.title}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+  </div>
+  <div mat-dialog-actions align="center">
+    <button mat-button (click)="onCancel()">{{ "board_dialog_close" | translate }}</button>
+    <button mat-button cdkFocusInitial (click)="createBoard()" [disabled]="!columnsSelect.valid">{{ "board_dialog_save"
+      |
+      translate }}</button>
+
+  </div>
+</form>

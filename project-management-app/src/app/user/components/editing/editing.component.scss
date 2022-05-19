@@ -1,0 +1,56 @@
+@import "./../../../../assets/scss/_variables.scss";
+form {
+  h3 {
+    @include fontH3;
+  }
+  @include form;
+  input {
+    @include input;
+    background: $white;
+  }
+  button {
+    @include btn;
+
+    &:hover {
+      @include hover;
+    }
+  }
+  .save-btn {
+    color: $white;
+    background: $light-blue;
+
+    &:hover {
+      background: #587eb5;
+    }
+    &:disabled {
+      @include disabled;
+      color: $white;
+      background: $opacity-blue;
+      &:hover {
+        color: $white;
+        background: $opacity-blue;
+      }
+    }
+  }
+  .cancel-btn {
+    color: $white;
+    background: $light-red;
+
+    &:hover {
+      background: $red;
+    }
+    &:disabled {
+      @include disabled;
+      color: $white;
+      background: $opacity-red;
+      &:hover {
+        color: $white;
+        background: $opacity-red;
+      }
+    }
+  }
+}
+.edited {
+  font-size: $fontSizeH4;
+  color: $green;
+}

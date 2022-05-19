@@ -1,0 +1,36 @@
+@import "../../../../assets/scss/_variables.scss";
+
+footer {
+  position: sticky;
+  bottom: 0;
+  background-color: white;
+  width: 100%;
+  height: 100px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-top: 1px solid $component-border-gray;
+
+  .team-contacts {
+    list-style: none;
+    li {
+      a {
+        @include fontP;
+        @include link;
+      }
+    }
+  }
+}
+
+.footer-date {
+  @include fontP;
+}
+
+.footer-image {
+  margin-right: 25px;
+
+  & img {
+    width: 100px;
+    height: 70px;
+  }
+}

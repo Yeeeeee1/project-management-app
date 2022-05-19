@@ -1,0 +1,18 @@
+<div class="register-container">
+  <form [formGroup]="reg">
+    <h3>{{"registration" | translate}}</h3>
+    <mat-form-field *ngFor="let regField of regFields">
+      <mat-label #label>{{'labels.' + regField.name | translate}}</mat-label>
+      <input matInput [id]="regField.id" autocomplete="off" [type]="regField.type" [formControlName]="regField.id"
+        (click)="errorRegMsg.next('')">
+      <mat-error>{{createErrorMessage(regField, label.innerText)}}</mat-error>
+
+    </mat-form-field>
+    <mat-error>{{errorRegMsg | async}}</mat-error>
+    <div class="btn-wrap">
+      <button class="enter-btn" [routerLink]="login">{{"login" | translate}}</button>
+      <button class="registration-btn" [disabled]="!reg.valid" (click)="createUserRequest()">{{"registration" |
+        translate}}</button>
+    </div>
+  </form>
+</div>

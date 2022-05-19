@@ -1,0 +1,17 @@
+<h1>{{boardName}}</h1>
+<div class="menu">
+  <button class="back-btn" mat-icon-button matTooltip="Go to main" (click)="goToMain()">
+    <mat-icon aria-label="Logout">arrow_back</mat-icon>
+  </button>
+  <button class="create-col-btn" (click)="openCreateColumnForm()">{{'create_column' | translate }}</button>
+  <button class="create-task-btn" *ngIf="columns && columns.length > 0" (click)="createTask()">{{'create_task' |
+    translate }}</button>
+</div>
+
+<div class="columns-container">
+  <div class="columns-inner-container" cdkDropListGroup cdkDropList (cdkDropListDropped)="drop($event)">
+    <app-column class="drag-box" *ngFor=" let column of columns" [column]="column" [columns]="columns" cdkDropList
+      cdkDrag (cdkDropListDropped)="taskService.dropTask($event, column.tasks)">
+    </app-column>
+  </div>
+</div>

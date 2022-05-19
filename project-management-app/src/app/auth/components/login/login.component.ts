@@ -1,0 +1,96 @@
+/* eslint-disable comma-dangle */
+import { Component, Input } from '@angular/core';
+import { FormBuilder, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
+import { TranslateService } from '@ngx-translate/core';
+import { BehaviorSubject } from 'rxjs';
+import {
+  PASSWORD_REG_EXP,
+  ROUTH_PATHS,
+} from 'src/app/shared/constants/constants';
+import { ILoginForm } from '../../models/login.model';
+import { AuthService } from '../../services/auth.service';
+import { HttpAuthService } from '../../services/http-auth.service';
+import { regExValidator } from '../../util';
+
+@Component({
+  selector: 'app-login',
+  templateUrl: './login.component.html',
+  styleUrls: ['./login.component.scss'],
+})
+export class LoginComponent {
+  @Input() formError: string = '';
+
+  public register = '../registration';
+
+  public errorLoginMsg = new BehaviorSubject<string>('');
+
+  constructor(
+     public translate:TranslateService,
+    private router: Router,
+    private fb: FormBuilder,
+    public httpAuthService: HttpAuthService,
+    public authService: AuthService
+  ) {}
+
+  public loginFields: ILoginForm[] = [
+    {
+      id: 'login',
+      formControlName: 'login',
+      type: 'text',
+      messageError: {
+        email: 'Please enter a valid email: example@email.com',
+        required: 'Please enter a login email',
+      },
+    },
+    {
+      id: 'password',
+      formControlName: 'password',
+      type: 'password',
+      messageError: {
+        regEx:
+          'Your password must be have at least 8 characters long, 1 uppercase, 1 lowercase character, 1 number, 1 special character, e.g., ! @ # ? ]',
+        required: 'Please enter a password',
+      },
+    },
+  ];
+
+  public login = this.fb.group({
+    login: [null, [Validators.required, Validators.email]],
+    password: [null, [Validators.required, regExValidator(PASSWORD_REG_EXP)]],
+  });
+
+  createErrorMessage(loginField: ILoginForm, label:string): string | undefined {
+    let message: string | undefined;
+    switch (true) {
+      case !!this.login?.get(loginField.id)?.errors?.['required']:
+        this.translate.get('required_error', { label: (label === 'электронная почта' ? 'электронную почту' : label) }).subscribe((val) => { message = val; });
+        break;
+      case !!this.login?.get(loginField.id)?.errors?.['email']:
+        this.translate.get('email_error').subscribe((val) => { message = val; });
+        break;
+
+      case !!this.login?.get(loginField.id)?.errors?.['regEx']:
+        this.translate.get('regEx_error').subscribe((val) => { message = val; });
+        break;
+      default:
+        message = '';
+    }
+    return message;
+  }
+
+  public log() {
+    this.httpAuthService.login(this.login.value).subscribe((data) => {
+      if (typeof data === 'string') {
+        this.errorLoginMsg.next(data);
+      } else {
+        this.router.navigate([ROUTH_PATHS.MAIN]);
+        this.authService.updateToken(data.token);
+        this.httpAuthService.getUserById(data.token).subscribe((item) => {
+          localStorage.setItem('name', item.name || '');
+          this.authService.name$.next(localStorage.getItem('name') as string);
+        });
+      }
+    });
+  }
+}

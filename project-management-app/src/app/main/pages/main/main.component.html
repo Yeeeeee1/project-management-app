@@ -1,0 +1,25 @@
+<main>
+  <div class="main-wrapper">
+    <h2 class="no-boards" *ngIf="isNoBoards">No boards...</h2>
+    <div class="main-wrapper__card" *ngFor="let data of data">
+      <a href="/boards/{{ data.id }}">
+        <h3 class="main-wrapper__card__card-title">
+          {{ data.title }}
+        </h3>
+      </a>
+
+      <img
+        src="../../../../assets/images/trash.png"
+        class="main-wrapper__trash-image"
+        alt="trash"
+        (click)="deleteBoard(data.id)"
+      />
+      <img
+        src="../../../../assets/images/pen.png"
+        class="main-wrapper__trash-image"
+        (click)="changeName(data.id)"
+        alt="pen"
+      />
+    </div>
+  </div>
+</main>

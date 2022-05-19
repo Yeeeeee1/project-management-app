@@ -1,0 +1,114 @@
+@import "./../../../../assets/scss/variables";
+header {
+  background: $white;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  height: $header-height;
+  position: fixed;
+  width: 100%;
+  transition: 0.8s;
+  z-index: 100;
+  top: 0;
+  border-bottom: 1px solid $component-border-gray;
+}
+
+header.sticky {
+  height: $headerStickyHeight;
+  @include headerShadow;
+  @include transition;
+}
+
+.navigation {
+  display: flex;
+
+  button {
+    background: none;
+    @include btn;
+    width: auto;
+    &:hover {
+      @include hover;
+      color: $dark-gray;
+    }
+  }
+  .create-board-btn {
+  @include btnWithBorder;
+  width: auto;
+}
+}
+
+.logo-link {
+  display: block;
+  cursor: pointer;
+  margin-right: 20px;
+}
+
+.boards-icon {
+  font-size: 36px;
+}
+
+.boards-icon,
+.logout-icon {
+  color: $light-blue;
+}
+
+.search-field {
+  @include input;
+  background: $bg-gray;
+  padding-left: 20px;
+  box-sizing: border-box;
+  margin-right: 30px;
+}
+
+.language-toggle {
+  vertical-align: middle;
+}
+
+.login-btn,
+.user-btn {
+  margin-right: 5px;
+}
+.user-btn,
+.logout-btn,
+.edit-btn,
+.delete-btn {
+  background: none;
+  @include btn;
+
+  width: auto;
+  margin: 0 0 0 5px;
+  &:hover {
+    @include hover;
+    color: $dark-gray;
+  }
+}
+.logout-btn,
+.edit-btn,
+.delete-btn {
+  display: block;
+   text-align: left;
+}
+.delete-btn {
+  color: $light-red;
+  &:hover {
+    color: $red;
+  }
+}
+
+
+.right-wrap {
+  display: flex;
+  align-items: baseline;
+}
+.header-btn-wrap {
+margin-left: 20px;
+}
+.login-btn, .signup-btn {
+  @include btnWithBorder;
+  width: auto;
+  color: $gray;
+  &:hover {
+    color:$dark-gray;
+  }
+}
+

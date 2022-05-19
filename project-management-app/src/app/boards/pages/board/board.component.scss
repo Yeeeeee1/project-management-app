@@ -1,0 +1,80 @@
+@import "./../../../../assets/scss/variables";
+
+:host {
+  display: flex;
+  flex-direction: column;
+box-sizing: border-box;
+  padding-top: 110px;
+  height: calc(100% - 101px);
+  margin: 0 50px;
+
+}
+
+h1 {
+  @include fontH1;
+  margin-bottom: 30px;
+}
+
+.menu {
+  margin-bottom: 40px;
+}
+
+button {
+  @include btn;
+  color: $white;
+  background: $light-red;
+
+  width: 170px;
+  &:hover {
+    @include hover;
+     background: $red;
+  }
+}
+
+.create-col-btn {
+  background: $light-blue;
+  &:hover {
+    @include hover;
+     background: $blue;
+  }
+}
+.create-task-btn {
+  background: $light-green;
+  &:hover {
+    @include hover;
+     background: $green;
+  }
+}
+.columns-container {
+  display: flex;
+  overflow-x: auto;
+
+  @include boardScroll;
+  padding-bottom: 30px;
+  height: inherit;
+}
+
+.columns-inner-container {
+ width: 100%;
+  height: calc(100% - 50px);
+  display: flex;
+  margin: 25px 0;
+}
+.cdk-drag-preview {
+  box-sizing: border-box;
+  border-radius: 16px;
+  box-shadow: 0 5px 5px -3px rgba(0, 0, 0, 0.2),
+              0 8px 10px 1px rgba(0, 0, 0, 0.14),
+              0 3px 14px 2px rgba(0, 0, 0, 0.12);
+}
+.cdk-drag-placeholder {
+  opacity: 0;
+}
+
+.cdk-drag-animating {
+  transition: transform 250ms cubic-bezier(0, 0, 0.2, 1);
+}
+
+.columns-inner-container.cdk-drop-list-dragging.drag-box:not(.cdk-drag-placeholder) {
+  transition: transform 250ms cubic-bezier(0, 0, 0.2, 1);
+}
