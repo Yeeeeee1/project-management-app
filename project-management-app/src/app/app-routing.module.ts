@@ -9,7 +9,6 @@ import { ROUTH_PATHS } from './shared/constants/constants';
 import { UserModule } from './user/user.module';
 import { WelcomeComponent } from './core/pages/welcome/welcome.component';
 
-
 const routes: Routes = [
   {
     path: ROUTH_PATHS.MAIN,

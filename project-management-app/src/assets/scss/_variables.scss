@@ -142,15 +142,16 @@ $fontFamily: "Inter", sans-serif;
 @mixin list {
   background: $bg-gray;
   padding: 20px;
-  width: 355px;
+  width: 305px;
   border-radius: $big-border-radius;
 }
 
 @mixin task {
   background: $white;
   padding: 20px;
-  width: 315px;
+  width: calc(100% - 40px);
   border-radius: $big-border-radius;
+  z-index: 100;
 }
 
 @mixin listScroll {

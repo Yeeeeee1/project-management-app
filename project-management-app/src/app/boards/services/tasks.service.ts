@@ -48,10 +48,12 @@ export class TaskService {
       description: form.description,
       userId: this.jwtHelper.decodeToken(localStorage.getItem('token') as string).userId,
     };
-    console.log(task.order, this.lastOrderNumber, task.userId, form.description);
-    this.http.post(`boards/${this.columnsService.getIdBoard()}/columns/${form.column}/tasks`, task).subscribe({
+
+    this.http.post(`boards/${this.columnsService.getIdBoard()}/columns/${form.columnId}/tasks`, task).subscribe({
       next: () => this.columnsService.getColumns(),
-      error: () => this.router.navigate(['/error']),
+      error: () => {
+        this.router.navigate(['/error']);
+      },
     });
   }
 
@@ -62,7 +64,6 @@ export class TaskService {
       .subscribe({
         next: (tasks) => {
           this.tasks$.next(tasks);
-          console.log(tasks);
           this.lastOrderNumber = tasks[tasks.length - 1].order;
         },
         error: () => this.router.navigate(['/error']),
@@ -71,21 +72,27 @@ export class TaskService {
 
   updateTask(form: ITaskForm): void {
     this.taskId$.subscribe((id) => { this.taskId = id; });
+    const boardId = this.columnsService.getIdBoard();
     const task = {
       title: form.title,
-      done: false,
-      order: 1 + (this.lastOrderNumber ?? 0),
+      done: form.done,
+      order: form.order as number,
       description: form.description,
       userId: this.jwtHelper.decodeToken(localStorage.getItem('token') as string).userId,
+      boardId,
+      columnId: form.columnId,
     };
-    this.http.put(`boards/${this.columnsService.getIdBoard()}/columns/${form.column}/tasks/${this.taskId}`, task).subscribe({
+
+    this.http.put(`boards/${boardId}/columns/${form.columnId}/tasks/${this.taskId as string}`, task).subscribe({
       next: () => this.columnsService.getColumns(),
-      error: () => this.router.navigate(['/error']),
+      error: (err) => {
+        console.error(err);
+        this.router.navigate(['/error']);
+      },
     });
   }
 
   public deleteTask(): void {
-    console.log(this.taskId, this.columnId);
     this.http.delete(`boards/${this.columnsService.getIdBoard()}/columns/${this.columnId}/tasks/${this.taskId}`).subscribe({
       next: () => this.columnsService.getColumns(),
       error: () => this.router.navigate(['/error']),

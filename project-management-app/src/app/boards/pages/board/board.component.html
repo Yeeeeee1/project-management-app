@@ -3,11 +3,14 @@
   <button class="back-btn" mat-icon-button matTooltip="Go to main" (click)="goToMain()">
     <mat-icon aria-label="Logout">arrow_back</mat-icon>
   </button>
-  <button (click)="openCreateColumnForm()">{{'create_column' | translate }}</button>
-  <button *ngIf="columns && columns.length > 0" (click)="createTask()">{{'create_task' | translate }}</button>
+  <button class="create-col-btn" (click)="openCreateColumnForm()">{{'create_column' | translate }}</button>
+  <button class="create-task-btn" *ngIf="columns && columns.length > 0" (click)="createTask()">{{'create_task' |
+    translate }}</button>
 </div>
 
 <div class="columns-container">
-  <div class="columns-inner-container"></div>
-  <app-column *ngFor="let column of columns" [column]="column"></app-column>
+  <div class="columns-inner-container" cdkDropListGroup cdkDropList>
+    <app-column *ngFor=" let column of columns" [column]="column" [columns]="columns" cdkDropList cdkDrag>
+    </app-column>
+  </div>
 </div>

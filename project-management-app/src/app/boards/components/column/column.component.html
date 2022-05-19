@@ -1,14 +1,20 @@
 <h2 *ngIf="showColumnTitle" (click)="toggleTitleEditingSection()">{{column.title}}</h2>
-<div *ngIf="showTitleEditSection" class="title-edit-section">
-  <input class="edit-field" value={{column.title}} #title>
-  <button mat-icon-button>
-    <mat-icon aria-label="Submit" class="submit-btn" (click)="saveTitle(title.value)">check_circle</mat-icon>
-  </button>
-  <button mat-icon-button>
-    <mat-icon aria-label="Cancel" class="cancel-btn" (click)="toggleTitleEditingSection()">cancel</mat-icon>
-  </button>
+<span *ngIf="showColumnTitle" class="point" [ngStyle]="{background:randomColor(column.order)}"></span>
+<span *ngIf="showColumnTitle" class="line" [ngStyle]="{background:randomColor(column.order)}"></span>
+<div class="wrap-helper">
+  <div class="inner-wrap">
+    <div *ngIf="showTitleEditSection" class="title-edit-section">
+      <input class="edit-field" [value]="column.title" #title>
+      <button mat-icon-button>
+        <mat-icon aria-label="Submit" class="submit-btn" (click)="saveTitle(title.value)">check_circle</mat-icon>
+      </button>
+      <button mat-icon-button>
+        <mat-icon aria-label="Cancel" class="cancel-btn" (click)="toggleTitleEditingSection()">cancel</mat-icon>
+      </button>
+    </div>
+    <button *ngIf="showColumnTitle" mat-icon-button class="delete-btn">
+      <mat-icon aria-label="Delete" (click)="openDeleteModal()">delete</mat-icon>
+    </button>
+    <app-task *ngFor="let task of tasks" [task]="task" [columnId]="columnId" cdkDrag></app-task>
+  </div>
 </div>
-<button mat-icon-button class="delete-btn">
-  <mat-icon aria-label="Delete" (click)="openDeleteModal()">delete</mat-icon>
-</button>
-<app-task *ngFor="let task of tasks" [task]="task" [columnId]="columnId"></app-task>

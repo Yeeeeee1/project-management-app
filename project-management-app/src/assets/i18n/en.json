@@ -69,5 +69,9 @@
   "course_btn": "Start it free",
   "edited": "User was edited!",
   "title_modal_task": "Task title",
-  "description_modal_task": "Task description"
+  "description_modal_task": "Task description",
+  "board_dialog_delete":"Delete",
+  "done":"Done",
+  "column_modal_task":"Column"
+
 }

@@ -1,17 +1,18 @@
 export interface ITaskForm {
   title: string;
   description: string;
-  column:string
+  columnId: string;
+  done?: boolean;
+  order?:number
 }
 export interface ITask
 {
   id: string;
   title: string;
-  done: true;
+  done: boolean;
   order: number;
   description: string;
   userId: string;
   boardId: string;
   columnId: string;
-
 }

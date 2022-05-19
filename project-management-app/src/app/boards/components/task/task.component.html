@@ -1,5 +1,11 @@
-<div class="task-wrap" (click)="editTask(task.id, columnId)">
-  <h3 class="task-title">{{task.title}}</h3>
+<div class="task-wrap" (click)="editTask(task, columnId)">
+  <h3 class="task-title">{{task.title}}</h3> <button mat-icon-button class="delete-btn">
+    <mat-icon aria-label="Delete" (click)="openDeleteModal($event,task, columnId)">delete</mat-icon>
+  </button>
   <p class="task-description">{{task.description}}</p>
-  <div><input type="checkbox"><span>{{task.done}}</span></div>
+  <div><input matInput placeholder="Input" style="display: none">
+
+    <mat-checkbox matInput [checked]="task.done" [disabled]="true">{{"done" | translate}}</mat-checkbox>
+
+  </div>
 </div>
