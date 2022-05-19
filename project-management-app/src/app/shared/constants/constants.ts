@@ -7,6 +7,7 @@ export const ROUTH_PATHS = {
   REGISTRATION: 'auth/registration',
   EDIT_PROFILE: 'edit-profile',
   BOARD: 'boards',
+  RESULTS: 'results',
 };
 export const TOKEN = 'token';
 

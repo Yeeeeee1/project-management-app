@@ -61,6 +61,7 @@ export class HeaderComponent {
 
   public search(): void {
     this.searchService.search(this.term);
+    this.router.navigate([ROUTH_PATHS.RESULTS])
   }
 
   public openEditProfile(): void {

@@ -1,16 +1,15 @@
 import { Pipe, PipeTransform } from '@angular/core';
+import { IMainBoardModel } from '../models/IMainBoardModel';
 
 @Pipe({
   name: 'search',
 })
 export class SearchPipe implements PipeTransform {
-  transform(value: any, args?: any): any {
-    if (!value) return null;
-    if (!args) return value;
+  transform(args: any, value: any): any[] {
 
     args = args.toLowerCase();
 
-    return value.filter(function (item: any) {
+    return value.filter(function (item: IMainBoardModel) {
       return JSON.stringify(item).toLowerCase().includes(args);
     });
   }

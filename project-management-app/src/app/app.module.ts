@@ -18,6 +18,8 @@ import { AuthModule } from './auth/auth.module';
 import { CoreModule } from './core/core.module';
 import { MainModule } from './main/main.module';
 import { HeaderComponent } from './core/components/header/header.component';
+import { SearchResultsComponent } from './search-results/search-results/search-results.component';
+import { SearchItemComponent } from './search-results/search-results/search-item/search-item.component';
 
 
 export function getToken() {
@@ -29,7 +31,7 @@ export function HttpLoaderFactory(handler: HttpBackend) {
   return new TranslateHttpLoader(http, '../assets/i18n/', '.json');
 }
 @NgModule({
-  declarations: [AppComponent],
+  declarations: [AppComponent, SearchResultsComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,

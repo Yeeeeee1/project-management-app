@@ -29,7 +29,6 @@ export class ColumnComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    console.log(this.column);
     this.columnsService.getColumn(this.column.id)
       .subscribe((column) => { this.tasks = column.tasks; this.columnId = column.id; });
   }

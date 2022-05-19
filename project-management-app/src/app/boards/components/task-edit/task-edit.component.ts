@@ -54,7 +54,6 @@ private fb: FormBuilder,
 
   deleteTask() {
     this.tasksService.deleteTask();
-    console.log('del');
     this.onCancel();
   }
 }

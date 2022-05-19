@@ -12,7 +12,7 @@
     <div>
       <input *ngIf="(authService.isLogin$ | async) === true" class="search-field" matInput
         placeholder="{{ 'search' | translate }}..." [(ngModel)]="term"
-        (input)="search()" />
+        (keyup.enter)="search()" />
       <span class="language-toggle">
         <mat-slide-toggle [(ngModel)]="isLanguageChecked" (change)="onToggle($event)">{{ "ru" | translate }}
         </mat-slide-toggle>

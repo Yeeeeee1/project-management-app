@@ -48,7 +48,6 @@ export class TaskService {
       description: form.description,
       userId: this.jwtHelper.decodeToken(localStorage.getItem('token') as string).userId,
     };
-    console.log(task.order, this.lastOrderNumber, task.userId, form.description);
     this.http.post(`boards/${this.columnsService.getIdBoard()}/columns/${form.column}/tasks`, task).subscribe({
       next: () => this.columnsService.getColumns(),
       error: () => this.router.navigate(['/error']),
@@ -62,7 +61,6 @@ export class TaskService {
       .subscribe({
         next: (tasks) => {
           this.tasks$.next(tasks);
-          console.log(tasks);
           this.lastOrderNumber = tasks[tasks.length - 1].order;
         },
         error: () => this.router.navigate(['/error']),
@@ -85,7 +83,6 @@ export class TaskService {
   }
 
   public deleteTask(): void {
-    console.log(this.taskId, this.columnId);
     this.http.delete(`boards/${this.columnsService.getIdBoard()}/columns/${this.columnId}/tasks/${this.taskId}`).subscribe({
       next: () => this.columnsService.getColumns(),
       error: () => this.router.navigate(['/error']),
