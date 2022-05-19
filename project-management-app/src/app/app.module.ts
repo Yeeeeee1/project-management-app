@@ -47,6 +47,7 @@ export function HttpLoaderFactory(handler: HttpBackend) {
       defaultLanguage: 'en',
       loader: {
         provide: TranslateLoader,
+
         useFactory: HttpLoaderFactory,
         deps: [HttpBackend],
       },

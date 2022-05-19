@@ -15,6 +15,6 @@
     <button *ngIf="showColumnTitle" mat-icon-button class="delete-btn">
       <mat-icon aria-label="Delete" (click)="openDeleteModal()">delete</mat-icon>
     </button>
-    <app-task *ngFor="let task of tasks" [task]="task" [columnId]="columnId" cdkDrag></app-task>
+    <app-task *ngFor="let task of tasks | sort" [task]="task" [columnId]="columnId" cdkDrag></app-task>
   </div>
 </div>

@@ -9,8 +9,9 @@
 </div>
 
 <div class="columns-container">
-  <div class="columns-inner-container" cdkDropListGroup cdkDropList>
-    <app-column *ngFor=" let column of columns" [column]="column" [columns]="columns" cdkDropList cdkDrag>
+  <div class="columns-inner-container" cdkDropListGroup cdkDropList (cdkDropListDropped)="drop($event)">
+    <app-column class="drag-box" *ngFor=" let column of columns" [column]="column" [columns]="columns" cdkDropList
+      cdkDrag (cdkDropListDropped)="taskService.dropTask($event, column.tasks)">
     </app-column>
   </div>
 </div>

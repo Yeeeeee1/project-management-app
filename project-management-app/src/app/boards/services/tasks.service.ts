@@ -1,3 +1,4 @@
+import { CdkDragDrop, moveItemInArray, transferArrayItem } from '@angular/cdk/drag-drop';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
@@ -97,5 +98,20 @@ export class TaskService {
       next: () => this.columnsService.getColumns(),
       error: () => this.router.navigate(['/error']),
     });
+  }
+
+  dropTask(event: CdkDragDrop<ITask[]>, tasks:ITask[] | undefined) {
+    console.log(event, 'column');
+    if (event.previousContainer === event.container) {
+      console.log(event);
+      moveItemInArray(tasks as ITask[], event.previousIndex, event.currentIndex);
+    } else {
+      transferArrayItem(
+        tasks as ITask[],
+        event.container.data,
+        event.previousIndex,
+        event.currentIndex,
+      );
+    }
   }
 }

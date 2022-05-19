@@ -21,10 +21,11 @@ import { BoardsRoutingModule } from './boards-routing.module';
 import { TaskComponent } from './components/task/task.component';
 import { TaskModalComponent } from './components/task-modal/task-modal.component';
 import { TaskEditComponent } from './components/task-edit/task-edit.component';
+import { SortPipe } from '../sort.pipe';
 
 @NgModule({
   declarations: [BoardComponent, ColumnComponent, ModalComponent,
-    ColumnCreationComponent, TaskComponent, TaskModalComponent, TaskEditComponent],
+    ColumnCreationComponent, TaskComponent, TaskModalComponent, TaskEditComponent, SortPipe],
   imports: [
     CommonModule,
     RouterModule,

@@ -67,7 +67,8 @@ export class ColumnComponent implements OnInit {
     return i < 7 ? this.arrColor[i - 1] : this.arrColor[(i % 5) - 1];
   }
 
-  drop(event: CdkDragDrop<ITask[] >) {
+  drop(event: CdkDragDrop<ITask[]>) {
+    console.log(event, 'task');
     if (event.previousContainer === event.container) {
       moveItemInArray(this.tasks, event.previousIndex, event.currentIndex);
     } else {
