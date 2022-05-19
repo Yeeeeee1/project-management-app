@@ -40,7 +40,7 @@ export class EditingComponent {
     public httpAuthService: HttpAuthService,
     public authService: AuthService,
 
-    
+
     public appStateService: AppStateService,
   ) {
     this.jwtHelper = new JwtHelperService();
@@ -87,23 +87,23 @@ export class EditingComponent {
     let message: string | undefined;
     switch (true) {
       case !!this.editForm?.get(regField.id)?.errors?.['required']:
-        this.translate.get('required_err', { label: (label === 'электронная почта' ? 'электронную почту' : label) }).subscribe((val) => { message = val; });
+        this.translate.get('required_error', { label: (label === 'электронная почта' ? 'электронную почту' : label) }).subscribe((val) => { message = val; });
         break;
       case !!this.editForm?.get(regField.id)?.errors?.['email']:
-        this.translate.get('email_err').subscribe((val) => { message = val; });
+        this.translate.get('email_error').subscribe((val) => { message = val; });
         break;
 
       case !!this.editForm?.get(regField.id)?.errors?.['regEx']:
-        this.translate.get('regEx_err').subscribe((val) => { message = val; });
+        this.translate.get('regEx_error').subscribe((val) => { message = val; });
         break;
       case !!this.editForm?.get(regField.id)?.errors?.['confirm']:
-        this.translate.get('confirm_err').subscribe((val) => { message = val; }); break;
+        this.translate.get('confirm_error').subscribe((val) => { message = val; }); break;
       case !!this.editForm?.get(regField.id)?.errors?.['minlength']:
-        this.translate.get('min_err').subscribe((val) => { message = val; });
+        this.translate.get('min_error').subscribe((val) => { message = val; });
         break;
 
       case !!this.editForm?.get(regField.id)?.errors?.['maxlength']:
-        this.translate.get('max_err').subscribe((val) => { message = val; });
+        this.translate.get('max_error').subscribe((val) => { message = val; });
         break;
       default:
         message = '';
