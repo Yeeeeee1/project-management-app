@@ -75,5 +75,10 @@
   "description_modal_task": "Описание задачи",
   "board_dialog_delete":"Удалить",
   "done":"Готово",
-  "column_modal_task":"Колонка"
+  "column_modal_task":"Колонка",
+  "kostya": "Константин Кравцов",
+  "lead_team": "тимлид",
+  "main_functionality": "главная страница со спивком досок",
+  "search_functionality": "поиск",
+  "build_functionality": "настройка сборки"
 }

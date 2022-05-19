@@ -72,6 +72,11 @@
   "description_modal_task": "Task description",
   "board_dialog_delete":"Delete",
   "done":"Done",
-  "column_modal_task":"Column"
+  "column_modal_task":"Column",
+  "kostya": "Konstantin Kravtsov",
+  "lead_team": "team lead",
+  "main_functionality": "main page with boards",
+  "search_functionality": "seacrh",
+  "build_functionality": "setting of build"
 
 }
